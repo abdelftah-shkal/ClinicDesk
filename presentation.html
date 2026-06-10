@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ClinicDesk (Clinic Appointment System) — Project Presentation</title>
-  
+
   <!-- Modern Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet">
+
   <style>
     /* ==========================================
        1. Core Variables & Design System (Light Theme Default)
@@ -26,7 +29,7 @@
       --text-main: #0f172a;
       --text-muted: #334155;
       --text-dark: #64748b;
-      
+
       --primary: #7c3aed;
       --primary-light: #8b5cf6;
       --primary-bg: rgba(124, 58, 237, 0.08);
@@ -40,11 +43,11 @@
       --accent-orange-bg: rgba(217, 119, 6, 0.08);
       --accent-red: #dc2626;
       --accent-red-bg: rgba(220, 38, 38, 0.08);
-      
+
       --sidebar-width: 280px;
       --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       --transition-bounce: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      
+
       /* Wireframe Colors */
       --wf-window-bg: #ffffff;
       --wf-titlebar-bg: #f1f5f9;
@@ -52,12 +55,12 @@
       --wf-main-bg: #ffffff;
       --wf-bar-bg: rgba(15, 23, 42, 0.08);
       --wf-border: rgba(15, 23, 42, 0.1);
-      
+
       --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
       --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.06);
       --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.1);
     }
-    
+
     /* ==========================================
        Dark Theme Overrides
        ========================================== */
@@ -73,7 +76,7 @@
       --text-main: #f3f4f6;
       --text-muted: #9ca3af;
       --text-dark: #6b7280;
-      
+
       --primary: #8b5cf6;
       --primary-light: #a78bfa;
       --primary-bg: rgba(139, 92, 246, 0.15);
@@ -87,25 +90,25 @@
       --accent-orange-bg: rgba(245, 158, 11, 0.15);
       --accent-red: #ef4444;
       --accent-red-bg: rgba(239, 68, 68, 0.15);
-      
+
       --wf-window-bg: #110e24;
       --wf-titlebar-bg: #191632;
       --wf-sidebar-bg: #14112c;
       --wf-main-bg: #0d0a1b;
       --wf-bar-bg: rgba(255, 255, 255, 0.05);
       --wf-border: rgba(255, 255, 255, 0.08);
-      
+
       --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
       --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.3);
       --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.4);
     }
-    
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-    
+
     body {
       font-family: 'Outfit', sans-serif;
       background: var(--bg-color);
@@ -118,23 +121,26 @@
       -webkit-font-smoothing: antialiased;
       transition: background 0.4s ease, color 0.4s ease;
     }
-    
+
     /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 6px;
       height: 6px;
     }
+
     ::-webkit-scrollbar-track {
       background: rgba(0, 0, 0, 0.05);
     }
+
     body.dark-theme ::-webkit-scrollbar-track {
       background: rgba(0, 0, 0, 0.2);
     }
+
     ::-webkit-scrollbar-thumb {
       background: var(--primary);
       border-radius: 3px;
     }
-    
+
     /* ==========================================
        2. Layout & Sidebar Navigation
        ========================================== */
@@ -151,18 +157,18 @@
       box-shadow: var(--shadow-sm);
       transition: var(--transition-smooth);
     }
-    
+
     .sidebar-header {
       padding: 30px 24px;
       border-bottom: 1px solid var(--card-border);
     }
-    
+
     .sidebar-logo {
       display: flex;
       align-items: center;
       gap: 12px;
     }
-    
+
     .logo-icon {
       width: 38px;
       height: 38px;
@@ -176,7 +182,7 @@
       color: #fff;
       box-shadow: 0 4px 15px rgba(124, 58, 237, 0.35);
     }
-    
+
     .logo-text {
       font-size: 22px;
       font-weight: 800;
@@ -185,7 +191,7 @@
       -webkit-text-fill-color: transparent;
       letter-spacing: 0.5px;
     }
-    
+
     .logo-version {
       font-size: 11px;
       color: var(--secondary);
@@ -194,7 +200,7 @@
       border-radius: 4px;
       font-weight: 600;
     }
-    
+
     .nav-list {
       list-style: none;
       padding: 20px 12px;
@@ -204,7 +210,7 @@
       flex-direction: column;
       gap: 6px;
     }
-    
+
     .nav-item {
       display: flex;
       align-items: center;
@@ -219,17 +225,17 @@
       border: 1px solid transparent;
       text-align: left;
     }
-    
+
     .nav-item:hover {
       color: var(--primary);
       background: rgba(124, 58, 237, 0.04);
     }
-    
+
     body.dark-theme .nav-item:hover {
       color: #fff;
       background: rgba(255, 255, 255, 0.03);
     }
-    
+
     .nav-item.active {
       color: var(--primary);
       background: var(--primary-bg);
@@ -237,14 +243,14 @@
       box-shadow: inset 0 0 8px rgba(124, 58, 237, 0.05);
       font-weight: 600;
     }
-    
+
     body.dark-theme .nav-item.active {
       color: #fff;
       background: rgba(139, 92, 246, 0.15);
       border-color: rgba(139, 92, 246, 0.3);
       box-shadow: inset 0 0 8px rgba(139, 92, 246, 0.1);
     }
-    
+
     .nav-num {
       font-family: 'Fira Code', monospace;
       font-size: 12px;
@@ -258,12 +264,12 @@
       border-radius: 5px;
       font-weight: bold;
     }
-    
+
     body.dark-theme .nav-num {
       color: var(--primary-light);
       background: rgba(139, 92, 246, 0.1);
     }
-    
+
     .sidebar-footer {
       padding: 20px;
       border-top: 1px solid var(--card-border);
@@ -273,14 +279,14 @@
       flex-direction: column;
       gap: 8px;
     }
-    
+
     .controls-help {
       display: flex;
       align-items: center;
       gap: 6px;
       color: var(--text-muted);
     }
-    
+
     .key-badge {
       background: rgba(0, 0, 0, 0.05);
       color: var(--text-main);
@@ -289,7 +295,7 @@
       border: 1px solid rgba(0, 0, 0, 0.1);
       font-family: 'Fira Code', monospace;
     }
-    
+
     body.dark-theme .key-badge {
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.15);
@@ -305,7 +311,7 @@
       display: flex;
       flex-direction: column;
     }
-    
+
     .deck-header {
       padding: 20px 40px;
       display: flex;
@@ -317,7 +323,7 @@
       backdrop-filter: blur(12px);
       box-shadow: var(--shadow-sm);
     }
-    
+
     .slide-title-display {
       font-size: 14px;
       text-transform: uppercase;
@@ -325,13 +331,13 @@
       color: var(--text-muted);
       font-weight: 700;
     }
-    
+
     .slide-progress {
       display: flex;
       align-items: center;
       gap: 15px;
     }
-    
+
     .progress-bar-container {
       width: 120px;
       height: 6px;
@@ -339,31 +345,31 @@
       border-radius: 3px;
       overflow: hidden;
     }
-    
+
     body.dark-theme .progress-bar-container {
       background: rgba(255, 255, 255, 0.05);
     }
-    
+
     .progress-fill {
       height: 100%;
       background: linear-gradient(to right, var(--primary), var(--secondary));
       width: 9.09%;
       transition: var(--transition-smooth);
     }
-    
+
     .slide-counter {
       font-family: 'Fira Code', monospace;
       font-size: 13px;
       color: var(--text-muted);
     }
-    
+
     .slides-wrapper {
       flex-grow: 1;
       position: relative;
       overflow: hidden;
       padding: 40px;
     }
-    
+
     /* ==========================================
        Theme Toggle Button Styling
        ========================================== */
@@ -381,7 +387,7 @@
       font-size: 16px;
       transition: var(--transition-smooth);
     }
-    
+
     .theme-toggle-btn:hover {
       transform: scale(1.1);
       background: var(--primary);
@@ -400,36 +406,37 @@
       opacity: 0;
       pointer-events: none;
       transform: translateY(20px) scale(0.98);
-      transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
-                  transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
       overflow-y: auto;
       padding-right: 10px;
     }
-    
+
     .slide.active {
       opacity: 1;
       pointer-events: auto;
       transform: translateY(0) scale(1);
     }
-    
+
     .slide-content-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 30px;
       align-content: start;
     }
-    
+
     @media (min-width: 1024px) {
       .slide-content-grid.two-cols {
         grid-template-columns: 1fr 1fr;
       }
+
       .slide-content-grid.three-cols {
         grid-template-columns: 1fr 1fr 1fr;
       }
     }
-    
+
     /* ==========================================
        5. Design Elements (Cards, Badges, Tables)
        ========================================== */
@@ -445,7 +452,7 @@
       backdrop-filter: blur(15px);
       margin-top: 3vh;
     }
-    
+
     .hero-card::before {
       content: '';
       position: absolute;
@@ -456,11 +463,11 @@
       background: radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, transparent 60%);
       pointer-events: none;
     }
-    
+
     body.dark-theme .hero-card::before {
       background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 60%);
     }
-    
+
     .hero-title {
       font-size: 52px;
       font-weight: 800;
@@ -471,7 +478,7 @@
       -webkit-text-fill-color: transparent;
       letter-spacing: -1.5px;
     }
-    
+
     .hero-desc {
       font-size: 18px;
       color: var(--text-muted);
@@ -479,7 +486,7 @@
       margin: 0 auto 40px auto;
       font-weight: 400;
     }
-    
+
     .glass-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -489,14 +496,14 @@
       box-shadow: var(--shadow-sm);
       transition: var(--transition-smooth);
     }
-    
+
     .glass-card:hover {
       background: var(--card-hover-bg);
       border-color: var(--card-hover-border);
       transform: translateY(-4px);
       box-shadow: var(--shadow-md);
     }
-    
+
     .card-title {
       font-size: 17px;
       font-weight: 700;
@@ -506,7 +513,7 @@
       gap: 10px;
       color: var(--text-main);
     }
-    
+
     .card-icon {
       width: 32px;
       height: 32px;
@@ -517,14 +524,37 @@
       font-weight: bold;
       font-size: 16px;
     }
-    
-    .icon-primary { background: var(--primary-bg); color: var(--primary); }
-    .icon-secondary { background: var(--secondary-bg); color: var(--secondary); }
-    .icon-cyan { background: var(--accent-cyan-bg); color: var(--accent-cyan); }
-    .icon-emerald { background: var(--accent-emerald-bg); color: var(--accent-emerald); }
-    .icon-orange { background: var(--accent-orange-bg); color: var(--accent-orange); }
-    .icon-red { background: var(--accent-red-bg); color: var(--accent-red); }
-    
+
+    .icon-primary {
+      background: var(--primary-bg);
+      color: var(--primary);
+    }
+
+    .icon-secondary {
+      background: var(--secondary-bg);
+      color: var(--secondary);
+    }
+
+    .icon-cyan {
+      background: var(--accent-cyan-bg);
+      color: var(--accent-cyan);
+    }
+
+    .icon-emerald {
+      background: var(--accent-emerald-bg);
+      color: var(--accent-emerald);
+    }
+
+    .icon-orange {
+      background: var(--accent-orange-bg);
+      color: var(--accent-orange);
+    }
+
+    .icon-red {
+      background: var(--accent-red-bg);
+      color: var(--accent-red);
+    }
+
     .badge {
       display: inline-flex;
       align-items: center;
@@ -535,13 +565,37 @@
       letter-spacing: 0.5px;
       text-transform: uppercase;
     }
-    
-    .badge-primary { background: var(--primary-bg); color: var(--primary); border: 1px solid rgba(124, 58, 237, 0.2); }
-    .badge-secondary { background: var(--secondary-bg); color: var(--secondary); border: 1px solid rgba(219, 39, 119, 0.2); }
-    .badge-emerald { background: var(--accent-emerald-bg); color: var(--accent-emerald); border: 1px solid rgba(5, 150, 105, 0.2); }
-    .badge-cyan { background: var(--accent-cyan-bg); color: var(--accent-cyan); border: 1px solid rgba(8, 145, 178, 0.2); }
-    .badge-orange { background: var(--accent-orange-bg); color: var(--accent-orange); border: 1px solid rgba(217, 119, 6, 0.2); }
-    
+
+    .badge-primary {
+      background: var(--primary-bg);
+      color: var(--primary);
+      border: 1px solid rgba(124, 58, 237, 0.2);
+    }
+
+    .badge-secondary {
+      background: var(--secondary-bg);
+      color: var(--secondary);
+      border: 1px solid rgba(219, 39, 119, 0.2);
+    }
+
+    .badge-emerald {
+      background: var(--accent-emerald-bg);
+      color: var(--accent-emerald);
+      border: 1px solid rgba(5, 150, 105, 0.2);
+    }
+
+    .badge-cyan {
+      background: var(--accent-cyan-bg);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(8, 145, 178, 0.2);
+    }
+
+    .badge-orange {
+      background: var(--accent-orange-bg);
+      color: var(--accent-orange);
+      border: 1px solid rgba(217, 119, 6, 0.2);
+    }
+
     /* Timelines */
     .timeline {
       position: relative;
@@ -552,14 +606,15 @@
       flex-direction: column;
       gap: 30px;
     }
+
     body.dark-theme .timeline {
       border-left-color: rgba(255, 255, 255, 0.05);
     }
-    
+
     .timeline-item {
       position: relative;
     }
-    
+
     .timeline-dot {
       position: absolute;
       left: -42px;
@@ -572,18 +627,29 @@
       box-shadow: 0 0 10px rgba(124, 58, 237, 0.3);
       z-index: 2;
     }
-    
-    .timeline-dot.cyan { border-color: var(--accent-cyan); box-shadow: 0 0 10px rgba(8, 145, 178, 0.3); }
-    .timeline-dot.pink { border-color: var(--secondary); box-shadow: 0 0 10px rgba(219, 39, 119, 0.3); }
-    .timeline-dot.emerald { border-color: var(--accent-emerald); box-shadow: 0 0 10px rgba(5, 150, 105, 0.3); }
-    
+
+    .timeline-dot.cyan {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 10px rgba(8, 145, 178, 0.3);
+    }
+
+    .timeline-dot.pink {
+      border-color: var(--secondary);
+      box-shadow: 0 0 10px rgba(219, 39, 119, 0.3);
+    }
+
+    .timeline-dot.emerald {
+      border-color: var(--accent-emerald);
+      box-shadow: 0 0 10px rgba(5, 150, 105, 0.3);
+    }
+
     .timeline-title {
       font-size: 16px;
       font-weight: 700;
       color: var(--text-main);
       margin-bottom: 5px;
     }
-    
+
     .timeline-time {
       font-family: 'Fira Code', monospace;
       font-size: 12px;
@@ -604,12 +670,12 @@
       line-height: 1.5;
       box-shadow: var(--shadow-sm);
     }
-    
+
     body.dark-theme pre {
       background: rgba(10, 8, 20, 0.8) !important;
       border: 1px solid rgba(255, 255, 255, 0.04);
     }
-    
+
     code {
       font-family: 'Fira Code', monospace;
       background: rgba(0, 0, 0, 0.04);
@@ -618,17 +684,32 @@
       font-size: 85%;
       color: var(--primary);
     }
-    
+
     body.dark-theme code {
       background: rgba(255, 255, 255, 0.05);
       color: var(--primary-light);
     }
-    
-    .code-comment { color: #64748b; }
-    .code-keyword { color: #ec4899; font-weight: bold; }
-    .code-string { color: #10b981; }
-    .code-func { color: #3b82f6; }
-    .code-num { color: #f59e0b; }
+
+    .code-comment {
+      color: #64748b;
+    }
+
+    .code-keyword {
+      color: #ec4899;
+      font-weight: bold;
+    }
+
+    .code-string {
+      color: #10b981;
+    }
+
+    .code-func {
+      color: #3b82f6;
+    }
+
+    .code-num {
+      color: #f59e0b;
+    }
 
     /* Custom Grids & Tables */
     .styled-table-wrapper {
@@ -638,18 +719,18 @@
       background: rgba(255, 255, 255, 0.4);
       box-shadow: var(--shadow-sm);
     }
-    
+
     body.dark-theme .styled-table-wrapper {
-      background: rgba(0,0,0,0.15);
+      background: rgba(0, 0, 0, 0.15);
     }
-    
+
     .styled-table {
       width: 100%;
       border-collapse: collapse;
       text-align: left;
       font-size: 13px;
     }
-    
+
     .styled-table th {
       background: rgba(0, 0, 0, 0.02);
       padding: 12px 16px;
@@ -660,24 +741,104 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-    
+
     .styled-table td {
       padding: 12px 16px;
       border-bottom: 1px solid var(--card-border);
       color: var(--text-muted);
     }
-    
+
     .styled-table tr:hover td {
       color: var(--text-main);
       background: rgba(124, 58, 237, 0.02);
     }
-    
+
     body.dark-theme .styled-table tr:hover td {
       background: rgba(255, 255, 255, 0.01);
     }
-    
+
     .styled-table tr:last-child td {
       border-bottom: none;
+    }
+
+    /* Sprint Grid */
+    .sprint-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .sprint-card {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      border-top: 4px solid var(--card-border);
+    }
+
+    .sprint-card:nth-child(1) {
+      border-top-color: var(--accent-orange);
+    }
+
+    .sprint-card:nth-child(2) {
+      border-top-color: #3b82f6;
+    }
+
+    .sprint-card:nth-child(3) {
+      border-top-color: var(--accent-emerald);
+    }
+
+    .sprint-card:nth-child(4) {
+      border-top-color: var(--primary);
+    }
+
+    .sprint-card.highlight-sprint {
+      border-top-color: var(--accent-red);
+      background: rgba(239, 68, 68, 0.05);
+      grid-column: span 2;
+    }
+
+    .sprint-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sprint-icon {
+      font-size: 24px;
+    }
+
+    .sprint-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 0;
+    }
+
+    .sprint-card h4 {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .sprint-card ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .sprint-card ul li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 6px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .sprint-card ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
     }
 
     /* ==========================================
@@ -694,7 +855,7 @@
       height: 480px;
       transition: var(--transition-smooth);
     }
-    
+
     .wf-titlebar {
       background: var(--wf-titlebar-bg);
       padding: 10px 16px;
@@ -703,34 +864,43 @@
       align-items: center;
       justify-content: space-between;
     }
-    
+
     .wf-dots {
       display: flex;
       gap: 6px;
     }
-    
+
     .wf-dot {
       width: 10px;
       height: 10px;
       border-radius: 50%;
       background: var(--text-dark);
     }
-    .wf-dot.red { background: var(--accent-red); }
-    .wf-dot.yellow { background: var(--accent-orange); }
-    .wf-dot.green { background: var(--accent-emerald); }
-    
+
+    .wf-dot.red {
+      background: var(--accent-red);
+    }
+
+    .wf-dot.yellow {
+      background: var(--accent-orange);
+    }
+
+    .wf-dot.green {
+      background: var(--accent-emerald);
+    }
+
     .wf-title {
       font-size: 11px;
       color: var(--text-muted);
       font-family: 'Fira Code', monospace;
     }
-    
+
     .wf-sidebar-layout {
       display: flex;
       flex-grow: 1;
       height: calc(100% - 31px);
     }
-    
+
     .wf-side {
       width: 160px;
       background: var(--wf-sidebar-bg);
@@ -740,18 +910,19 @@
       flex-direction: column;
       gap: 8px;
     }
-    
+
     .wf-side-item {
       height: 24px;
       background: var(--wf-bar-bg);
       border-radius: 4px;
       width: 100%;
     }
+
     .wf-side-item.active {
       background: var(--primary-bg);
       border: 1px solid rgba(124, 58, 237, 0.2);
     }
-    
+
     .wf-main {
       flex-grow: 1;
       padding: 24px;
@@ -759,14 +930,14 @@
       background: var(--wf-main-bg);
       position: relative;
     }
-    
+
     .wf-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
       margin-bottom: 20px;
     }
-    
+
     .wf-card {
       background: var(--wf-bar-bg);
       border: 1px dashed var(--wf-border);
@@ -776,18 +947,30 @@
       flex-direction: column;
       gap: 8px;
     }
-    
+
     .wf-bar {
       height: 12px;
       background: var(--wf-bar-bg);
       border-radius: 3px;
       width: 100%;
     }
-    .wf-bar.short { width: 60%; }
-    .wf-bar.medium { width: 80%; }
-    .wf-bar.accent { background: rgba(124, 58, 237, 0.25); }
-    .wf-bar.success { background: rgba(5, 150, 105, 0.25); }
-    
+
+    .wf-bar.short {
+      width: 60%;
+    }
+
+    .wf-bar.medium {
+      width: 80%;
+    }
+
+    .wf-bar.accent {
+      background: rgba(124, 58, 237, 0.25);
+    }
+
+    .wf-bar.success {
+      background: rgba(5, 150, 105, 0.25);
+    }
+
     .wf-btn {
       height: 32px;
       background: var(--primary);
@@ -810,7 +993,7 @@
       box-shadow: var(--shadow-md);
       padding: 20px;
     }
-    
+
     .sim-header {
       display: flex;
       justify-content: space-between;
@@ -819,14 +1002,14 @@
       border-bottom: 1px solid var(--card-border);
       padding-bottom: 12px;
     }
-    
+
     .sim-stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 15px;
       margin-bottom: 25px;
     }
-    
+
     .sim-stat-card {
       background: var(--wf-bar-bg);
       border: 1px solid var(--wf-border);
@@ -834,17 +1017,17 @@
       border-radius: 8px;
       text-align: center;
     }
-    
+
     .sim-stat-val {
       font-size: 24px;
       font-weight: 800;
       color: var(--text-main);
       margin-top: 5px;
     }
-    
+
     .sim-chart-container {
       height: 180px;
-      background: rgba(0,0,0,0.03);
+      background: rgba(0, 0, 0, 0.03);
       border-radius: 8px;
       display: flex;
       align-items: flex-end;
@@ -853,11 +1036,11 @@
       position: relative;
       border: 1px solid var(--wf-border);
     }
-    
+
     body.dark-theme .sim-chart-container {
-      background: rgba(0,0,0,0.2);
+      background: rgba(0, 0, 0, 0.2);
     }
-    
+
     .sim-chart-bar {
       width: 32px;
       background: linear-gradient(to top, var(--primary), var(--secondary));
@@ -865,9 +1048,10 @@
       border-top-right-radius: 6px;
       position: relative;
       transition: var(--transition-bounce);
-      height: 0px; /* will animate in */
+      height: 0px;
+      /* will animate in */
     }
-    
+
     .sim-chart-bar::after {
       content: attr(data-label);
       position: absolute;
@@ -878,7 +1062,7 @@
       color: var(--text-muted);
       white-space: nowrap;
     }
-    
+
     .sim-chart-bar::before {
       content: attr(data-val);
       position: absolute;
@@ -897,7 +1081,7 @@
       display: flex;
       gap: 10px;
     }
-    
+
     .filter-input {
       flex-grow: 1;
       background: var(--wf-window-bg);
@@ -909,11 +1093,11 @@
       outline: none;
       box-shadow: var(--shadow-sm);
     }
-    
+
     .filter-input:focus {
       border-color: var(--primary);
     }
-    
+
     /* Slide Navigation Footer Buttons */
     .slide-navigation-buttons {
       display: flex;
@@ -922,7 +1106,7 @@
       padding-top: 30px;
       border-top: 1px solid var(--card-border);
     }
-    
+
     .nav-btn {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -938,20 +1122,20 @@
       transition: var(--transition-smooth);
       box-shadow: var(--shadow-sm);
     }
-    
+
     .nav-btn:hover {
       background: var(--primary-bg);
       border-color: var(--primary);
       color: var(--primary);
     }
-    
+
     .nav-btn.primary-btn {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       border: none;
       color: #fff;
       box-shadow: 0 4px 15px rgba(124, 58, 237, 0.2);
     }
-    
+
     .nav-btn.primary-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(124, 58, 237, 0.35);
@@ -970,7 +1154,7 @@
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 20px;
     }
-    
+
     .db-table-card {
       background: var(--wf-window-bg);
       border: 1px solid var(--card-border);
@@ -978,7 +1162,7 @@
       overflow: hidden;
       box-shadow: var(--shadow-sm);
     }
-    
+
     .db-table-header {
       background: var(--primary-bg);
       padding: 8px 14px;
@@ -990,30 +1174,30 @@
       display: flex;
       justify-content: space-between;
     }
-    
+
     .db-column-list {
       padding: 10px 14px;
       display: flex;
       flex-direction: column;
       gap: 6px;
     }
-    
+
     .db-column {
       display: flex;
       justify-content: space-between;
       font-size: 12px;
     }
-    
+
     .col-name {
       font-family: 'Fira Code', monospace;
       color: var(--text-main);
     }
-    
+
     .col-type {
       color: var(--text-dark);
       font-size: 11px;
     }
-    
+
     .col-key {
       color: var(--secondary);
       font-size: 10px;
@@ -1021,6 +1205,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- ==========================================
@@ -1032,14 +1217,15 @@
         <div class="logo-icon">🩺</div>
         <div>
           <div class="logo-text">ClinicDesk</div>
-          <div style="font-size: 10px; color: var(--text-muted); display: flex; gap: 4px; align-items: center; margin-top: 2px;">
+          <div
+            style="font-size: 10px; color: var(--text-muted); display: flex; gap: 4px; align-items: center; margin-top: 2px;">
             <span>Project Deck</span>
             <span class="logo-version">v1.0</span>
           </div>
         </div>
       </div>
     </div>
-    
+
     <ul class="nav-list" id="navList">
       <li class="nav-item active" data-slide="0">
         <span class="nav-num">01</span>
@@ -1086,7 +1272,7 @@
         <span>Stack & Tech</span>
       </li>
     </ul>
-    
+
     <div class="sidebar-footer">
       <div class="controls-help">
         <span>Press</span>
@@ -1112,11 +1298,11 @@
   <main class="deck-container">
     <header class="deck-header">
       <div class="slide-title-display" id="slideTitleDisplay">Overview of the Project</div>
-      
+
       <div style="display: flex; align-items: center; gap: 20px;">
         <!-- Theme Toggle Trigger -->
         <button class="theme-toggle-btn" id="themeToggleBtn" title="Toggle Light/Dark Theme">🌗</button>
-        
+
         <div class="slide-progress">
           <div class="progress-bar-container">
             <div class="progress-fill" id="progressFill"></div>
@@ -1125,9 +1311,9 @@
         </div>
       </div>
     </header>
-    
+
     <div class="slides-wrapper">
-      
+
       <!-- ==========================================
            SLIDE 1: OVERVIEW OF THE PROJECT
            ========================================== -->
@@ -1138,47 +1324,55 @@
             <span class="badge badge-secondary">Full Arabic Localization</span>
           </div>
           <h1 class="hero-title">ClinicDesk Management System</h1>
-          <p class="hero-desc">An Electronic Medical Records (EMR) and clinic automation platform built from the ground up to solve complex scheduling, clinical histories, and automated invoicing splits.</p>
-          
+          <p class="hero-desc">An Electronic Medical Records (EMR) and clinic automation platform built from the ground
+            up to solve complex scheduling, clinical histories, and automated invoicing splits.</p>
+
           <div style="display: flex; gap: 20px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap;">
-            <div style="display: flex; align-items: center; gap: 8px; font-size: 14px; background: var(--wf-bar-bg); padding: 8px 16px; border-radius: 30px; border: 1px solid var(--card-border)">
+            <div
+              style="display: flex; align-items: center; gap: 8px; font-size: 14px; background: var(--wf-bar-bg); padding: 8px 16px; border-radius: 30px; border: 1px solid var(--card-border)">
               <span style="color: var(--accent-emerald)">●</span> 83 Test Suites Passing
             </div>
-            <div style="display: flex; align-items: center; gap: 8px; font-size: 14px; background: var(--wf-bar-bg); padding: 8px 16px; border-radius: 30px; border: 1px solid var(--card-border)">
+            <div
+              style="display: flex; align-items: center; gap: 8px; font-size: 14px; background: var(--wf-bar-bg); padding: 8px 16px; border-radius: 30px; border: 1px solid var(--card-border)">
               <span style="color: var(--accent-cyan)">●</span> Dual LTR/RTL Arabic Support
             </div>
-            <div style="display: flex; align-items: center; gap: 8px; font-size: 14px; background: var(--wf-bar-bg); padding: 8px 16px; border-radius: 30px; border: 1px solid var(--card-border)">
+            <div
+              style="display: flex; align-items: center; gap: 8px; font-size: 14px; background: var(--wf-bar-bg); padding: 8px 16px; border-radius: 30px; border: 1px solid var(--card-border)">
               <span style="color: var(--primary)">●</span> Stripe checkout & webhook active
             </div>
           </div>
         </div>
-        
+
         <div class="slide-content-grid three-cols" style="margin-top: 30px;">
           <div class="glass-card">
             <div class="card-title">
               <span class="card-icon icon-primary">🔐</span>
               <span>Granular RBAC</span>
             </div>
-            <p style="font-size: 13px; color: var(--text-muted);">Five specific user roles (Guest, Patient, Receptionist, Doctor, Admin) each with distinct dashboards and permissions validated by backend checks.</p>
+            <p style="font-size: 13px; color: var(--text-muted);">Five specific user roles (Guest, Patient,
+              Receptionist, Doctor, Admin) each with distinct dashboards and permissions validated by backend checks.
+            </p>
           </div>
-          
+
           <div class="glass-card">
             <div class="card-title">
               <span class="card-icon icon-secondary">🩺</span>
               <span>EMR Integration</span>
             </div>
-            <p style="font-size: 13px; color: var(--text-muted);">Doctor daily queue management, clinical notes logger, vital signs aggregator, ICD-10 diagnoses databases, and print-friendly prescription managers.</p>
+            <p style="font-size: 13px; color: var(--text-muted);">Doctor daily queue management, clinical notes logger,
+              vital signs aggregator, ICD-10 diagnoses databases, and print-friendly prescription managers.</p>
           </div>
-          
+
           <div class="glass-card">
             <div class="card-title">
               <span class="card-icon icon-cyan">💳</span>
               <span>Automated Billing</span>
             </div>
-            <p style="font-size: 13px; color: var(--text-muted);">Invoice automation triggered directly by consultations, split cash/Stripe tracking, automated partial refunds, and full accounting statistics.</p>
+            <p style="font-size: 13px; color: var(--text-muted);">Invoice automation triggered directly by
+              consultations, split cash/Stripe tracking, automated partial refunds, and full accounting statistics.</p>
           </div>
         </div>
-        
+
         <div class="slide-navigation-buttons">
           <div></div>
           <button class="nav-btn primary-btn next-slide">Next: Problem We Solve ➔</button>
@@ -1191,62 +1385,75 @@
       <section class="slide" id="slide-1">
         <div class="slide-content-grid two-cols">
           <div>
-            <h2 style="font-size: 28px; margin-bottom: 20px; font-weight: 800; color: var(--text-main);">Traditional Clinic Bottlenecks</h2>
-            <p style="color: var(--text-muted); margin-bottom: 30px;">Small to medium clinics in the regional MENA market rely heavily on manual paper-based processes. This introduces massive room for operational errors, client frustration, and lost revenue.</p>
-            
+            <h2 style="font-size: 28px; margin-bottom: 20px; font-weight: 800; color: var(--text-main);">Traditional
+              Clinic Bottlenecks</h2>
+            <p style="color: var(--text-muted); margin-bottom: 30px;">Small to medium clinics in the regional MENA
+              market rely heavily on manual paper-based processes. This introduces massive room for operational errors,
+              client frustration, and lost revenue.</p>
+
             <div class="timeline">
               <div class="timeline-item">
                 <div class="timeline-dot pink"></div>
                 <div class="timeline-title">Paper-Based Medical Records</div>
-                <p style="font-size: 13px; color: var(--text-muted);">Lost history, messy handwriting, zero search capability. Doctors make decisions with incomplete medical records.</p>
+                <p style="font-size: 13px; color: var(--text-muted);">Lost history, messy handwriting, zero search
+                  capability. Doctors make decisions with incomplete medical records.</p>
               </div>
               <div class="timeline-item">
                 <div class="timeline-dot cyan"></div>
                 <div class="timeline-title">Chaos in Front Desk Coordination</div>
-                <p style="font-size: 13px; color: var(--text-muted);">Receptionists juggle phone bookings, walk-ins, and cash billing with no slot conflict warnings or status tracking.</p>
+                <p style="font-size: 13px; color: var(--text-muted);">Receptionists juggle phone bookings, walk-ins, and
+                  cash billing with no slot conflict warnings or status tracking.</p>
               </div>
               <div class="timeline-item">
                 <div class="timeline-dot emerald"></div>
                 <div class="timeline-title">Lost Income & No-Shows</div>
-                <p style="font-size: 13px; color: var(--text-muted);">Clinics take the hit when patients cancel late or fail to show. No automated reminder command is present in legacy models.</p>
+                <p style="font-size: 13px; color: var(--text-muted);">Clinics take the hit when patients cancel late or
+                  fail to show. No automated reminder command is present in legacy models.</p>
               </div>
             </div>
           </div>
-          
+
           <div>
-            <h2 style="font-size: 28px; margin-bottom: 20px; font-weight: 800; color: var(--text-main);">The ClinicDesk Solution</h2>
-            <p style="color: var(--text-muted); margin-bottom: 30px;">An integrated platform automating operations from onboarding to payment, wrapped in a beautiful localizable shell.</p>
-            
+            <h2 style="font-size: 28px; margin-bottom: 20px; font-weight: 800; color: var(--text-main);">The ClinicDesk
+              Solution</h2>
+            <p style="color: var(--text-muted); margin-bottom: 30px;">An integrated platform automating operations from
+              onboarding to payment, wrapped in a beautiful localizable shell.</p>
+
             <div class="glass-card" style="margin-bottom: 16px;">
               <div class="card-title" style="margin-bottom: 8px; color: var(--accent-emerald)">
                 ✔ Structured Electronic EMR
               </div>
-              <p style="font-size: 13px; color: var(--text-muted);">Securely stores allergies, vital stats, chronic conditions, and previous visits. Doctor can view a patient's complete history immediately.</p>
+              <p style="font-size: 13px; color: var(--text-muted);">Securely stores allergies, vital stats, chronic
+                conditions, and previous visits. Doctor can view a patient's complete history immediately.</p>
             </div>
-            
+
             <div class="glass-card" style="margin-bottom: 16px;">
               <div class="card-title" style="margin-bottom: 8px; color: var(--accent-cyan)">
                 ✔ Dual-mode Appointment Workflow
               </div>
-              <p style="font-size: 13px; color: var(--text-muted);">Online scheduling checks slot availability dynamically, locks slot, and takes Stripe payment. Receptionist walk-ins bypass Stripe for cash billing.</p>
+              <p style="font-size: 13px; color: var(--text-muted);">Online scheduling checks slot availability
+                dynamically, locks slot, and takes Stripe payment. Receptionist walk-ins bypass Stripe for cash billing.
+              </p>
             </div>
-            
+
             <div class="glass-card" style="margin-bottom: 16px;">
               <div class="card-title" style="margin-bottom: 8px; color: var(--primary)">
                 ✔ Automatic Invoice Splits & Refunds
               </div>
-              <p style="font-size: 13px; color: var(--text-muted);">Automatic invoice generated. Stripe cancels trigger refund rules: 80% back if self-cancelled by patient, 100% back if cancelled by staff.</p>
+              <p style="font-size: 13px; color: var(--text-muted);">Automatic invoice generated. Stripe cancels trigger
+                refund rules: 80% back if self-cancelled by patient, 100% back if cancelled by staff.</p>
             </div>
-            
+
             <div class="glass-card">
               <div class="card-title" style="margin-bottom: 8px; color: var(--secondary)">
                 ✔ native LTR/RTL Arabic Support
               </div>
-              <p style="font-size: 13px; color: var(--text-muted);">Every form validation, navigation link, model representation, and layout switcher adapted for the local Arabic environment.</p>
+              <p style="font-size: 13px; color: var(--text-muted);">Every form validation, navigation link, model
+                representation, and layout switcher adapted for the local Arabic environment.</p>
             </div>
           </div>
         </div>
-        
+
         <div class="slide-navigation-buttons">
           <button class="nav-btn prev-slide">Back</button>
           <button class="nav-btn primary-btn next-slide">Next: Project Features ➔</button>
@@ -1257,16 +1464,19 @@
            SLIDE 3: EXTRACTING PROJECT FEATURES
            ========================================== -->
       <section class="slide" id="slide-2">
-        <h2 style="font-size: 28px; margin-bottom: 20px; font-weight: 800; color: var(--text-main);">Operational Modules Mapping</h2>
-        <p style="color: var(--text-muted); margin-bottom: 30px;">The clinic platform wraps 14 key technical specs into five functional dashboards.</p>
-        
+        <h2 style="font-size: 28px; margin-bottom: 20px; font-weight: 800; color: var(--text-main);">Operational Modules
+          Mapping</h2>
+        <p style="color: var(--text-muted); margin-bottom: 30px;">The clinic platform wraps 14 key technical specs into
+          five functional dashboards.</p>
+
         <div class="slide-content-grid three-cols">
           <div class="glass-card">
             <div class="card-title">
               <span class="card-icon icon-primary">📅</span>
               <span>Patient Dashboard</span>
             </div>
-            <ul style="font-size: 13px; color: var(--text-muted); padding-left: 20px; display: flex; flex-direction: column; gap: 8px;">
+            <ul
+              style="font-size: 13px; color: var(--text-muted); padding-left: 20px; display: flex; flex-direction: column; gap: 8px;">
               <li>Responsive Booking Wizard</li>
               <li>Stripe Card Payment integration</li>
               <li>Secure prescription list page</li>
@@ -1274,13 +1484,14 @@
               <li>Downloadable printable recipes</li>
             </ul>
           </div>
-          
+
           <div class="glass-card">
             <div class="card-title">
               <span class="card-icon icon-secondary">💼</span>
               <span>Reception Desk</span>
             </div>
-            <ul style="font-size: 13px; color: var(--text-muted); padding-left: 20px; display: flex; flex-direction: column; gap: 8px;">
+            <ul
+              style="font-size: 13px; color: var(--text-muted); padding-left: 20px; display: flex; flex-direction: column; gap: 8px;">
               <li>Walk-in appointment creator</li>
               <li>Patient profile check-ins</li>
               <li>Reschedule/cancellation rules</li>
@@ -1288,13 +1499,14 @@
               <li>Patient directories search</li>
             </ul>
           </div>
-          
+
           <div class="glass-card">
             <div class="card-title">
               <span class="card-icon icon-emerald">🩺</span>
               <span>Doctor Console</span>
             </div>
-            <ul style="font-size: 13px; color: var(--text-muted); padding-left: 20px; display: flex; flex-direction: column; gap: 8px;">
+            <ul
+              style="font-size: 13px; color: var(--text-muted); padding-left: 20px; display: flex; flex-direction: column; gap: 8px;">
               <li>Checked-in patient active queue</li>
               <li>ICD-10 clinical codes lookup</li>
               <li>Allergy alerts & drug checks</li>
@@ -1302,13 +1514,14 @@
               <li>Consultation historical search</li>
             </ul>
           </div>
-          
+
           <div class="glass-card">
             <div class="card-title">
               <span class="card-icon icon-cyan">🔔</span>
               <span>Notification Hub</span>
             </div>
-            <ul style="font-size: 13px; color: var(--text-muted); padding-left: 20px; display: flex; flex-direction: column; gap: 8px;">
+            <ul
+              style="font-size: 13px; color: var(--text-muted); padding-left: 20px; display: flex; flex-direction: column; gap: 8px;">
               <li>Unread notifications bell count</li>
               <li>Transactional booking email triggers</li>
               <li>Cron command day-before alerts</li>
@@ -1316,13 +1529,14 @@
               <li>Mark individual/all-as-read</li>
             </ul>
           </div>
-          
+
           <div class="glass-card">
             <div class="card-title">
               <span class="card-icon icon-orange">📊</span>
               <span>Admin Center</span>
             </div>
-            <ul style="font-size: 13px; color: var(--text-muted); padding-left: 20px; display: flex; flex-direction: column; gap: 8px;">
+            <ul
+              style="font-size: 13px; color: var(--text-muted); padding-left: 20px; display: flex; flex-direction: column; gap: 8px;">
               <li>Global clinic setting controls</li>
               <li>Doctor operational hours schedules</li>
               <li>Diagnoses breakdown charts</li>
@@ -1330,13 +1544,14 @@
               <li>Financial summaries CSV downloads</li>
             </ul>
           </div>
-          
+
           <div class="glass-card">
             <div class="card-title">
               <span class="card-icon icon-red">🌍</span>
               <span>i18n & Localization</span>
             </div>
-            <ul style="font-size: 13px; color: var(--text-muted); padding-left: 20px; display: flex; flex-direction: column; gap: 8px;">
+            <ul
+              style="font-size: 13px; color: var(--text-muted); padding-left: 20px; display: flex; flex-direction: column; gap: 8px;">
               <li>Complete translations of models</li>
               <li>Bilingual validation errors</li>
               <li>RTL grid layouts and CSS switches</li>
@@ -1345,7 +1560,7 @@
             </ul>
           </div>
         </div>
-        
+
         <div class="slide-navigation-buttons">
           <button class="nav-btn prev-slide">Back</button>
           <button class="nav-btn primary-btn next-slide">Next: ERD & Usecases ➔</button>
@@ -1356,9 +1571,11 @@
            SLIDE 4: BUILDING ERD, USECASE, USER STORIES
            ========================================== -->
       <section class="slide" id="slide-3">
-        <h2 style="font-size: 28px; margin-bottom: 20px; font-weight: 800; color: var(--text-main);">Database Schemas & System Core</h2>
-        <p style="color: var(--text-muted); margin-bottom: 20px;">The relational schema contains 12 core tables mapping users, doctor capacities, and invoicing records.</p>
-        
+        <h2 style="font-size: 28px; margin-bottom: 20px; font-weight: 800; color: var(--text-main);">Database Schemas &
+          System Core</h2>
+        <p style="color: var(--text-muted); margin-bottom: 20px;">The relational schema contains 12 core tables mapping
+          users, doctor capacities, and invoicing records.</p>
+
         <div class="db-schema-grid" style="margin-bottom: 30px;">
           <div class="db-table-card">
             <div class="db-table-header">
@@ -1366,57 +1583,77 @@
               <span class="badge badge-primary">Auth</span>
             </div>
             <div class="db-column-list">
-              <div class="db-column"><span class="col-name">id</span><span class="col-key">PK</span><span class="col-type">INT</span></div>
-              <div class="db-column"><span class="col-name">email</span><span class="col-key">UQ</span><span class="col-type">VARCHAR</span></div>
-              <div class="db-column"><span class="col-name">role</span><span></span><span class="col-type">ENUM</span></div>
-              <div class="db-column"><span class="col-name">phone</span><span></span><span class="col-type">VARCHAR</span></div>
-              <div class="db-column"><span class="col-name">first_name_ar</span><span></span><span class="col-type">VARCHAR</span></div>
+              <div class="db-column"><span class="col-name">id</span><span class="col-key">PK</span><span
+                  class="col-type">INT</span></div>
+              <div class="db-column"><span class="col-name">email</span><span class="col-key">UQ</span><span
+                  class="col-type">VARCHAR</span></div>
+              <div class="db-column"><span class="col-name">role</span><span></span><span class="col-type">ENUM</span>
+              </div>
+              <div class="db-column"><span class="col-name">phone</span><span></span><span
+                  class="col-type">VARCHAR</span></div>
+              <div class="db-column"><span class="col-name">first_name_ar</span><span></span><span
+                  class="col-type">VARCHAR</span></div>
             </div>
           </div>
-          
+
           <div class="db-table-card">
             <div class="db-table-header">
               <span>accounts_patientprofile</span>
               <span class="badge badge-emerald">EMR</span>
             </div>
             <div class="db-column-list">
-              <div class="db-column"><span class="col-name">id</span><span class="col-key">PK</span><span class="col-type">INT</span></div>
-              <div class="db-column"><span class="col-name">user_id</span><span class="col-key">FK</span><span class="col-type">INT</span></div>
-              <div class="db-column"><span class="col-name">gender</span><span></span><span class="col-type">VARCHAR</span></div>
-              <div class="db-column"><span class="col-name">allergies</span><span></span><span class="col-type">TEXT</span></div>
-              <div class="db-column"><span class="col-name">emergency_contact</span><span></span><span class="col-type">VARCHAR</span></div>
+              <div class="db-column"><span class="col-name">id</span><span class="col-key">PK</span><span
+                  class="col-type">INT</span></div>
+              <div class="db-column"><span class="col-name">user_id</span><span class="col-key">FK</span><span
+                  class="col-type">INT</span></div>
+              <div class="db-column"><span class="col-name">gender</span><span></span><span
+                  class="col-type">VARCHAR</span></div>
+              <div class="db-column"><span class="col-name">allergies</span><span></span><span
+                  class="col-type">TEXT</span></div>
+              <div class="db-column"><span class="col-name">emergency_contact</span><span></span><span
+                  class="col-type">VARCHAR</span></div>
             </div>
           </div>
-          
+
           <div class="db-table-card">
             <div class="db-table-header">
               <span>appointments_appointment</span>
               <span class="badge badge-cyan">Schedule</span>
             </div>
             <div class="db-column-list">
-              <div class="db-column"><span class="col-name">id</span><span class="col-key">PK</span><span class="col-type">INT</span></div>
-              <div class="db-column"><span class="col-name">patient_id</span><span class="col-key">FK</span><span class="col-type">INT</span></div>
-              <div class="db-column"><span class="col-name">doctor_id</span><span class="col-key">FK</span><span class="col-type">INT</span></div>
-              <div class="db-column"><span class="col-name">status</span><span></span><span class="col-type">VARCHAR</span></div>
-              <div class="db-column"><span class="col-name">appointment_date</span><span></span><span class="col-type">DATE</span></div>
+              <div class="db-column"><span class="col-name">id</span><span class="col-key">PK</span><span
+                  class="col-type">INT</span></div>
+              <div class="db-column"><span class="col-name">patient_id</span><span class="col-key">FK</span><span
+                  class="col-type">INT</span></div>
+              <div class="db-column"><span class="col-name">doctor_id</span><span class="col-key">FK</span><span
+                  class="col-type">INT</span></div>
+              <div class="db-column"><span class="col-name">status</span><span></span><span
+                  class="col-type">VARCHAR</span></div>
+              <div class="db-column"><span class="col-name">appointment_date</span><span></span><span
+                  class="col-type">DATE</span></div>
             </div>
           </div>
-          
+
           <div class="db-table-card">
             <div class="db-table-header">
               <span>payments_invoice</span>
               <span class="badge badge-orange">Billing</span>
             </div>
             <div class="db-column-list">
-              <div class="db-column"><span class="col-name">id</span><span class="col-key">PK</span><span class="col-type">INT</span></div>
-              <div class="db-column"><span class="col-name">appointment_id</span><span class="col-key">FK</span><span class="col-type">INT</span></div>
-              <div class="db-column"><span class="col-name">total_amount</span><span></span><span class="col-type">DECIMAL</span></div>
-              <div class="db-column"><span class="col-name">status</span><span></span><span class="col-type">VARCHAR</span></div>
-              <div class="db-column"><span class="col-name">tax_amount</span><span></span><span class="col-type">DECIMAL</span></div>
+              <div class="db-column"><span class="col-name">id</span><span class="col-key">PK</span><span
+                  class="col-type">INT</span></div>
+              <div class="db-column"><span class="col-name">appointment_id</span><span class="col-key">FK</span><span
+                  class="col-type">INT</span></div>
+              <div class="db-column"><span class="col-name">total_amount</span><span></span><span
+                  class="col-type">DECIMAL</span></div>
+              <div class="db-column"><span class="col-name">status</span><span></span><span
+                  class="col-type">VARCHAR</span></div>
+              <div class="db-column"><span class="col-name">tax_amount</span><span></span><span
+                  class="col-type">DECIMAL</span></div>
             </div>
           </div>
         </div>
-        
+
         <div class="styled-table-wrapper">
           <table class="styled-table">
             <thead>
@@ -1467,7 +1704,7 @@
             </tbody>
           </table>
         </div>
-        
+
         <div class="slide-navigation-buttons">
           <button class="nav-btn prev-slide">Back</button>
           <button class="nav-btn primary-btn next-slide">Next: OpenSpec vs BMAD ➔</button>
@@ -1478,49 +1715,61 @@
            SLIDE 5: TOOLING TRANSITION (OPENSPEC TO BMAD)
            ========================================== -->
       <section class="slide" id="slide-4">
-        <h2 style="font-size: 28px; margin-bottom: 20px; font-weight: 800; color: var(--text-main);">Tooling Pivot: Why We Upgraded</h2>
-        <p style="color: var(--text-muted); margin-bottom: 30px;">During initial planning, OpenSpec fell short in accuracy, leading the engineering team to adopt the BMAD structure.</p>
-        
+        <h2 style="font-size: 28px; margin-bottom: 20px; font-weight: 800; color: var(--text-main);">Tooling Pivot: Why
+          We Upgraded</h2>
+        <p style="color: var(--text-muted); margin-bottom: 30px;">During initial planning, OpenSpec fell short in
+          accuracy, leading the engineering team to adopt the BMAD structure.</p>
+
         <div class="slide-content-grid two-cols">
           <div class="glass-card" style="border-color: rgba(220, 38, 38, 0.35);">
             <div class="card-title" style="color: var(--accent-red);">
               <span class="card-icon icon-red">✗</span>
               <span>Limitations of OpenSpec</span>
             </div>
-            <ul style="font-size: 13px; color: var(--text-muted); padding-left: 20px; display: flex; flex-direction: column; gap: 12px; margin-top: 15px;">
-              <li><strong>Inaccurate API specifications:</strong> Often hallucinated query variables and headers mismatching actual Django forms parameters.</li>
-              <li><strong>Zero State Awareness:</strong> Ignored intermediate database state transitions (e.g. checked-in vs scheduled).</li>
-              <li><strong>No Business Rules Context:</strong> Left out cancellation policy calculations, Stripe webhook payload layouts, and specific locale configs.</li>
-              <li><strong>Poor Developer Handoffs:</strong> Lacked a precise step-by-step epic structure, causing code conflicts and implementation gaps.</li>
+            <ul
+              style="font-size: 13px; color: var(--text-muted); padding-left: 20px; display: flex; flex-direction: column; gap: 12px; margin-top: 15px;">
+              <li><strong>Inaccurate API specifications:</strong> Often hallucinated query variables and headers
+                mismatching actual Django forms parameters.</li>
+              <li><strong>Zero State Awareness:</strong> Ignored intermediate database state transitions (e.g.
+                checked-in vs scheduled).</li>
+              <li><strong>No Business Rules Context:</strong> Left out cancellation policy calculations, Stripe webhook
+                payload layouts, and specific locale configs.</li>
+              <li><strong>Poor Developer Handoffs:</strong> Lacked a precise step-by-step epic structure, causing code
+                conflicts and implementation gaps.</li>
             </ul>
           </div>
-          
+
           <div class="glass-card" style="border-color: rgba(5, 150, 105, 0.35);">
             <div class="card-title" style="color: var(--accent-emerald);">
               <span class="card-icon icon-emerald">✓</span>
               <span>The BMAD Framework Advantage</span>
             </div>
-            <div style="font-size: 13px; color: var(--text-muted); display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
+            <div
+              style="font-size: 13px; color: var(--text-muted); display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
               <div>
                 <span class="badge badge-primary">B</span> <strong>Business Focus</strong>
-                <p style="margin-top: 4px; padding-left: 20px;">Establishes the exact product goals, priorities, and 14 missing feature sets in `prd.md` before coding.</p>
+                <p style="margin-top: 4px; padding-left: 20px;">Establishes the exact product goals, priorities, and 14
+                  missing feature sets in `prd.md` before coding.</p>
               </div>
               <div>
                 <span class="badge badge-emerald">M</span> <strong>Model Definitions</strong>
-                <p style="margin-top: 4px; padding-left: 20px;">Maps domain rules, relationship summaries, index schemas, and constraint specifications in `architecture.md`.</p>
+                <p style="margin-top: 4px; padding-left: 20px;">Maps domain rules, relationship summaries, index
+                  schemas, and constraint specifications in `architecture.md`.</p>
               </div>
               <div>
                 <span class="badge badge-cyan">A</span> <strong>Application Logic</strong>
-                <p style="margin-top: 4px; padding-left: 20px;">Defines explicit route directories, endpoint parameters, and templates designs in `API_DOCUMENTATION.md`.</p>
+                <p style="margin-top: 4px; padding-left: 20px;">Defines explicit route directories, endpoint parameters,
+                  and templates designs in `API_DOCUMENTATION.md`.</p>
               </div>
               <div>
                 <span class="badge badge-orange">D</span> <strong>Delivery Tracking</strong>
-                <p style="margin-top: 4px; padding-left: 20px;">Slices implementation into structured backlog epics (`epic-01` to `epic-13`) verifying each phase with rigorous unit testing.</p>
+                <p style="margin-top: 4px; padding-left: 20px;">Slices implementation into structured backlog epics
+                  (`epic-01` to `epic-13`) verifying each phase with rigorous unit testing.</p>
               </div>
             </div>
           </div>
         </div>
-        
+
         <div class="slide-navigation-buttons">
           <button class="nav-btn prev-slide">Back</button>
           <button class="nav-btn primary-btn next-slide">Next: Planning Phase ➔</button>
@@ -1528,52 +1777,97 @@
       </section>
 
       <!-- ==========================================
-           SLIDE 6: PLANNING PHASE (CLAUDE OPUS 4.6)
+           SLIDE 6: SPRINT PLANNING
            ========================================== -->
       <section class="slide" id="slide-5">
-        <h2 style="font-size: 28px; margin-bottom: 20px; font-weight: 800; color: var(--text-main);">Planning & Architecture Orchestration</h2>
-        <p style="color: var(--text-muted); margin-bottom: 30px;">Claude Opus 4.6 was utilized as the System Architect to establish the BMAD blueprints, mapping dependencies, databases, and constraints.</p>
-        
-        <div class="slide-content-grid two-cols">
-          <div>
-            <h3 style="font-size: 18px; font-weight: 700; color: var(--text-main); margin-bottom: 15px;">Claude's Planning Blueprint</h3>
-            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">The architect model constructed a multi-phase epic roadmap, preventing the implementing models from introducing bugs or architecture mismatches.</p>
-            
-            <div class="glass-card" style="margin-bottom: 15px;">
-              <div style="font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 5px;">Dependency Slicing</div>
-              <p style="font-size: 12px; color: var(--text-muted);">Ensured core models (PatientProfile, Notification) were locked first. Set up billing and reminders to depend directly on those stable APIs.</p>
+        <h2 style="font-size: 28px; margin-bottom: 20px; font-weight: 800; color: var(--text-main);">Sprint Planning
+        </h2>
+        <p style="color: var(--text-muted); margin-bottom: 30px;">Executed within a single hackathon day</p>
+
+        <div class="sprint-grid">
+          <!-- Sprint 1 -->
+          <div class="glass-card sprint-card">
+            <div class="sprint-header">
+              <span class="sprint-icon">🏗️</span>
+              <h3>Sprint 1</h3>
             </div>
-            
-            <div class="glass-card">
-              <div style="font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 5px;">Bilingual Localization Constraints</div>
-              <p style="font-size: 12px; color: var(--text-muted);">Mandated localized `_ar` columns for settings, services, and diagnoses alongside Django's core translation system, assuring perfect RTL behavior.</p>
-            </div>
+            <h4>Foundation & Auth</h4>
+            <ul>
+              <li>Monorepo architecture</li>
+              <li>Docker Compose setup</li>
+              <li>CI pipeline</li>
+              <li>Auth system & RBAC</li>
+              <li>Django</li>
+              <li>AR/EN i18n setup</li>
+            </ul>
           </div>
-          
-          <div>
-            <h3 style="font-size: 18px; font-weight: 700; color: var(--text-main); margin-bottom: 15px;">Epic Backlog Tree</h3>
-            
-            <pre>
-<span class="code-comment"># Backlog Tree Generated by Claude Opus 4.6</span>
-Phase 1 - Critical (Must-Haves)
-├── <span class="badge badge-primary" style="font-size: 9px; padding: 1px 4px;">EPIC-01</span> Patient Profile CRUD
-├── <span class="badge badge-primary" style="font-size: 9px; padding: 1px 4px;">EPIC-02</span> Notification Hub Model
-├── <span class="badge badge-primary" style="font-size: 9px; padding: 1px 4px;">EPIC-03</span> Consultation Vitals & Labs
-└── <span class="badge badge-primary" style="font-size: 9px; padding: 1px 4px;">EPIC-04</span> Automated Invoice Splits
 
-Phase 2 - Important Features
-├── <span class="badge badge-cyan" style="font-size: 9px; padding: 1px 4px;">EPIC-07</span> Guest Service Explorer
-├── <span class="badge badge-cyan" style="font-size: 9px; padding: 1px 4px;">EPIC-08</span> Reminder Cron Command
-└── <span class="badge badge-cyan" style="font-size: 9px; padding: 1px 4px;">EPIC-11</span> Dashboard Disease Charts
+          <!-- Sprint 2 -->
+          <div class="glass-card sprint-card">
+            <div class="sprint-header">
+              <span class="sprint-icon">⚙️</span>
+              <h3>Sprint 2</h3>
+            </div>
+            <h4>Core Modules</h4>
+            <ul>
+              <li>Patient CRUD & Search</li>
+              <li>Appointment API</li>
+              <li>User & Doctor management</li>
+              <li>Admin/Doctor dashboards</li>
+              <li>Patient forms</li>
+            </ul>
+          </div>
 
-Phase 3 - Polish (Cross-Cutting)
-├── <span class="badge badge-orange" style="font-size: 9px; padding: 1px 4px;">EPIC-12</span> i18n Arabic gettext
-└── <span class="badge badge-orange" style="font-size: 9px; padding: 1px 4px;">EPIC-13</span> Responsive Sidebar
-            </pre>
+          <!-- Sprint 3 -->
+          <div class="glass-card sprint-card">
+            <div class="sprint-header">
+              <span class="sprint-icon">🩺</span>
+              <h3>Sprint 3</h3>
+            </div>
+            <h4>Clinical Workflow</h4>
+            <ul>
+              <li>Visit API & Vitals</li>
+              <li>Prescription API</li>
+              <li>PDF Generation</li>
+              <li>Examination forms</li>
+              <li>Patient history</li>
+            </ul>
+          </div>
+
+          <!-- Sprint 4 -->
+          <div class="glass-card sprint-card">
+            <div class="sprint-header">
+              <span class="sprint-icon">💰</span>
+              <h3>Sprint 4</h3>
+            </div>
+            <h4>Billing & Polish</h4>
+            <ul>
+              <li>Invoice generation</li>
+              <li>VAT & Payments</li>
+              <li>Reports dashboard</li>
+              <li>Charts & Analytics</li>
+              <li>Notification system</li>
+            </ul>
+          </div>
+
+          <!-- Sprint 5 -->
+          <div class="glass-card sprint-card highlight-sprint">
+            <div class="sprint-header">
+              <span class="sprint-icon">🚀</span>
+              <h3>Sprint 5</h3>
+            </div>
+            <h4>Integration & Demo</h4>
+            <ul>
+              <li>Deployment</li>
+              <li>E2E & Integration testing</li>
+              <li>Full workflow validation</li>
+              <li>Swagger documentation</li>
+              <li>Demo preparation</li>
+            </ul>
           </div>
         </div>
-        
-        <div class="slide-navigation-buttons">
+
+        <div class="slide-navigation-buttons" style="margin-top: 30px;">
           <button class="nav-btn prev-slide">Back</button>
           <button class="nav-btn primary-btn next-slide">Next: Implementation Phase ➔</button>
         </div>
@@ -1583,32 +1877,48 @@ Phase 3 - Polish (Cross-Cutting)
            SLIDE 7: IMPLEMENTATION WITH GEMINI, KIMI, NEMOTRON
            ========================================== -->
       <section class="slide" id="slide-6">
-        <h2 style="font-size: 28px; margin-bottom: 20px; font-weight: 800; color: var(--text-main);">Engineering Division of Labor</h2>
-        <p style="color: var(--text-muted); margin-bottom: 30px;">Different AI models were delegated tasks aligned with their unique reasoning strengths to implement the BMAD roadmap.</p>
-        
+        <h2 style="font-size: 28px; margin-bottom: 20px; font-weight: 800; color: var(--text-main);">Engineering
+          Division of Labor</h2>
+        <p style="color: var(--text-muted); margin-bottom: 30px;">Different AI models were delegated tasks aligned with
+          their unique reasoning strengths to implement the BMAD roadmap.</p>
+
         <div class="slide-content-grid three-cols">
           <div class="glass-card" style="border-top: 4px solid var(--primary);">
             <div style="font-size: 32px; margin-bottom: 10px;">♊</div>
-            <div style="font-size: 16px; font-weight: 700; color: var(--text-main); margin-bottom: 5px;">Gemini 3.5 Flash High</div>
-            <div style="font-size: 11px; color: var(--primary); font-weight: 600; margin-bottom: 15px; text-transform: uppercase;">The Core Builder</div>
-            <p style="font-size: 13px; color: var(--text-muted);">Responsible for rapid views creation, form configurations, Stripe payment redirects, webhook signals, booking wizard templates, and off-canvas responsive UI layouts.</p>
+            <div style="font-size: 16px; font-weight: 700; color: var(--text-main); margin-bottom: 5px;">Gemini 3.5
+              Flash High</div>
+            <div
+              style="font-size: 11px; color: var(--primary); font-weight: 600; margin-bottom: 15px; text-transform: uppercase;">
+              The Core Builder</div>
+            <p style="font-size: 13px; color: var(--text-muted);">Responsible for rapid views creation, form
+              configurations, Stripe payment redirects, webhook signals, booking wizard templates, and off-canvas
+              responsive UI layouts.</p>
           </div>
-          
+
           <div class="glass-card" style="border-top: 4px solid var(--secondary);">
             <div style="font-size: 32px; margin-bottom: 10px;">🟢</div>
             <div style="font-size: 16px; font-weight: 700; color: var(--text-main); margin-bottom: 5px;">Kimi K2.6</div>
-            <div style="font-size: 11px; color: var(--secondary); font-weight: 600; margin-bottom: 15px; text-transform: uppercase;">The i18n Auditor</div>
-            <p style="font-size: 13px; color: var(--text-muted);">Conducted the thorough i18n audit. Scanned the entire python codebase, wrapped text in gettext_lazy, compiled message files, and built the Arabic RTL stylesheet overrides.</p>
+            <div
+              style="font-size: 11px; color: var(--secondary); font-weight: 600; margin-bottom: 15px; text-transform: uppercase;">
+              The i18n Auditor</div>
+            <p style="font-size: 13px; color: var(--text-muted);">Conducted the thorough i18n audit. Scanned the entire
+              python codebase, wrapped text in gettext_lazy, compiled message files, and built the Arabic RTL stylesheet
+              overrides.</p>
           </div>
-          
+
           <div class="glass-card" style="border-top: 4px solid var(--accent-cyan);">
             <div style="font-size: 32px; margin-bottom: 10px;">🧪</div>
-            <div style="font-size: 16px; font-weight: 700; color: var(--text-main); margin-bottom: 5px;">Nemotron 3 Ultra</div>
-            <div style="font-size: 11px; color: var(--accent-cyan); font-weight: 600; margin-bottom: 15px; text-transform: uppercase;">The QA & Test Engineer</div>
-            <p style="font-size: 13px; color: var(--text-muted);">Developed the comprehensive test suites. Wrote 83 integration test scripts verifying appointment locking, check-in operations, and invoices. Fixed MySQL timezone data errors.</p>
+            <div style="font-size: 16px; font-weight: 700; color: var(--text-main); margin-bottom: 5px;">Nemotron 3
+              Ultra</div>
+            <div
+              style="font-size: 11px; color: var(--accent-cyan); font-weight: 600; margin-bottom: 15px; text-transform: uppercase;">
+              The QA & Test Engineer</div>
+            <p style="font-size: 13px; color: var(--text-muted);">Developed the comprehensive test suites. Wrote 83
+              integration test scripts verifying appointment locking, check-in operations, and invoices. Fixed MySQL
+              timezone data errors.</p>
           </div>
         </div>
-        
+
         <div class="glass-card" style="margin-top: 25px;">
           <div class="card-title">
             <span class="card-icon icon-emerald">📊</span>
@@ -1624,7 +1934,7 @@ Ran 83 tests in 12.457s
 OK (failures=0, errors=0)
           </pre>
         </div>
-        
+
         <div class="slide-navigation-buttons">
           <button class="nav-btn prev-slide">Back</button>
           <button class="nav-btn primary-btn next-slide">Next: Project Wireframes ➔</button>
@@ -1635,9 +1945,11 @@ OK (failures=0, errors=0)
            SLIDE 8: PROJECT WIREFRAMES
            ========================================== -->
       <section class="slide" id="slide-7">
-        <h2 style="font-size: 28px; margin-bottom: 20px; font-weight: 800; color: var(--text-main);">Interactive Wireframe Designs</h2>
-        <p style="color: var(--text-muted); margin-bottom: 25px;">Structural layouts representing patient flow, EMR entry, and billing dashboards.</p>
-        
+        <h2 style="font-size: 28px; margin-bottom: 20px; font-weight: 800; color: var(--text-main);">Interactive
+          Wireframe Designs</h2>
+        <p style="color: var(--text-muted); margin-bottom: 25px;">Structural layouts representing patient flow, EMR
+          entry, and billing dashboards.</p>
+
         <div class="slide-content-grid two-cols">
           <div>
             <div class="wf-window">
@@ -1650,41 +1962,56 @@ OK (failures=0, errors=0)
                 <div class="wf-title">Patient Booking Wizard (Mobile Responsive View)</div>
                 <div></div>
               </div>
-              
+
               <div class="wf-main">
-                <div style="margin-bottom: 15px; border-bottom: 1px dashed var(--wf-border); padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
-                  <span style="font-size: 13px; font-weight: 700; color: var(--text-main);">Step 2 of 3: Slots Selection</span>
+                <div
+                  style="margin-bottom: 15px; border-bottom: 1px dashed var(--wf-border); padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+                  <span style="font-size: 13px; font-weight: 700; color: var(--text-main);">Step 2 of 3: Slots
+                    Selection</span>
                   <span class="badge badge-emerald" style="font-size: 8px;">Active</span>
                 </div>
-                
+
                 <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 15px;">
                   <div class="wf-bar short accent"></div>
-                  <div style="height: 32px; border: 1px dashed var(--wf-border); border-radius: 4px; display: flex; align-items: center; padding: 0 10px; font-size: 11px; color: var(--text-muted);">
+                  <div
+                    style="height: 32px; border: 1px dashed var(--wf-border); border-radius: 4px; display: flex; align-items: center; padding: 0 10px; font-size: 11px; color: var(--text-muted);">
                     Service: Cardiology consultation (500.00 SAR)
                   </div>
-                  <div style="height: 32px; border: 1px dashed var(--wf-border); border-radius: 4px; display: flex; align-items: center; padding: 0 10px; font-size: 11px; color: var(--text-muted);">
+                  <div
+                    style="height: 32px; border: 1px dashed var(--wf-border); border-radius: 4px; display: flex; align-items: center; padding: 0 10px; font-size: 11px; color: var(--text-muted);">
                     Doctor: Dr. Sarah Ibrahim
                   </div>
                 </div>
-                
+
                 <div style="margin-bottom: 15px;">
-                  <div style="font-size: 10px; color: var(--text-muted); margin-bottom: 6px;">Available Time Slots (2026-06-15)</div>
+                  <div style="font-size: 10px; color: var(--text-muted); margin-bottom: 6px;">Available Time Slots
+                    (2026-06-15)</div>
                   <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
-                    <div style="height: 28px; background: var(--primary-bg); border: 1px solid var(--primary); border-radius: 4px; color: var(--primary); font-size: 10px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: 600;">09:00 AM</div>
-                    <div style="height: 28px; background: var(--wf-bar-bg); border: 1px dashed var(--wf-border); border-radius: 4px; color: var(--text-muted); font-size: 10px; display: flex; align-items: center; justify-content: center;">09:30 AM</div>
-                    <div style="height: 28px; background: var(--wf-bar-bg); border: 1px dashed var(--wf-border); border-radius: 4px; color: var(--text-muted); font-size: 10px; display: flex; align-items: center; justify-content: center;">10:00 AM</div>
-                    <div style="height: 28px; background: var(--wf-bar-bg); border: 1px dashed var(--wf-border); border-radius: 4px; color: var(--text-muted); font-size: 10px; display: flex; align-items: center; justify-content: center;">10:30 AM</div>
+                    <div
+                      style="height: 28px; background: var(--primary-bg); border: 1px solid var(--primary); border-radius: 4px; color: var(--primary); font-size: 10px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: 600;">
+                      09:00 AM</div>
+                    <div
+                      style="height: 28px; background: var(--wf-bar-bg); border: 1px dashed var(--wf-border); border-radius: 4px; color: var(--text-muted); font-size: 10px; display: flex; align-items: center; justify-content: center;">
+                      09:30 AM</div>
+                    <div
+                      style="height: 28px; background: var(--wf-bar-bg); border: 1px dashed var(--wf-border); border-radius: 4px; color: var(--text-muted); font-size: 10px; display: flex; align-items: center; justify-content: center;">
+                      10:00 AM</div>
+                    <div
+                      style="height: 28px; background: var(--wf-bar-bg); border: 1px dashed var(--wf-border); border-radius: 4px; color: var(--text-muted); font-size: 10px; display: flex; align-items: center; justify-content: center;">
+                      10:30 AM</div>
                   </div>
                 </div>
-                
+
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px;">
                   <div class="wf-bar short" style="width: 30%"></div>
-                  <div class="wf-btn" style="width: 120px; background: linear-gradient(135deg, var(--primary), var(--secondary))">Proceed to Checkout</div>
+                  <div class="wf-btn"
+                    style="width: 120px; background: linear-gradient(135deg, var(--primary), var(--secondary))">Proceed
+                    to Checkout</div>
                 </div>
               </div>
             </div>
           </div>
-          
+
           <div>
             <div class="wf-window">
               <div class="wf-titlebar">
@@ -1696,46 +2023,61 @@ OK (failures=0, errors=0)
                 <div class="wf-title">Doctor Consultation Panel (EMR Console)</div>
                 <div></div>
               </div>
-              
+
               <div class="wf-sidebar-layout">
                 <div class="wf-side">
-                  <div style="font-size: 9px; font-weight: bold; color: var(--primary); margin-bottom: 10px;">PATIENT FILE</div>
+                  <div style="font-size: 9px; font-weight: bold; color: var(--primary); margin-bottom: 10px;">PATIENT
+                    FILE</div>
                   <div class="wf-bar medium" style="margin-bottom: 6px;"></div>
                   <div class="wf-bar short" style="margin-bottom: 20px;"></div>
-                  
-                  <div style="font-size: 9px; font-weight: bold; color: var(--text-muted); margin-bottom: 10px;">ALLERGIES</div>
-                  <div style="background: var(--accent-red-bg); height: 20px; border-radius: 4px; margin-bottom: 6px; border: 1px solid rgba(220,38,38,0.25);"></div>
+
+                  <div style="font-size: 9px; font-weight: bold; color: var(--text-muted); margin-bottom: 10px;">
+                    ALLERGIES</div>
+                  <div
+                    style="background: var(--accent-red-bg); height: 20px; border-radius: 4px; margin-bottom: 6px; border: 1px solid rgba(220,38,38,0.25);">
+                  </div>
                   <div class="wf-bar medium"></div>
                 </div>
-                
+
                 <div class="wf-main">
                   <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-size: 13px; font-weight: 700; color: var(--text-main);">EMR - Consultation Intake</span>
+                    <span style="font-size: 13px; font-weight: 700; color: var(--text-main);">EMR - Consultation
+                      Intake</span>
                     <span class="badge badge-orange" style="font-size: 8px;">In-Progress</span>
                   </div>
-                  
+
                   <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px;">
                     <div style="font-size: 10px; color: var(--text-muted);">Chief Complaint</div>
-                    <div style="height: 50px; background: var(--wf-bar-bg); border: 1px dashed var(--wf-border); border-radius: 6px;"></div>
+                    <div
+                      style="height: 50px; background: var(--wf-bar-bg); border: 1px dashed var(--wf-border); border-radius: 6px;">
+                    </div>
                   </div>
-                  
+
                   <div style="display: flex; gap: 10px; margin-bottom: 15px;">
                     <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
                       <span style="font-size: 9px; color: var(--text-muted);">BP</span>
-                      <div style="height: 28px; background: var(--wf-bar-bg); border: 1px dashed var(--wf-border); border-radius: 4px;"></div>
+                      <div
+                        style="height: 28px; background: var(--wf-bar-bg); border: 1px dashed var(--wf-border); border-radius: 4px;">
+                      </div>
                     </div>
                     <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
                       <span style="font-size: 9px; color: var(--text-muted);">Pulse</span>
-                      <div style="height: 28px; background: var(--wf-bar-bg); border: 1px dashed var(--wf-border); border-radius: 4px;"></div>
+                      <div
+                        style="height: 28px; background: var(--wf-bar-bg); border: 1px dashed var(--wf-border); border-radius: 4px;">
+                      </div>
                     </div>
                     <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
                       <span style="font-size: 9px; color: var(--text-muted);">Temp</span>
-                      <div style="height: 28px; background: var(--wf-bar-bg); border: 1px dashed var(--wf-border); border-radius: 4px;"></div>
+                      <div
+                        style="height: 28px; background: var(--wf-bar-bg); border: 1px dashed var(--wf-border); border-radius: 4px;">
+                      </div>
                     </div>
                   </div>
-                  
+
                   <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 30px;">
-                    <div style="height: 32px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 6px; width: 80px; display: flex; align-items: center; justify-content: center; font-size: 11px; cursor: pointer; color: var(--text-main);">Save Draft</div>
+                    <div
+                      style="height: 32px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 6px; width: 80px; display: flex; align-items: center; justify-content: center; font-size: 11px; cursor: pointer; color: var(--text-main);">
+                      Save Draft</div>
                     <div class="wf-btn">Complete Visit</div>
                   </div>
                 </div>
@@ -1743,7 +2085,7 @@ OK (failures=0, errors=0)
             </div>
           </div>
         </div>
-        
+
         <div class="slide-navigation-buttons">
           <button class="nav-btn prev-slide">Back</button>
           <button class="nav-btn primary-btn next-slide">Next: UI Screenshots ➔</button>
@@ -1754,20 +2096,23 @@ OK (failures=0, errors=0)
            SLIDE 9: PROJECT UI SCREENSHOTS
            ========================================== -->
       <section class="slide" id="slide-8">
-        <h2 style="font-size: 28px; margin-bottom: 20px; font-weight: 800; color: var(--text-main);">Simulated Screen Components</h2>
-        <p style="color: var(--text-muted); margin-bottom: 30px;">Highly polished visual mocks simulating billing metrics dashboards, consultation timelines, and translation modules.</p>
-        
+        <h2 style="font-size: 28px; margin-bottom: 20px; font-weight: 800; color: var(--text-main);">Simulated Screen
+          Components</h2>
+        <p style="color: var(--text-muted); margin-bottom: 30px;">Highly polished visual mocks simulating billing
+          metrics dashboards, consultation timelines, and translation modules.</p>
+
         <div class="slide-content-grid two-cols">
           <div>
             <div class="simulated-screen">
               <div class="sim-header">
                 <div>
-                  <div style="font-size: 14px; font-weight: 700; color: var(--text-main);">Admin Analytics Dashboard</div>
+                  <div style="font-size: 14px; font-weight: 700; color: var(--text-main);">Admin Analytics Dashboard
+                  </div>
                   <div style="font-size: 10px; color: var(--text-muted)">Live clinic revenue and return statistics</div>
                 </div>
                 <span class="badge badge-primary">Dynamic</span>
               </div>
-              
+
               <div class="sim-stats">
                 <div class="sim-stat-card">
                   <div style="font-size: 10px; color: var(--text-muted);">Total Revenue</div>
@@ -1782,7 +2127,7 @@ OK (failures=0, errors=0)
                   <div class="sim-stat-val" style="color: var(--primary);">68.5%</div>
                 </div>
               </div>
-              
+
               <div class="sim-chart-container" id="barChartContainer">
                 <div class="sim-chart-bar" data-val="42%" data-label="Cardio" style="height: 42%;"></div>
                 <div class="sim-chart-bar" data-val="78%" data-label="Pediatrics" style="height: 78%;"></div>
@@ -1791,43 +2136,58 @@ OK (failures=0, errors=0)
               </div>
             </div>
           </div>
-          
+
           <div>
             <div class="simulated-screen">
               <div class="sim-header">
                 <div>
-                  <div style="font-size: 14px; font-weight: 700; color: var(--text-main);">RTL Arabic Print Preview</div>
+                  <div style="font-size: 14px; font-weight: 700; color: var(--text-main);">RTL Arabic Print Preview
+                  </div>
                   <div style="font-size: 10px; color: var(--text-muted)">Prescription / Invoice Layout</div>
                 </div>
                 <span class="badge badge-cyan">العربية</span>
               </div>
-              
-              <div class="rtl-block" style="background: var(--wf-bar-bg); padding: 15px; border-radius: 8px; border: 1px solid var(--card-border);">
-                <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--card-border); padding-bottom: 8px; margin-bottom: 12px; align-items: center;">
-                  <span style="font-weight: bold; color: var(--text-main); font-size: 12px;">عيادة الطبيب ابراهيم للقلب</span>
+
+              <div class="rtl-block"
+                style="background: var(--wf-bar-bg); padding: 15px; border-radius: 8px; border: 1px solid var(--card-border);">
+                <div
+                  style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--card-border); padding-bottom: 8px; margin-bottom: 12px; align-items: center;">
+                  <span style="font-weight: bold; color: var(--text-main); font-size: 12px;">عيادة الطبيب ابراهيم
+                    للقلب</span>
                   <span style="color: var(--text-dark); font-size: 11px;">فاتورة رقم: INV-20260601</span>
                 </div>
-                
-                <div style="display: flex; flex-direction: column; gap: 8px; font-size: 12px; color: var(--text-muted);">
-                  <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-main); font-weight: 500;">المريض:</span> <span>أحمد عبد الفتاح</span></div>
-                  <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-main); font-weight: 500;">التشخيص الرئيسي:</span> <span>ارتفاع ضغط الدم الأولي</span></div>
-                  <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-main); font-weight: 500;">العلاج الموصوف:</span> <span>أملوديبين 5 ملغ مرة واحدة يومياً</span></div>
-                  
-                  <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--card-border); display: flex; justify-content: space-between; font-weight: bold; color: var(--accent-emerald)">
+
+                <div
+                  style="display: flex; flex-direction: column; gap: 8px; font-size: 12px; color: var(--text-muted);">
+                  <div style="display: flex; justify-content: space-between;"><span
+                      style="color: var(--text-main); font-weight: 500;">المريض:</span> <span>أحمد عبد الفتاح</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;"><span
+                      style="color: var(--text-main); font-weight: 500;">التشخيص الرئيسي:</span> <span>ارتفاع ضغط الدم
+                      الأولي</span></div>
+                  <div style="display: flex; justify-content: space-between;"><span
+                      style="color: var(--text-main); font-weight: 500;">العلاج الموصوف:</span> <span>أملوديبين 5 ملغ
+                      مرة واحدة يومياً</span></div>
+
+                  <div
+                    style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--card-border); display: flex; justify-content: space-between; font-weight: bold; color: var(--accent-emerald)">
                     <span>المجموع الإجمالي:</span>
                     <span>575.00 ريال سعودي</span>
                   </div>
                 </div>
               </div>
-              
-              <div class="glass-card" style="margin-top: 15px; padding: 12px; display: flex; align-items: center; justify-content: space-between;">
+
+              <div class="glass-card"
+                style="margin-top: 15px; padding: 12px; display: flex; align-items: center; justify-content: space-between;">
                 <div style="font-size: 11px; color: var(--text-muted)">Stripe Webhook checkout complete</div>
-                <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-emerald); box-shadow: 0 0 8px var(--accent-emerald);"></div>
+                <div
+                  style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-emerald); box-shadow: 0 0 8px var(--accent-emerald);">
+                </div>
               </div>
             </div>
           </div>
         </div>
-        
+
         <div class="slide-navigation-buttons">
           <button class="nav-btn prev-slide">Back</button>
           <button class="nav-btn primary-btn next-slide">Next: API Documentation ➔</button>
@@ -1838,13 +2198,16 @@ OK (failures=0, errors=0)
            SLIDE 10: API DOCUMENTATION
            ========================================== -->
       <section class="slide" id="slide-9">
-        <h2 style="font-size: 28px; margin-bottom: 20px; font-weight: 800; color: var(--text-main);">API & Endpoint Specifications</h2>
-        <p style="color: var(--text-muted); margin-bottom: 20px;">The backend exposes a clean JSON/AJAX interface alongside traditional HTML views to handle reactive UI updates.</p>
-        
+        <h2 style="font-size: 28px; margin-bottom: 20px; font-weight: 800; color: var(--text-main);">API & Endpoint
+          Specifications</h2>
+        <p style="color: var(--text-muted); margin-bottom: 20px;">The backend exposes a clean JSON/AJAX interface
+          alongside traditional HTML views to handle reactive UI updates.</p>
+
         <div class="filter-search-box">
-          <input type="text" class="filter-input" id="apiSearch" placeholder="Type to filter endpoints (e.g. GET, POST, Stripe, EMR)..." onkeyup="filterApiTable()">
+          <input type="text" class="filter-input" id="apiSearch"
+            placeholder="Type to filter endpoints (e.g. GET, POST, Stripe, EMR)..." onkeyup="filterApiTable()">
         </div>
-        
+
         <div class="styled-table-wrapper" style="max-height: 320px; overflow-y: auto;">
           <table class="styled-table" id="apiTable">
             <thead>
@@ -1859,49 +2222,56 @@ OK (failures=0, errors=0)
             <tbody>
               <tr>
                 <td><span class="badge badge-emerald">GET</span></td>
-                <td style="font-family: 'Fira Code', monospace; color: var(--primary); font-weight: bold;">/appointments/slots/</td>
+                <td style="font-family: 'Fira Code', monospace; color: var(--primary); font-weight: bold;">
+                  /appointments/slots/</td>
                 <td><span class="badge badge-primary">JSON</span></td>
                 <td>Patient / Staff</td>
                 <td>Returns unbooked time intervals for doctor and date parameters.</td>
               </tr>
               <tr>
                 <td><span class="badge badge-cyan">POST</span></td>
-                <td style="font-family: 'Fira Code', monospace; color: var(--primary); font-weight: bold;">/appointments/book/&lt;slot_id&gt;/</td>
+                <td style="font-family: 'Fira Code', monospace; color: var(--primary); font-weight: bold;">
+                  /appointments/book/&lt;slot_id&gt;/</td>
                 <td><span class="badge badge-primary">JSON</span></td>
                 <td>Patient / Staff</td>
                 <td>Locks time slot and creates a Stripe checkout redirect url.</td>
               </tr>
               <tr>
                 <td><span class="badge badge-cyan">POST</span></td>
-                <td style="font-family: 'Fira Code', monospace; color: var(--primary); font-weight: bold;">/payments/webhook/</td>
+                <td style="font-family: 'Fira Code', monospace; color: var(--primary); font-weight: bold;">
+                  /payments/webhook/</td>
                 <td><span class="badge badge-orange">Plain</span></td>
                 <td>System (Stripe)</td>
                 <td>Processes successful payment updates and issues invoices.</td>
               </tr>
               <tr>
                 <td><span class="badge badge-emerald">GET</span></td>
-                <td style="font-family: 'Fira Code', monospace; color: var(--primary); font-weight: bold;">/appointments/my/&lt;app_id&gt;/cancel/preflight/</td>
+                <td style="font-family: 'Fira Code', monospace; color: var(--primary); font-weight: bold;">
+                  /appointments/my/&lt;app_id&gt;/cancel/preflight/</td>
                 <td><span class="badge badge-primary">JSON</span></td>
                 <td>Patient</td>
                 <td>Calculates exact refund percentages (80% vs 100%) before cancellation confirmation.</td>
               </tr>
               <tr>
                 <td><span class="badge badge-cyan">POST</span></td>
-                <td style="font-family: 'Fira Code', monospace; color: var(--primary); font-weight: bold;">/notifications/&lt;pk&gt;/read/</td>
+                <td style="font-family: 'Fira Code', monospace; color: var(--primary); font-weight: bold;">
+                  /notifications/&lt;pk&gt;/read/</td>
                 <td><span class="badge badge-primary">JSON</span></td>
                 <td>All Roles</td>
                 <td>Sets unread notification flag to read for specific item.</td>
               </tr>
               <tr>
                 <td><span class="badge badge-emerald">GET</span></td>
-                <td style="font-family: 'Fira Code', monospace; color: var(--primary); font-weight: bold;">/notifications/unread-count/</td>
+                <td style="font-family: 'Fira Code', monospace; color: var(--primary); font-weight: bold;">
+                  /notifications/unread-count/</td>
                 <td><span class="badge badge-primary">JSON</span></td>
                 <td>All Roles</td>
                 <td>Returns active unread counts for UI bell polling.</td>
               </tr>
               <tr>
                 <td><span class="badge badge-cyan">POST</span></td>
-                <td style="font-family: 'Fira Code', monospace; color: var(--primary); font-weight: bold;">/payments/invoice/&lt;pk&gt;/pay/</td>
+                <td style="font-family: 'Fira Code', monospace; color: var(--primary); font-weight: bold;">
+                  /payments/invoice/&lt;pk&gt;/pay/</td>
                 <td><span class="badge badge-orange">Redirect</span></td>
                 <td>Receptionist</td>
                 <td>Records manual cash/POS split payment against issued billing invoice.</td>
@@ -1909,7 +2279,7 @@ OK (failures=0, errors=0)
             </tbody>
           </table>
         </div>
-        
+
         <div class="slide-navigation-buttons" style="margin-top: 20px;">
           <button class="nav-btn prev-slide">Back</button>
           <button class="nav-btn primary-btn next-slide">Next: Technologies Used ➔</button>
@@ -1920,59 +2290,49 @@ OK (failures=0, errors=0)
            SLIDE 11: TECHNOLOGIES USED HERE
            ========================================== -->
       <section class="slide" id="slide-10">
-        <h2 style="font-size: 28px; margin-bottom: 20px; font-weight: 800; color: var(--text-main);">Technology Integration Stack</h2>
-        <p style="color: var(--text-muted); margin-bottom: 30px;">An architectural overview of the framework components driving the ClinicDesk portal.</p>
-        
+        <h2 style="font-size: 28px; margin-bottom: 20px; font-weight: 800; color: var(--text-main);">Technology
+          Integration Stack</h2>
+        <p style="color: var(--text-muted); margin-bottom: 30px;">An architectural overview of the framework components
+          driving the ClinicDesk portal.</p>
+
         <div class="slide-content-grid three-cols">
           <div class="glass-card">
             <div class="card-title">
               <span class="card-icon icon-primary">🐍</span>
               <span>Django 6.0</span>
             </div>
-            <p style="font-size: 13px; color: var(--text-muted);">Acts as the core transactional framework. Handles models representation, secure session control, custom decorators, and middleware rules.</p>
+            <p style="font-size: 13px; color: var(--text-muted);">Acts as the core transactional framework. Handles
+              models representation, secure session control, custom decorators, and middleware rules.</p>
           </div>
-          
+
           <div class="glass-card">
             <div class="card-title">
               <span class="card-icon icon-secondary">💳</span>
               <span>Stripe Checkout API</span>
             </div>
-            <p style="font-size: 13px; color: var(--text-muted);">Processes payment cards securely. Operates checkout callbacks, webhook transaction logging, and automated partial refund distributions.</p>
+            <p style="font-size: 13px; color: var(--text-muted);">Processes payment cards securely. Operates checkout
+              callbacks, webhook transaction logging, and automated partial refund distributions.</p>
           </div>
-          
+
           <div class="glass-card">
             <div class="card-title">
               <span class="card-icon icon-cyan">🐬</span>
               <span>MySQL / SQLite</span>
             </div>
-            <p style="font-size: 13px; color: var(--text-muted);">Relational storage engines enforcing strict foreign keys, indexing profiles, and decimal precision integrity for billing cards.</p>
+            <p style="font-size: 13px; color: var(--text-muted);">Relational storage engines enforcing strict foreign
+              keys, indexing profiles, and decimal precision integrity for billing cards.</p>
           </div>
-          
-          <div class="glass-card">
-            <div class="card-title">
-              <span class="card-icon icon-emerald">⚛</span>
-              <span>React & Vite SPA</span>
-            </div>
-            <p style="font-size: 13px; color: var(--text-muted);">Powers the highly interactive frontend. Utilizes Stitch-designed interfaces and Vanilla CSS tokens for state-of-the-art responsiveness.</p>
-          </div>
-          
-          <div class="glass-card">
-            <div class="card-title">
-              <span class="card-icon icon-orange">🐋</span>
-              <span>Docker Compose</span>
-            </div>
-            <p style="font-size: 13px; color: var(--text-muted);">Manages system deployment. Combines Nginx reverse proxy routes, MySQL db clusters, and NestJS APIs into a single environment.</p>
-          </div>
-          
+
           <div class="glass-card">
             <div class="card-title">
               <span class="card-icon icon-red">🌍</span>
               <span>gettext i18n Core</span>
             </div>
-            <p style="font-size: 13px; color: var(--text-muted);">Standard locale utility translating messages catalogs, compiling RTL styling directives, and switching contexts instantly.</p>
+            <p style="font-size: 13px; color: var(--text-muted);">Standard locale utility translating messages catalogs,
+              compiling RTL styling directives, and switching contexts instantly.</p>
           </div>
         </div>
-        
+
         <div class="slide-navigation-buttons">
           <button class="nav-btn prev-slide">Back</button>
           <button class="nav-btn primary-btn" onclick="goToSlide(0)">Restart Presentation ↺</button>
@@ -1994,7 +2354,7 @@ OK (failures=0, errors=0)
     const slideCounter = document.getElementById('slideCounter');
     const slideTitleDisplay = document.getElementById('slideTitleDisplay');
     const totalSlides = slides.length;
-    
+
     // Slide titles directory
     const slideTitles = [
       "Overview of the Project",
@@ -2019,7 +2379,7 @@ OK (failures=0, errors=0)
           slide.classList.remove('active');
         }
       });
-      
+
       navItems.forEach((item, idx) => {
         if (idx === currentSlide) {
           item.classList.add('active');
@@ -2034,7 +2394,7 @@ OK (failures=0, errors=0)
       progressFill.style.width = pct + '%';
       slideCounter.innerText = (currentSlide + 1) + ' / ' + totalSlides;
       slideTitleDisplay.innerText = slideTitles[currentSlide];
-      
+
       // Animate charts if on Slide 8 (UI Screenshots)
       if (currentSlide === 8) {
         animateCharts();
@@ -2093,7 +2453,7 @@ OK (failures=0, errors=0)
     // Keyboard navigation keys
     document.addEventListener('keydown', (e) => {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-      
+
       if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
         e.preventDefault();
         nextSlide();
@@ -2157,4 +2517,5 @@ OK (failures=0, errors=0)
     }
   </script>
 </body>
+
 </html>
