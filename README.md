@@ -2,8 +2,6 @@
 
 A modern, responsive, and full-featured Clinic & Electronic Medical Records (EMR) Management System built with Django. This platform streamlines clinic workflows, coordinates check-ins, handles scheduling, manages consultations, processes billing with Stripe integration, and supports full localization in English and Arabic.
 
-![Clinic EMR System](https://github.com/user-attachments/assets/69efebf5-2449-4a34-a7e1-e9af32b319c5)
-
 ---
 
 ## 🌟 Key Features
