@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "Clinic Settings | Admin Dashboard" %}{% endblock %}
+
+{% block extra_css %}
+    {% include "dashboard/partials/_dashboard_styles.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-shell role-admin">
+    {% include "dashboard/partials/_sidebar.html" %}
+
+    <main class="dashboard-main">
+        <div class="dashboard-content" style="max-width: 800px;">
+            
+            <div class="panel-heading mb-4">
+                <h1 class="panel-title fs-2">{% trans "Clinic Settings" %}</h1>
+                <p class="panel-subtitle">{% trans "Manage clinic branding, contact info, working hours, and billing defaults." %}</p>
+            </div>
+
+            <div class="panel-card">
+                <form method="post" enctype="multipart/form-data" class="walkin-form">
+                    {% csrf_token %}
+                    
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger rounded-4">
+                            {% for error in form.non_field_errors %}
+                                <div class="fw-bold">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <div class="row g-4">
+                        <div class="col-12"><h4 class="fs-5 fw-bold mb-0 border-bottom pb-2" style="color: var(--role-primary);">{% trans "Branding & Contact Info" %}</h4></div>
+                        
+                        <div class="col-md-6">
+                            <label class="form-label">{% trans "Clinic Name" %} <span class="text-danger">*</span></label>
+                            {{ form.clinic_name }}
+                            {% if form.clinic_name.errors %}<div class="text-danger mt-1 small fw-bold">{{ form.clinic_name.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">{% trans "Logo" %}</label>
+                            {% if form.instance.logo %}
+                                <div class="mb-2">
+                                    <img src="{{ form.instance.logo.url }}" alt="{% trans 'Clinic Logo' %}" style="max-height: 60px; border-radius: 8px;" class="border p-1 bg-white">
+                                </div>
+                            {% endif %}
+                            {{ form.logo }}
+                            {% if form.logo.errors %}<div class="text-danger mt-1 small fw-bold">{{ form.logo.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">{% trans "Phone Number" %}</label>
+                            {{ form.clinic_phone }}
+                            {% if form.clinic_phone.errors %}<div class="text-danger mt-1 small fw-bold">{{ form.clinic_phone.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">{% trans "Email Address" %}</label>
+                            {{ form.clinic_email }}
+                            {% if form.clinic_email.errors %}<div class="text-danger mt-1 small fw-bold">{{ form.clinic_email.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">{% trans "Address" %}</label>
+                            {{ form.clinic_address }}
+                            {% if form.clinic_address.errors %}<div class="text-danger mt-1 small fw-bold">{{ form.clinic_address.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-12"><h4 class="fs-5 fw-bold mb-0 border-bottom pb-2 pt-4" style="color: var(--role-primary);">{% trans "Operations & Scheduling" %}</h4></div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">{% trans "Opening Time" %} <span class="text-danger">*</span></label>
+                            {{ form.opening_time }}
+                            {% if form.opening_time.errors %}<div class="text-danger mt-1 small fw-bold">{{ form.opening_time.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">{% trans "Closing Time" %} <span class="text-danger">*</span></label>
+                            {{ form.closing_time }}
+                            {% if form.closing_time.errors %}<div class="text-danger mt-1 small fw-bold">{{ form.closing_time.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">{% trans "Default Slot Duration (minutes)" %} <span class="text-danger">*</span></label>
+                            {{ form.default_slot_duration }}
+                            {% if form.default_slot_duration.errors %}<div class="text-danger mt-1 small fw-bold">{{ form.default_slot_duration.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">{% trans "Currency" %} <span class="text-danger">*</span></label>
+                            {{ form.currency }}
+                            {% if form.currency.errors %}<div class="text-danger mt-1 small fw-bold">{{ form.currency.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label d-block">{% trans "Working Days" %}</label>
+                            <div class="row g-2 px-2">
+                                {% for choice in form.working_days %}
+                                    <div class="col-md-3 col-6">
+                                        <div class="form-check">
+                                            {{ choice.tag }}
+                                            <label class="form-check-label ms-1" style="font-weight: 600; color: var(--dash-text);">
+                                                {{ choice.choice_label }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            {% if form.working_days.errors %}<div class="text-danger mt-1 small fw-bold">{{ form.working_days.errors.0 }}</div>{% endif %}
+                        </div>
+
+                    </div>
+
+                    <div class="mt-5 d-flex gap-3 justify-content-end">
+                        <button type="submit" class="btn" style="background: var(--role-primary); color: white; font-weight: 800; border-radius: 12px; padding: 12px 32px; box-shadow: 0 10px 24px color-mix(in srgb, var(--role-primary) 32%, transparent);">{% trans "Save Settings" %}</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </main>
+</div>
+{% endblock %}

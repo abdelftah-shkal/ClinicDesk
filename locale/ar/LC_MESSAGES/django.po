@@ -1,0 +1,2579 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-10 00:18+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+msgid "Activation Failed | Clinic System"
+msgstr "فشل التنشيط | نظام العيادة"
+
+msgid "Verification issue"
+msgstr "مشكلة التحقق"
+
+msgid "Activation link is invalid"
+msgstr "رابط التفعيل غير صالح"
+
+msgid ""
+""
+"The link may be expired or already used. Register again to receive a new "
+"activation email."
+msgstr "قد يكون الرابط منتهي الصلاحية أو مستخدم بالفعل. قم بالتسجيل مرة أخرى لتلقي بريد التنشيط الجديد."
+
+msgid "We could not activate your account with this link."
+msgstr "لم نتمكن من تفعيل حسابك بهذا الرابط."
+
+msgid "Register Again"
+msgstr "سجل مرة أخرى"
+
+msgid "Back to Login"
+msgstr "العودة إلى تسجيل الدخول"
+
+msgid "Account Activated | Clinic System"
+msgstr "الحساب مفعل | نظام العيادة"
+
+msgid "Verification complete"
+msgstr "اكتمل التحقق"
+
+msgid "Your account is active"
+msgstr "حسابك نشط"
+
+msgid "You can now sign in and access your clinic workspace."
+msgstr "يمكنك الآن تسجيل الدخول والوصول إلى مساحة عمل العيادة الخاصة بك."
+
+msgid ""
+""
+"Email verification succeeded. Your account has been activated successfully."
+msgstr "نجح التحقق من البريد الإلكتروني. لقد تم تفعيل حسابك بنجاح."
+
+msgid "Go to Login"
+msgstr "اذهب إلى تسجيل الدخول"
+
+msgid "Forgot Password | Clinic System"
+msgstr "نسيت كلمة المرور | نظام العيادة"
+
+msgid "Account recovery"
+msgstr "استرداد الحساب"
+
+msgid "Reset your password"
+msgstr "إعادة تعيين كلمة المرور الخاصة بك"
+
+msgid "Enter the email tied to your clinic account."
+msgstr "أدخل البريد الإلكتروني المرتبط بحساب العيادة الخاص بك."
+
+msgid "Email"
+msgstr "بريد إلكتروني"
+
+msgid "name@example.com"
+msgstr "name@example.com"
+
+msgid "Remembered your password?"
+msgstr "تذكرت كلمة المرور الخاصة بك؟"
+
+msgid "Back to login"
+msgstr "العودة لتسجيل الدخول"
+
+msgid "Send reset link"
+msgstr "إرسال رابط إعادة التعيين"
+
+msgid "Login | Clinic System"
+msgstr "تسجيل الدخول | نظام العيادة"
+
+msgid "Doctor, patient, reception"
+msgstr "طبيب، مريض، استقبال"
+
+msgid "Welcome back"
+msgstr "مرحبًا بعودتك"
+
+msgid "Sign in to continue to your clinic workspace."
+msgstr "قم بتسجيل الدخول للمتابعة إلى مساحة عمل عيادتك."
+
+msgid "Password"
+msgstr "كلمة المرور"
+
+msgid "Enter your password"
+msgstr "أدخل كلمة المرور الخاصة بك"
+
+msgid "Forgot password?"
+msgstr "هل نسيت كلمة السر؟"
+
+msgid "Need an account?"
+msgstr "هل تحتاج إلى حساب؟"
+
+msgid "Register"
+msgstr "يسجل"
+
+msgid "Login"
+msgstr "تسجيل الدخول"
+
+msgid "Register | Clinic System"
+msgstr "سجل | نظام العيادة"
+
+msgid "Fast onboarding"
+msgstr "تأهيل سريع"
+
+msgid "Create account"
+msgstr "إنشاء حساب"
+
+msgid "Join the clinic appointment workspace."
+msgstr "انضم إلى مساحة عمل مواعيد العيادة."
+
+msgid "Username"
+msgstr "اسم المستخدم"
+
+msgid "Choose a username"
+msgstr "اختيار اسم المستخدم"
+
+msgid "Create a password"
+msgstr "قم بإنشاء كلمة مرور"
+
+msgid "Confirm Password"
+msgstr "تأكيد كلمة المرور"
+
+msgid "Confirm your password"
+msgstr "قم بتأكيد كلمة المرور الخاصة بك"
+
+msgid "Role"
+msgstr "دور"
+
+msgid "Select role"
+msgstr "حدد الدور"
+
+msgid "Already have an account?"
+msgstr "هل لديك حساب بالفعل؟"
+
+msgid "Reset Password | Clinic System"
+msgstr "إعادة تعيين كلمة المرور | نظام العيادة"
+
+msgid "Set new access"
+msgstr "تعيين وصول جديد"
+
+msgid "Choose a new password"
+msgstr "اختر كلمة مرور جديدة"
+
+msgid "Create a fresh password to regain access."
+msgstr "قم بإنشاء كلمة مرور جديدة لاستعادة الوصول."
+
+msgid "New Password"
+msgstr "كلمة المرور الجديدة"
+
+msgid "Create a new password"
+msgstr "قم بإنشاء كلمة مرور جديدة"
+
+msgid "Confirm your new password"
+msgstr "قم بتأكيد كلمة المرور الجديدة"
+
+msgid "Need to sign in instead?"
+msgstr "هل تريد تسجيل الدخول بدلاً من ذلك؟"
+
+msgid "Go to login"
+msgstr "اذهب لتسجيل الدخول"
+
+msgid "Update password"
+msgstr "تحديث كلمة المرور"
+
+msgid "Clinic System"
+msgstr "نظام العيادة"
+
+msgid "Activate Your Account"
+msgstr "تفعيل حسابك"
+
+msgid "Finish setting up your clinic workspace."
+msgstr "الانتهاء من إعداد مساحة عمل العيادة الخاصة بك."
+
+msgid "Hi"
+msgstr "أهلاً"
+
+msgid ""
+""
+"Thanks for signing up! Confirm your email to unlock scheduling, dashboards, "
+"and patient workflows."
+msgstr "شكرا للتسجيل! قم بتأكيد بريدك الإلكتروني لفتح الجدولة ولوحات المعلومات وسير عمل المريض."
+
+msgid "Activate Account"
+msgstr "تفعيل الحساب"
+
+msgid "If you did not create an account, you can safely ignore this email."
+msgstr "إذا لم تقم بإنشاء حساب، فيمكنك تجاهل هذا البريد الإلكتروني بأمان."
+
+msgid "Button not working? Paste this link into your browser:"
+msgstr "الزر لا يعمل؟ الصق هذا الرابط في متصفحك:"
+
+msgid "Appointment Reminder"
+msgstr "تذكير بالموعد"
+
+msgid "Hello,"
+msgstr "مرحبًا،"
+
+msgid ""
+""
+"This is a friendly reminder that you have an upcoming appointment scheduled "
+"at our clinic. Details can be found below:"
+msgstr "هذا تذكير ودي بأن لديك موعدًا قادمًا في عيادتنا. التفاصيل يمكن العثور عليها أدناه:"
+
+msgid "Doctor:"
+msgstr "طبيب:"
+
+msgid "Dr."
+msgstr "دكتور."
+
+msgid "Specialty:"
+msgstr "التخصص:"
+
+msgid "Date:"
+msgstr "تاريخ:"
+
+msgid "Time:"
+msgstr "وقت:"
+
+msgid "View Appointment"
+msgstr "عرض الموعد"
+
+msgid ""
+""
+"If you need to reschedule or cancel your appointment, please log in to your "
+"dashboard at least 24 hours prior to the slot."
+msgstr "إذا كنت بحاجة إلى إعادة جدولة موعدك أو إلغائه، فيرجى تسجيل الدخول إلى لوحة التحكم الخاصة بك قبل 24 ساعة على الأقل من الموعد المحدد."
+
+msgid "© Clinic System. All rights reserved."
+msgstr "© نظام العيادة. جميع الحقوق محفوظة."
+
+msgid "Modern care, organized clearly."
+msgstr "رعاية حديثة، منظمة بشكل واضح."
+
+msgid "Reset Your Password"
+msgstr "إعادة تعيين كلمة المرور الخاصة بك"
+
+msgid "Secure access to your clinic workspace."
+msgstr "الوصول الآمن إلى مساحة عمل العيادة الخاصة بك."
+
+msgid ""
+""
+"We received a request to reset your password. Use the button below to choose "
+"a new one."
+msgstr "لقد تلقينا طلبًا لإعادة تعيين كلمة المرور الخاصة بك. استخدم الزر أدناه لاختيار زر جديد."
+
+msgid "Reset Password"
+msgstr "إعادة تعيين كلمة المرور"
+
+msgid "If you did not request a password reset, you can ignore this email."
+msgstr "إذا لم تطلب إعادة تعيين كلمة المرور، فيمكنك تجاهل هذا البريد الإلكتروني."
+
+msgid ""
+""
+"Account created successfully. Please check your email to activate your "
+"account."
+msgstr "تم إنشاء الحساب بنجاح. يرجى التحقق من بريدك الإلكتروني لتفعيل حسابك."
+
+msgid "Password reset link sent. Please check your email."
+msgstr "تم إرسال رابط إعادة تعيين كلمة المرور. يرجى التحقق من البريد الإلكتروني الخاص بك."
+
+msgid "No account found with that email."
+msgstr "لم يتم العثور على حساب مع هذا البريد الإلكتروني."
+
+msgid "Verification successful. Please enter your new password."
+msgstr "تم التحقق بنجاح. الرجاء إدخال كلمة المرور الجديدة."
+
+msgid "Invalid or expired reset link."
+msgstr "رابط إعادة التعيين غير صالح أو منتهي الصلاحية."
+
+msgid "Password reset successful. You can now log in with your new password."
+msgstr "تمت إعادة تعيين كلمة المرور بنجاح. يمكنك الآن تسجيل الدخول باستخدام كلمة المرور الجديدة الخاصة بك."
+
+msgid "Select the working days of the clinic."
+msgstr "تحديد أيام عمل العيادة."
+
+msgid "Clinic Settings | Admin Dashboard"
+msgstr "إعدادات العيادة | لوحة تحكم المشرف"
+
+msgid "Clinic Settings"
+msgstr "إعدادات العيادة"
+
+msgid ""
+""
+"Manage clinic branding, contact info, working hours, and billing defaults."
+msgstr "إدارة العلامة التجارية للعيادة ومعلومات الاتصال وساعات العمل والفواتير الافتراضية."
+
+msgid "Branding & Contact Info"
+msgstr "العلامة التجارية ومعلومات الاتصال"
+
+msgid "Clinic Name"
+msgstr "اسم العيادة"
+
+msgid "Logo"
+msgstr "الشعار"
+
+msgid "Clinic Logo"
+msgstr "شعار العيادة"
+
+msgid "Phone Number"
+msgstr "رقم التليفون"
+
+msgid "Email Address"
+msgstr "عنوان البريد الإلكتروني"
+
+msgid "Address"
+msgstr "عنوان"
+
+msgid "Operations & Scheduling"
+msgstr "العمليات والجدولة"
+
+msgid "Opening Time"
+msgstr "وقت الافتتاح"
+
+msgid "Closing Time"
+msgstr "وقت الإغلاق"
+
+msgid "Default Slot Duration (minutes)"
+msgstr "المدة الافتراضية للفتحة (بالدقائق)"
+
+msgid "Currency"
+msgstr "عملة"
+
+msgid "Working Days"
+msgstr "أيام العمل"
+
+msgid "Save Settings"
+msgstr "حفظ الإعدادات"
+
+msgid "Appointment Report | Admin Dashboard"
+msgstr "تقرير التعيين | لوحة تحكم المشرف"
+
+msgid "Appointment Report"
+msgstr "تقرير التعيين"
+
+msgid ""
+""
+"View and export details of all clinic appointments during the selected "
+"period."
+msgstr "عرض وتصدير تفاصيل جميع مواعيد العيادة خلال الفترة المحددة."
+
+msgid "Export CSV"
+msgstr "تصدير CSV"
+
+msgid "From Date"
+msgstr "من التاريخ"
+
+msgid "To Date"
+msgstr "حتى الآن"
+
+msgid "Filter"
+msgstr "فلتر"
+
+msgid "Reset"
+msgstr "إعادة ضبط"
+
+msgid "Appointment ID"
+msgstr "معرف الموعد"
+
+msgid "Patient"
+msgstr "مريض"
+
+msgid "Doctor"
+msgstr "طبيب"
+
+msgid "Scheduled Time"
+msgstr "الوقت المقرر"
+
+msgid "Status"
+msgstr "حالة"
+
+msgid "Created At"
+msgstr "تم الإنشاء في"
+
+msgid "Completed"
+msgstr "مكتمل"
+
+msgid "Confirmed"
+msgstr "مؤكد"
+
+msgid "Pending"
+msgstr "قيد الانتظار"
+
+msgid "Cancelled"
+msgstr "تم الإلغاء"
+
+msgid "No appointments found for the selected period."
+msgstr "لم يتم العثور على مواعيد للفترة المحددة."
+
+msgid "Billing & Financial Report | Admin Dashboard"
+msgstr "الفواتير والتقرير المالي | لوحة تحكم المشرف"
+
+msgid "Billing & Financial Report"
+msgstr "الفواتير والتقرير المالي"
+
+msgid ""
+""
+"View and export all financial transactions and payment statuses during the "
+"selected period."
+msgstr "عرض وتصدير جميع المعاملات المالية وحالات الدفع خلال الفترة المحددة."
+
+msgid "Transaction ID"
+msgstr "معرف المعاملة"
+
+msgid "Amount"
+msgstr "كمية"
+
+msgid "Stripe ID"
+msgstr "معرف الشريط"
+
+msgid "Date"
+msgstr "تاريخ"
+
+msgid "Appt #"
+msgstr "التطبيق #"
+
+msgid "EGP"
+msgstr "جنيه مصري"
+
+msgid "Paid"
+msgstr "مدفوع"
+
+msgid "Refunded"
+msgstr "ردها"
+
+msgid "No financial transactions found for the selected period."
+msgstr "لم يتم العثور على معاملات مالية للفترة المحددة."
+
+msgid "Disease & Diagnosis Statistics | Admin Dashboard"
+msgstr "إحصائيات الأمراض والتشخيص | لوحة تحكم المشرف"
+
+msgid "Disease & Diagnosis Statistics"
+msgstr "إحصائيات الأمراض والتشخيص"
+
+msgid ""
+""
+"View and export statistical breakdowns of patient diagnoses recorded in "
+"consultations."
+msgstr "عرض وتصدير البيانات الإحصائية لتشخيصات المرضى المسجلة في الاستشارات."
+
+msgid "Diagnosis / Disease"
+msgstr "التشخيص / المرض"
+
+msgid "Total Cases"
+msgstr "إجمالي الحالات"
+
+msgid "No disease breakdown statistics available for this period."
+msgstr "لا تتوفر إحصائيات تفصيلية للأمراض لهذه الفترة."
+
+msgid "Patient Activity & Retention Report | Admin Dashboard"
+msgstr "تقرير نشاط المريض والاحتفاظ به | لوحة تحكم المشرف"
+
+msgid "Patient Activity & Retention"
+msgstr "نشاط المريض والاحتفاظ به"
+
+msgid ""
+""
+"Analyze patient registration growth, visit frequency, and retention in the "
+"clinic."
+msgstr "تحليل نمو تسجيل المرضى وتكرار الزيارات والاحتفاظ بهم في العيادة."
+
+msgid "Patient Name"
+msgstr "اسم المريض"
+
+msgid "Joined Date"
+msgstr "تاريخ الانضمام"
+
+msgid "Total Appts (Period)"
+msgstr "إجمالي التطبيقات (الفترة)"
+
+msgid "Completed Visits (Period)"
+msgstr "الزيارات المكتملة (الفترة)"
+
+msgid "No patient activity recorded for the selected period."
+msgstr "لم يتم تسجيل أي نشاط للمريض خلال الفترة المحددة."
+
+msgid "| Admin Dashboard"
+msgstr "| لوحة تحكم المشرف"
+
+msgid "Back to Services"
+msgstr "العودة إلى الخدمات"
+
+msgid "Configure clinic services details and assign doctors."
+msgstr "تكوين تفاصيل خدمات العيادة وتعيين الأطباء."
+
+msgid "Service Name"
+msgstr "اسم الخدمة"
+
+msgid "Display Order"
+msgstr "ترتيب العرض"
+
+msgid "Icon Class (Bootstrap Icon)"
+msgstr "فئة الأيقونة (أيقونة Bootstrap)"
+
+msgid "e.g."
+msgstr "على سبيل المثال"
+
+msgid "Price Range"
+msgstr "نطاق السعر"
+
+msgid "or"
+msgstr "أو"
+
+msgid "Description"
+msgstr "وصف"
+
+msgid "Assign Doctors"
+msgstr "تعيين الأطباء"
+
+msgid ""
+""
+"Hold down Ctrl (or Cmd on Mac) to select multiple doctors. Only users with "
+"the Doctor role are shown."
+msgstr "اضغط باستمرار على Ctrl (أو Cmd في نظام Mac) لتحديد عدة أطباء. يتم عرض المستخدمين الذين لديهم دور الطبيب فقط."
+
+msgid "Active (visible to patients and staff)"
+msgstr "نشط (مرئي للمرضى والموظفين)"
+
+msgid "Cancel"
+msgstr "يلغي"
+
+msgid "Save Service"
+msgstr "حفظ الخدمة"
+
+msgid "Clinic Services | Admin Dashboard"
+msgstr "خدمات العيادة | لوحة تحكم المشرف"
+
+msgid "Clinic Services"
+msgstr "خدمات العيادة"
+
+msgid "Manage medical services, packages, prices, and doctor assignments"
+msgstr "إدارة الخدمات الطبية والباقات والأسعار ومهام الطبيب"
+
+msgid "Add Service"
+msgstr "أضف الخدمة"
+
+msgid "Icon"
+msgstr "رمز"
+
+msgid "Doctors Assigned"
+msgstr "الأطباء المعينون"
+
+msgid "Actions"
+msgstr "الإجراءات"
+
+msgid "No doctor assigned"
+msgstr "لم يتم تعيين طبيب"
+
+msgid "Active"
+msgstr "نشيط"
+
+msgid "Inactive"
+msgstr "غير نشط"
+
+msgid "Edit"
+msgstr "يحرر"
+
+msgid "Delete"
+msgstr "يمسح"
+
+msgid "No services configured yet. Click \"Add Service\" to create one."
+msgstr "لم يتم تكوين أي خدمات حتى الآن. انقر فوق \"إضافة خدمة\" لإنشاء واحدة."
+
+msgid "Create User | Admin Dashboard"
+msgstr "إنشاء مستخدم | لوحة تحكم المشرف"
+
+msgid "Back to Users"
+msgstr "العودة إلى المستخدمين"
+
+msgid "Create New User"
+msgstr "إنشاء مستخدم جديد"
+
+msgid "Fill in the details below to create a new user account."
+msgstr "قم بملء التفاصيل أدناه لإنشاء حساب مستخدم جديد."
+
+msgid "First Name"
+msgstr "الاسم الأول"
+
+msgid "Last Name"
+msgstr "اسم العائلة"
+
+msgid "Doctor Profile Details"
+msgstr "تفاصيل الملف الشخصي للطبيب"
+
+msgid "Specialty"
+msgstr "التخصص"
+
+msgid "Consultation Fee (EGP)"
+msgstr "رسوم الاستشارة (جنيه مصري)"
+
+msgid "Bio"
+msgstr "السيرة الذاتية"
+
+msgid "Patient Profile Details"
+msgstr "تفاصيل الملف الشخصي للمريض"
+
+msgid "Date of Birth"
+msgstr "تاريخ الميلاد"
+
+msgid "Blood Type"
+msgstr "فصيلة الدم"
+
+msgid "e.g. O+, A-"
+msgstr "على سبيل المثال يا+، أ-"
+
+msgid "Create User"
+msgstr "إنشاء مستخدم"
+
+msgid "Edit User | Admin Dashboard"
+msgstr "تحرير المستخدم | لوحة تحكم المشرف"
+
+msgid "Edit User"
+msgstr "تحرير المستخدم"
+
+msgid "Update account details and role for"
+msgstr "تحديث تفاصيل الحساب ودوره"
+
+msgid "Account is Active"
+msgstr "الحساب نشط"
+
+msgid "Inactive users cannot log into the system."
+msgstr "لا يمكن للمستخدمين غير النشطين تسجيل الدخول إلى النظام."
+
+msgid "Save Changes"
+msgstr "حفظ التغييرات"
+
+msgid "User Management | Admin Dashboard"
+msgstr "إدارة المستخدم | لوحة تحكم المشرف"
+
+msgid "User Management"
+msgstr "إدارة المستخدم"
+
+msgid "Manage system access, roles, and user accounts"
+msgstr "إدارة الوصول إلى النظام والأدوار وحسابات المستخدمين"
+
+msgid "Search Users"
+msgstr "بحث المستخدمين"
+
+msgid "Name, email, or username..."
+msgstr "الاسم أو البريد الإلكتروني أو اسم المستخدم..."
+
+msgid "All Roles"
+msgstr "جميع الأدوار"
+
+msgid "Receptionist"
+msgstr "موظف استقبال"
+
+msgid "Admin"
+msgstr "مسؤل"
+
+msgid "All Status"
+msgstr "كل الحالة"
+
+msgid "Clear"
+msgstr "واضح"
+
+msgid "User"
+msgstr "مستخدم"
+
+msgid "Joined"
+msgstr "انضم"
+
+msgid "Deactivate"
+msgstr "إلغاء التنشيط"
+
+msgid "Activate"
+msgstr "فعل"
+
+msgid "No users found matching your criteria."
+msgstr "لم يتم العثور على مستخدمين مطابقين لمعاييرك."
+
+msgid "Previous"
+msgstr "سابق"
+
+msgid "Next"
+msgstr "التالي"
+
+msgid "You cannot deactivate your own account."
+msgstr "لا يمكنك إلغاء تنشيط حسابك الخاص."
+
+#, python-brace-format
+msgid "User {user.username} {status_text}."
+msgstr "المستخدم{user.username}{status_text}."
+
+#, python-brace-format
+msgid "Service '{service.name}' deleted successfully."
+msgstr "تم حذف الخدمة '{service.name}' بنجاح."
+
+msgid "Cancellation reason"
+msgstr "سبب الإلغاء"
+
+msgid "This time slot is already booked for this doctor."
+msgstr "هذه الفترة الزمنية محجوزة بالفعل لهذا الطبيب."
+
+msgid "You already have an active appointment with this doctor on this day."
+msgstr "لديك بالفعل موعد نشط مع هذا الطبيب في هذا اليوم."
+
+msgid ""
+""
+"You already have another active appointment that overlaps with this time."
+msgstr "لديك بالفعل موعد نشط آخر يتداخل مع هذا الوقت."
+
+msgid "This time slot has already passed."
+msgstr "لقد مرت هذه الفترة الزمنية بالفعل."
+
+msgid "The session is already booked by another user."
+msgstr "تم حجز الجلسة بالفعل من قبل مستخدم آخر."
+
+msgid "Please provide a cancellation reason."
+msgstr "يرجى تقديم سبب الإلغاء."
+
+msgid "Your appointment has been cancelled."
+msgstr "لقد تم إلغاء موعدك."
+
+msgid "ID"
+msgstr "بطاقة تعريف"
+
+msgid "Clinic Service"
+msgstr "خدمة العيادة"
+
+msgid "English"
+msgstr "إنجليزي"
+
+msgid "Arabic"
+msgstr "عربي"
+
+msgid "Dashboard | Clinic System"
+msgstr "لوحة القيادة | نظام العيادة"
+
+msgid "Dashboard unavailable"
+msgstr "لوحة التحكم غير متاحة"
+
+msgid "Your account role does not have a dashboard assigned yet."
+msgstr "لم يتم تعيين لوحة تحكم لدور حسابك حتى الآن."
+
+msgid "Admin Workspace"
+msgstr "مساحة عمل المشرف"
+
+msgid "Manage Users"
+msgstr "إدارة المستخدمين"
+
+msgid "Clinic Analytics"
+msgstr "تحليلات العيادة"
+
+msgid "Comprehensive insights and performance metrics"
+msgstr "رؤى شاملة ومقاييس الأداء"
+
+msgid "Update"
+msgstr "تحديث"
+
+msgid "TOTAL REVENUE"
+msgstr "إجمالي الإيرادات"
+
+msgid "APPOINTMENTS"
+msgstr "المواعيد"
+
+msgid "TOTAL USERS"
+msgstr "إجمالي المستخدمين"
+
+msgid "CONFIRMED RATE"
+msgstr "سعر مؤكد"
+
+msgid "Revenue Growth"
+msgstr "نمو الإيرادات"
+
+msgid "Appointment Status"
+msgstr "حالة التعيين"
+
+msgid "User Roles"
+msgstr "أدوار المستخدم"
+
+msgid "Monthly Appointments & New Users"
+msgstr "المواعيد الشهرية والمستخدمين الجدد"
+
+msgid "Doctor Performance"
+msgstr "أداء الطبيب"
+
+msgid "Total Appts"
+msgstr "إجمالي التطبيقات"
+
+msgid "Rate"
+msgstr "معدل"
+
+msgid "Revenue Generated"
+msgstr "الإيرادات المولدة"
+
+msgid "No doctor data available for this period."
+msgstr "لا توجد بيانات الطبيب المتاحة لهذه الفترة."
+
+msgid "AVERAGE REVENUE PER APPOINTMENT"
+msgstr "متوسط ​​الإيرادات لكل موعد"
+
+msgid "REFUNDS ISSUED"
+msgstr "تم إصدار المبالغ المستردة"
+
+msgid "(EGP"
+msgstr "(ج.م"
+
+msgid "Doctor Overview"
+msgstr "نظرة عامة على الطبيب"
+
+msgid ""
+""
+"Guide your weekly schedule and today's clinical flow from one focused "
+"surface."
+msgstr "قم بتوجيه جدولك الأسبوعي والتدفق السريري اليوم من سطح واحد مركّز."
+
+msgid ""
+""
+"Monitor the queue, prioritize consultations, and keep completed visits "
+"moving cleanly into follow-up."
+msgstr "راقب قائمة الانتظار، وحدد أولويات المشاورات، وحافظ على انتقال الزيارات المكتملة بشكل نظيف إلى المتابعة."
+
+msgid "Manage Schedule"
+msgstr "إدارة الجدول الزمني"
+
+msgid "View Consultations"
+msgstr "عرض المشاورات"
+
+msgid "This Week"
+msgstr "هذا الاسبوع"
+
+msgid "Total appointments"
+msgstr "إجمالي المواعيد"
+
+msgid "Today"
+msgstr "اليوم"
+
+msgid "Scheduled patients"
+msgstr "المرضى المجدولين"
+
+msgid "Finished today"
+msgstr "انتهى اليوم"
+
+msgid "Currently checking in"
+msgstr "يتم تسجيل الوصول حاليًا"
+
+msgid "Weekly Queue"
+msgstr "قائمة الانتظار الأسبوعية"
+
+msgid "All appointments for"
+msgstr "جميع المواعيد ل"
+
+msgid "Focus"
+msgstr "ركز"
+
+msgid "Follow-up complete"
+msgstr "اكتملت المتابعة"
+
+msgid "Consultation session"
+msgstr "جلسة التشاور"
+
+msgid "Start Consultation"
+msgstr "ابدأ الاستشارة"
+
+msgid "No appointments scheduled for this week."
+msgstr "لا توجد مواعيد محددة لهذا الأسبوع."
+
+msgid "Clinic readiness"
+msgstr "جاهزية العيادة"
+
+msgid "Operational notes that help keep the care session moving."
+msgstr "الملاحظات التشغيلية التي تساعد على استمرار جلسة الرعاية."
+
+msgid "Flow"
+msgstr "تدفق"
+
+msgid "Check exam room availability"
+msgstr "التحقق من توفر غرفة الامتحان"
+
+msgid "Review patient medication history"
+msgstr "مراجعة التاريخ الدوائي للمريض"
+
+msgid "completed notes ready"
+msgstr "الملاحظات المكتملة جاهزة"
+
+msgid "Quick highlights"
+msgstr "أبرز النقاط السريعة"
+
+msgid "Live"
+msgstr "يعيش"
+
+msgid "Today's patients"
+msgstr "مرضى اليوم"
+
+msgid "Scheduled"
+msgstr "المقرر"
+
+msgid "Pending confirmations"
+msgstr "التأكيدات في انتظار"
+
+msgid "Completed today"
+msgstr "اكتمل اليوم"
+
+msgid "Done"
+msgstr "منتهي"
+
+msgid "Quick actions"
+msgstr "إجراءات سريعة"
+
+msgid "Jump into the clinical tasks that usually need the fastest response."
+msgstr "انتقل إلى المهام السريرية التي تحتاج عادةً إلى أسرع استجابة."
+
+msgid "View Daily Queue"
+msgstr "عرض قائمة الانتظار اليومية"
+
+msgid "Adjust schedule"
+msgstr "ضبط الجدول الزمني"
+
+msgid "Review consultations"
+msgstr "مراجعة المشاورات"
+
+msgid "Patient Overview"
+msgstr "نظرة عامة على المريض"
+
+msgid "Manage your clinic visits with clarity and confidence."
+msgstr "إدارة زيارات العيادة الخاصة بك بكل وضوح وثقة."
+
+msgid ""
+""
+"Track upcoming appointments, follow care milestones, and keep medical "
+"activity organized from one calm workspace."
+msgstr "تتبع المواعيد القادمة، واتبع معالم الرعاية، وحافظ على تنظيم النشاط الطبي من مساحة عمل واحدة هادئة."
+
+msgid "Book Appointment"
+msgstr "حجز موعد"
+
+msgid "View Records"
+msgstr "عرض السجلات"
+
+msgid "Total Appointments"
+msgstr "إجمالي التعيينات"
+
+msgid "All clinic bookings"
+msgstr "جميع حجوزات العيادات"
+
+msgid "Upcoming"
+msgstr "القادمة"
+
+msgid "Scheduled visits"
+msgstr "الزيارات المجدولة"
+
+msgid "Closed consultations"
+msgstr "مشاورات مغلقة"
+
+msgid "Needs attention"
+msgstr "يحتاج إلى اهتمام"
+
+msgid "Upcoming appointments"
+msgstr "المواعيد القادمة"
+
+msgid "Confirmed and pending visits ordered for quick review."
+msgstr "الزيارات المؤكدة والمعلقة المطلوبة للمراجعة السريعة."
+
+msgid "at"
+msgstr "في"
+
+msgid "No upcoming appointments"
+msgstr "لا مواعيد قادمة"
+
+msgid "Book a visit to see your next scheduled consultation here."
+msgstr "احجز زيارة لرؤية الاستشارة المجدولة التالية هنا."
+
+msgid "Care snapshot"
+msgstr "لقطة الرعاية"
+
+msgid "A compact view of the items most likely to affect your next visit."
+msgstr "عرض مضغوط للعناصر التي من المرجح أن تؤثر على زيارتك القادمة."
+
+msgid "Health"
+msgstr "صحة"
+
+msgid "Blood type:"
+msgstr "فصيلة الدم:"
+
+msgid "Not added yet"
+msgstr "لم تتم إضافتها بعد"
+
+msgid "Pending approvals or payments:"
+msgstr "الموافقات أو المدفوعات المعلقة:"
+
+msgid "Last activity:"
+msgstr "النشاط الأخير:"
+
+msgid "No appointment activity yet"
+msgstr "لا يوجد نشاط التعيين حتى الآن"
+
+msgid "Next confirmed visit"
+msgstr "الزيارة المؤكدة التالية"
+
+msgid "None"
+msgstr "لا أحد"
+
+msgid "Ready"
+msgstr "مستعد"
+
+msgid "Open"
+msgstr "يفتح"
+
+msgid "Pending approvals"
+msgstr "الموافقات في انتظار"
+
+msgid "Completed visits"
+msgstr "الزيارات المكتملة"
+
+msgid "Info"
+msgstr "معلومات"
+
+msgid "Move directly into the patient tasks used most often."
+msgstr "انتقل مباشرة إلى مهام المريض المستخدمة في أغلب الأحيان."
+
+msgid "Book new appointment"
+msgstr "حجز موعد جديد"
+
+msgid "Find a doctor"
+msgstr "ابحث عن طبيب"
+
+msgid "Review payments"
+msgstr "مراجعة المدفوعات"
+
+msgid "Reception Overview"
+msgstr "نظرة عامة على الاستقبال"
+
+msgid "Keep the front desk queue moving and patient records clean."
+msgstr "حافظ على تحرك قائمة انتظار مكتب الاستقبال وسجلات المرضى نظيفة."
+
+msgid ""
+""
+"Coordinate arrivals, appointment creation, patient approvals, and live queue "
+"handoffs from one structured desk view."
+msgstr "قم بتنسيق عمليات الوصول وتحديد المواعيد وموافقات المرضى وعمليات التسليم المباشرة في قائمة الانتظار من عرض مكتبي منظم واحد."
+
+msgid "Add Walk-in"
+msgstr "أضف الدخول"
+
+msgid "Filtered results"
+msgstr "النتائج التي تمت تصفيتها"
+
+msgid "Confirmed and waiting arrival"
+msgstr "تم تأكيد الوصول وفي انتظار الوصول"
+
+msgid "Checked In"
+msgstr "تم تسجيل الوصول"
+
+msgid "Ready for doctor queue"
+msgstr "جاهز لطابور الطبيب"
+
+msgid "Not completed or cancelled"
+msgstr "لم تكتمل أو ألغيت"
+
+msgid "Reception appointments"
+msgstr "مواعيد الاستقبال"
+
+msgid "Desk traffic by doctor, date range, and patient search."
+msgstr "حركة المرور المكتبية حسب الطبيب، ونطاق التاريخ، والبحث عن المريض."
+
+msgid "All Doctors"
+msgstr "جميع الأطباء"
+
+msgid "Search"
+msgstr "يبحث"
+
+msgid "Search patient name"
+msgstr "بحث عن اسم المريض"
+
+msgid "COMPLETE"
+msgstr "مكتمل"
+
+msgid "CHECK IN"
+msgstr "تحقق في"
+
+msgid "CANCEL"
+msgstr "يلغي"
+
+msgid "RESCHEDULE"
+msgstr "إعادة الجدولة"
+
+msgid "Reschedule Appointment"
+msgstr "إعادة جدولة الموعد"
+
+msgid "Rescheduling for"
+msgstr "إعادة جدولة ل"
+
+msgid "with Dr."
+msgstr "مع د."
+
+msgid "New Date"
+msgstr "تاريخ جديد"
+
+msgid "New Start Time"
+msgstr "وقت البدء الجديد"
+
+msgid "Select a date first"
+msgstr "حدد التاريخ أولاً"
+
+msgid "Reason for Rescheduling"
+msgstr "سبب إعادة الجدولة"
+
+msgid "Reason for rescheduling"
+msgstr "سبب إعادة الجدولة"
+
+msgid "Confirm Reschedule"
+msgstr "تأكيد إعادة الجدولة"
+
+msgid "No appointments found for the selected filters."
+msgstr "لم يتم العثور على مواعيد لعوامل التصفية المحددة."
+
+msgid "Shift priorities"
+msgstr "تغيير الأولويات"
+
+msgid "Reception work that keeps appointments, rooms, and approvals in sync."
+msgstr "عمل الاستقبال الذي يحافظ على مزامنة المواعيد والغرف والموافقات."
+
+msgid "Desk"
+msgstr "مكتب"
+
+msgid "Follow up no-shows and late arrivals"
+msgstr "متابعة حالات عدم الحضور والوصول المتأخر"
+
+msgid "Keep room handoff smooth after check-in"
+msgstr "حافظ على سلاسة عملية تسليم الغرفة بعد تسجيل الوصول"
+
+msgid "Reconcile pending invoices before close"
+msgstr "تسوية الفواتير المعلقة قبل الإغلاق"
+
+msgid "Available doctors"
+msgstr "الأطباء المتاحين"
+
+msgid "Good"
+msgstr "جيد"
+
+msgid "Pending patients"
+msgstr "في انتظار المرضى"
+
+msgid "Checked in"
+msgstr "تم تسجيل الوصول"
+
+msgid "Confirm Cancellation"
+msgstr "تأكيد الإلغاء"
+
+msgid "Are you sure you want to cancel the appointment for"
+msgstr "هل أنت متأكد أنك تريد إلغاء الموعد ل"
+
+msgid "A"
+msgstr "أ"
+
+#, python-format
+msgid "100%% refund"
+msgstr "100%%استرداد"
+
+msgid ""
+""
+"of the consultation fee will be automatically processed for the patient."
+msgstr "ستتم معالجة رسوم الاستشارة تلقائيًا للمريض."
+
+msgid "Go Back"
+msgstr "عُد"
+
+msgid "Confirm & Refund"
+msgstr "تأكيد واسترداد الأموال"
+
+msgid "Clinic Workspace"
+msgstr "مساحة عمل العيادة"
+
+msgid "CareFlow Clinic"
+msgstr "عيادة كير فلو"
+
+msgid "Workspace"
+msgstr "مساحة العمل"
+
+msgid "Overview"
+msgstr "ملخص"
+
+msgid "Care summary"
+msgstr "ملخص الرعاية"
+
+msgid "Appointments"
+msgstr "المواعيد"
+
+msgid "Upcoming visits"
+msgstr "الزيارات القادمة"
+
+msgid "Book Visit"
+msgstr "زيارة الكتاب"
+
+msgid "Find availability"
+msgstr "البحث عن التوفر"
+
+msgid "Payments"
+msgstr "المدفوعات"
+
+msgid "Bills and receipts"
+msgstr "الفواتير والإيصالات"
+
+msgid "Clinical flow"
+msgstr "التدفق السريري"
+
+msgid "Appointments this week"
+msgstr "المواعيد هذا الاسبوع"
+
+msgid "Consultations"
+msgstr "المشاورات"
+
+msgid "Notes and history"
+msgstr "الملاحظات والتاريخ"
+
+msgid "Schedule"
+msgstr "جدول"
+
+msgid "Clinic sessions"
+msgstr "جلسات العيادة"
+
+msgid "Desk command"
+msgstr "أمر مكتبي"
+
+msgid "Walk-in Registration"
+msgstr "تسجيل الدخول"
+
+msgid "Quick patient intake"
+msgstr "تناول سريع للمريض"
+
+msgid "Overview & Analytics"
+msgstr "نظرة عامة وتحليلات"
+
+msgid "Admin command"
+msgstr "أمر المشرف"
+
+msgid "Users & Roles"
+msgstr "المستخدمون والأدوار"
+
+msgid "Access management"
+msgstr "إدارة الوصول"
+
+msgid "Profile"
+msgstr "حساب تعريفي"
+
+msgid "Logout"
+msgstr "تسجيل الخروج"
+
+msgid "Patients today"
+msgstr "المرضى اليوم"
+
+msgid "Completed consultations"
+msgstr "المشاورات المكتملة"
+
+msgid "Pending consultations"
+msgstr "في انتظار المشاورات"
+
+msgid "Total patients today"
+msgstr "إجمالي المرضى اليوم"
+
+msgid "Checked-in patients"
+msgstr "المرضى الذين تم تسجيل وصولهم"
+
+msgid "Waiting patients"
+msgstr "انتظار المرضى"
+
+msgid "Your care overview"
+msgstr "نظرة عامة على رعايتك"
+
+msgid "Today's clinical flow"
+msgstr "التدفق السريري اليوم"
+
+msgid "Front desk traffic board"
+msgstr "لوحة المرور لمكتب الاستقبال"
+
+msgid "Clinic workspace"
+msgstr "مساحة عمل العيادة"
+
+msgid "Welcome back,"
+msgstr "مرحبًا بعودتك،"
+
+msgid "EN"
+msgstr "إن"
+
+msgid "Doctor Dashboard | Clinic System"
+msgstr "لوحة تحكم الطبيب | نظام العيادة"
+
+msgid "Book Appointment | Clinic System"
+msgstr "حجز موعد | نظام العيادة"
+
+msgid "Appointment Booking"
+msgstr "حجز موعد"
+
+msgid ""
+""
+"Find the right doctor, review the profile, and confirm an available visit."
+msgstr "ابحث عن الطبيب المناسب، وقم بمراجعة الملف الشخصي، وتأكيد الزيارة المتاحة."
+
+msgid ""
+""
+"Doctor cards, specialties, prices, descriptions, and available slots are "
+"loaded from the database."
+msgstr "يتم تحميل بطاقات الطبيب والتخصصات والأسعار والأوصاف والفتحات المتاحة من قاعدة البيانات."
+
+msgid "1"
+msgstr "1"
+
+msgid "Search doctors"
+msgstr "بحث الأطباء"
+
+msgid "Filter by doctor name or specialty."
+msgstr "تصفية حسب اسم الطبيب أو التخصص."
+
+msgid "2"
+msgstr "2"
+
+msgid "Review profile"
+msgstr "مراجعة الملف الشخصي"
+
+msgid "Open the doctor profile or select the card directly."
+msgstr "افتح ملف تعريف الطبيب أو حدد البطاقة مباشرة."
+
+msgid "3"
+msgstr "3"
+
+msgid "Choose a slot"
+msgstr "اختر فتحة"
+
+msgid "Pick a date, load free times, and confirm the visit."
+msgstr "اختر تاريخًا، وقم بتحميل أوقات الفراغ، وقم بتأكيد الزيارة."
+
+msgid "Search Doctors"
+msgstr "بحث الأطباء"
+
+msgid "Search results are loaded from real doctor and doctor profile records."
+msgstr "يتم تحميل نتائج البحث من سجلات الملف الشخصي للطبيب والطبيب الحقيقي."
+
+msgid "Doctor name or specialty"
+msgstr "اسم الطبيب أو التخصص"
+
+msgid "Search by name or specialty"
+msgstr "البحث بالاسم أو التخصص"
+
+msgid "All specialties"
+msgstr "جميع التخصصات"
+
+msgid "doctor"
+msgstr "طبيب"
+
+msgid "found"
+msgstr "وجد"
+
+msgid "Clear filters"
+msgstr "مسح المرشحات"
+
+msgid "Visit Price"
+msgstr "سعر الزيارة"
+
+msgid "Book visit"
+msgstr "كتاب الزيارة"
+
+msgid "Visit profile"
+msgstr "زيارة الملف الشخصي"
+
+msgid "No doctors matched the current search."
+msgstr "لا يوجد أطباء مطابقون للبحث الحالي."
+
+msgid "Available Time Slots"
+msgstr "الفترات الزمنية المتاحة"
+
+msgid "Choose a doctor card and date to load current free times."
+msgstr "اختر بطاقة الطبيب والتاريخ لتحميل أوقات الفراغ الحالية."
+
+msgid "Select a doctor card and date to load appointment times."
+msgstr "حدد بطاقة الطبيب والتاريخ لتحميل أوقات المواعيد."
+
+msgid "Booking Summary"
+msgstr "ملخص الحجز"
+
+msgid ""
+""
+"The summary updates from the doctor card and the selected appointment slot."
+msgstr "يتم تحديث الملخص من بطاقة الطبيب وفتحة الموعد المحدد."
+
+msgid "Not selected"
+msgstr "لم يتم التحديد"
+
+msgid "Time"
+msgstr "وقت"
+
+msgid "Confirm appointment"
+msgstr "تأكيد الموعد"
+
+msgid "Patient Dashboard | Clinic System"
+msgstr "لوحة تحكم المريض | نظام العيادة"
+
+msgid "My Appointments | Clinic System"
+msgstr "مواعيدي | نظام العيادة"
+
+msgid "Appointment Center"
+msgstr "مركز المواعيد"
+
+msgid "Track upcoming visits and look back at previous appointments."
+msgstr "تتبع الزيارات القادمة وإلقاء نظرة على المواعيد السابقة."
+
+msgid "History"
+msgstr "تاريخ"
+
+msgid "Upcoming Visits"
+msgstr "الزيارات القادمة"
+
+msgid "Appointments that still need your attention"
+msgstr "المواعيد التي لا تزال بحاجة إلى اهتمامكم"
+
+msgid ""
+""
+"Keep an eye on scheduled times, assigned doctors, and payment-related "
+"statuses."
+msgstr "راقب المواعيد المحددة والأطباء المعينين والحالات المتعلقة بالدفع."
+
+msgid "Created"
+msgstr "مخلوق"
+
+msgid "Pay Now"
+msgstr "ادفع الآن"
+
+msgid "Why are you cancelling?"
+msgstr "لماذا تقوم بالإلغاء؟"
+
+msgid "Cancel Appointment"
+msgstr "إلغاء الموعد"
+
+msgid "View Summary"
+msgstr "عرض الملخص"
+
+msgid ""
+""
+"No upcoming appointments yet. Once you book a visit, it will appear here."
+msgstr "لا توجد مواعيد قادمة بعد. بمجرد حجز الزيارة، سوف تظهر هنا."
+
+msgid "Past appointments"
+msgstr "المواعيد الماضية"
+
+msgid "A clean archive for follow-up, review, and future rebooking decisions."
+msgstr "أرشيف نظيف للمتابعة والمراجعة وقرارات إعادة الحجز المستقبلية."
+
+msgid "No appointment history is available yet."
+msgstr "لا يوجد سجل مواعيد متاح حتى الآن."
+
+msgid "Need a new appointment?"
+msgstr "هل تحتاج إلى موعد جديد؟"
+
+msgid ""
+""
+"Use the booking page to check fresh slot availability and confirm the next "
+"visit."
+msgstr "استخدم صفحة الحجز للتحقق من توفر فتحة جديدة وتأكيد الزيارة التالية."
+
+msgid "Book appointment"
+msgstr "حجز موعد"
+
+msgid "Helpful reminders"
+msgstr "تذكيرات مفيدة"
+
+msgid "Confirmed appointments are usually ready for visit-day check-in."
+msgstr "عادة ما تكون المواعيد المؤكدة جاهزة لتسجيل الوصول في يوم الزيارة."
+
+msgid ""
+""
+"Awaiting payment means the booking exists but still needs payment follow-up."
+msgstr "في انتظار الدفع يعني أن الحجز موجود ولكنه لا يزال بحاجة إلى متابعة الدفع."
+
+msgid ""
+""
+"Review your appointment history before scheduling a follow-up consultation."
+msgstr "قم بمراجعة سجل مواعيدك قبل تحديد موعد لاستشارة المتابعة."
+
+msgid "Account snapshot"
+msgstr "لقطة الحساب"
+
+msgid "Signed in as"
+msgstr "تم تسجيل الدخول باسم"
+
+msgid "Are you sure?"
+msgstr "هل أنت متأكد؟"
+
+msgid "Yes, Cancel"
+msgstr "نعم، إلغاء"
+
+msgid "Appointment Cancelled"
+msgstr "تم إلغاء الموعد"
+
+msgid "OK"
+msgstr "نعم"
+
+msgid "Reception Dashboard | Clinic System"
+msgstr "لوحة الاستقبال | نظام العيادة"
+
+msgid "Add at least one prescription."
+msgstr "أضف وصفة طبية واحدة على الأقل."
+
+msgid "Consultation | Doctor Portal"
+msgstr "استشارة | بوابة الطبيب"
+
+msgid "Consultation"
+msgstr "التشاور"
+
+msgid "Clinical Notes"
+msgstr "ملاحظات سريرية"
+
+msgid "Symptoms & Chief Complaint"
+msgstr "الأعراض والشكوى الرئيسية"
+
+msgid "Diagnosis"
+msgstr "تشخبص"
+
+msgid "Prescriptions"
+msgstr "الوصفات الطبية"
+
+msgid "Add Medication"
+msgstr "أضف الدواء"
+
+msgid "Medication name"
+msgstr "اسم الدواء"
+
+msgid "Dosage"
+msgstr "الجرعة"
+
+msgid "Duration"
+msgstr "مدة"
+
+msgid "Save Consultation"
+msgstr "حفظ الاستشارة"
+
+msgid "Consultations | Doctor Portal"
+msgstr "الاستشارات | بوابة الطبيب"
+
+msgid "All your consultation notes and patient records"
+msgstr "جميع ملاحظاتك الاستشارية وسجلات المرضى"
+
+msgid "Symptoms & Notes"
+msgstr "الأعراض والملاحظات"
+
+msgid "Medication"
+msgstr "دواء"
+
+msgid "« First"
+msgstr "« الأول"
+
+msgid "Page"
+msgstr "صفحة"
+
+msgid "of"
+msgstr "ل"
+
+msgid "Last »"
+msgstr "الأخير »"
+
+msgid "No consultations yet"
+msgstr "لا توجد مشاورات بعد"
+
+msgid ""
+""
+"Start by checking in patients and completing consultations from the Daily "
+"Queue."
+msgstr "ابدأ بتسجيل وصول المرضى واستكمال الاستشارات من قائمة الانتظار اليومية."
+
+msgid "Daily Queue | Doctor Portal"
+msgstr "قائمة الانتظار اليومية | بوابة الطبيب"
+
+msgid "Weekly Schedule"
+msgstr "الجدول الأسبوعي"
+
+msgid "Status:"
+msgstr "حالة:"
+
+msgid "No appointments this week"
+msgstr "لا مواعيد هذا الأسبوع"
+
+msgid "No appointments scheduled for"
+msgstr "لا توجد مواعيد مجدولة ل"
+
+msgid ". Check your schedule."
+msgstr ". تحقق من الجدول الزمني الخاص بك."
+
+msgid "Manage Schedule | Doctor Portal"
+msgstr "إدارة الجدول | بوابة الطبيب"
+
+msgid "Manage Your Schedule"
+msgstr "إدارة الجدول الزمني الخاص بك"
+
+msgid "Set your clinic availability and session times"
+msgstr "تحديد مدى توفر عيادتك وأوقات الجلسة"
+
+msgid "Current Schedule"
+msgstr "الجدول الحالي"
+
+msgid "Saved availability shown with weekday names."
+msgstr "يظهر التوفر المحفوظ بأسماء أيام الأسبوع."
+
+msgid "Day Name"
+msgstr "اسم اليوم"
+
+msgid "Start Time"
+msgstr "وقت البدء"
+
+msgid "End Time"
+msgstr "وقت النهاية"
+
+msgid "Slot Duration (min)"
+msgstr "مدة الفتحة (دقيقة)"
+
+msgid "No schedule entries yet. Add your availability below."
+msgstr "لا توجد إدخالات الجدول الزمني حتى الآن. أضف مدى توفرك أدناه."
+
+msgid "Day of Week"
+msgstr "يوم الأسبوع"
+
+msgid "Save Schedule"
+msgstr "حفظ الجدول الزمني"
+
+msgid "Back"
+msgstr "خلف"
+
+msgid "Consultation Summary | Clinic System"
+msgstr "ملخص الاستشارة | نظام العيادة"
+
+msgid "Consultation Summary"
+msgstr "ملخص التشاور"
+
+msgid "Review your visit summary."
+msgstr "قم بمراجعة ملخص زيارتك."
+
+msgid ""
+""
+"This page is read-only. It shows the diagnosis and prescriptions recorded "
+"during your consultation."
+msgstr "هذه الصفحة للقراءة فقط. ويبين التشخيص والوصفات الطبية المسجلة أثناء الاستشارة الخاصة بك."
+
+msgid "Symptoms"
+msgstr "أعراض"
+
+msgid "Consultation notes"
+msgstr "ملاحظات التشاور"
+
+msgid "Doctor assessment"
+msgstr "تقييم الطبيب"
+
+msgid "Prescription"
+msgstr "روشتة"
+
+msgid "Medications"
+msgstr "الأدوية"
+
+msgid "Dosage:"
+msgstr "الجرعة:"
+
+msgid "Duration:"
+msgstr "مدة:"
+
+msgid "No prescriptions were recorded for this consultation."
+msgstr "لم يتم تسجيل أي وصفات طبية لهذه الاستشارة."
+
+msgid "Access"
+msgstr "وصول"
+
+msgid "Read-only record"
+msgstr "سجل للقراءة فقط"
+
+msgid ""
+""
+"Patients can review this summary but cannot edit the consultation record."
+msgstr "يمكن للمرضى مراجعة هذا الملخص ولكن لا يمكنهم تحرير سجل الاستشارة."
+
+msgid "Medical History -"
+msgstr "التاريخ الطبي -"
+
+msgid "| Doctor Portal"
+msgstr "| بوابة الطبيب"
+
+msgid "Patient Medical History"
+msgstr "التاريخ الطبي للمريض"
+
+msgid "Full clinical history and past records"
+msgstr "التاريخ السريري الكامل والسجلات السابقة"
+
+msgid "Back to Queue"
+msgstr "العودة إلى قائمة الانتظار"
+
+msgid "PATIENT NAME"
+msgstr "اسم المريض"
+
+msgid "DATE OF BIRTH"
+msgstr "تاريخ الميلاد"
+
+msgid "BLOOD TYPE"
+msgstr "فصيلة الدم"
+
+msgid "GENDER"
+msgstr "جنس"
+
+msgid "PHONE NUMBER"
+msgstr "رقم التليفون"
+
+msgid "EMERGENCY CONTACT"
+msgstr "الاتصال في حالات الطوارئ"
+
+msgid "N/A"
+msgstr "لا يوجد"
+
+msgid "Allergies Warning"
+msgstr "تحذير من الحساسية"
+
+msgid "No Known Drug or Food Allergies reported."
+msgstr "لم يتم الإبلاغ عن أي حساسية معروفة للأدوية أو الأطعمة."
+
+msgid "Consultation Timeline"
+msgstr "الجدول الزمني للتشاور"
+
+msgid "Symptoms / Chief Complaint"
+msgstr "الأعراض / الشكوى الرئيسية"
+
+msgid "Lab Results"
+msgstr "نتائج المختبر"
+
+msgid "Test Results"
+msgstr "نتائج الاختبار"
+
+msgid "Report Attachments"
+msgstr "مرفقات التقرير"
+
+msgid "Uploaded: {{ report.uploaded_at }}"
+msgstr "تم الرفع: {{ report.uploaded_at }}"
+
+msgid "No Medical History Found"
+msgstr "لم يتم العثور على تاريخ طبي"
+
+msgid "This patient does not have any recorded consultations yet."
+msgstr "هذا المريض ليس لديه أي استشارات مسجلة حتى الآن."
+
+msgid "My Prescriptions | Clinic System"
+msgstr "وصفاتي | نظام العيادة"
+
+msgid "Prescriptions History"
+msgstr "تاريخ الوصفات الطبية"
+
+msgid "Your Prescribed Medications"
+msgstr "الأدوية الموصوفة لك"
+
+msgid ""
+""
+"View all prescriptions issued to you by the doctors during your clinic "
+"visits."
+msgstr "عرض جميع الوصفات الطبية الصادرة لك من قبل الأطباء أثناء زياراتك للعيادة."
+
+msgid "View Visit Summary"
+msgstr "عرض ملخص الزيارة"
+
+msgid "No prescriptions found"
+msgstr "لم يتم العثور على وصفات طبية"
+
+msgid "You have not been issued any prescriptions yet."
+msgstr "لم يتم إصدار أي وصفات طبية لك حتى الآن."
+
+msgid "Prescription Print -"
+msgstr "طباعة الوصفة الطبية -"
+
+msgid "Back to Consultation"
+msgstr "العودة إلى التشاور"
+
+msgid "Print Prescription"
+msgstr "طباعة وصفة طبية"
+
+msgid "Rx"
+msgstr "آر إكس"
+
+msgid "Patient Name:"
+msgstr "اسم المريض:"
+
+msgid "Age:"
+msgstr "عمر:"
+
+msgid "years"
+msgstr "سنين"
+
+msgid "Gender:"
+msgstr "جنس:"
+
+msgid "Blood Type:"
+msgstr "فصيلة الدم:"
+
+msgid "Diagnosis:"
+msgstr "تشخبص:"
+
+msgid "Prescribed Medications"
+msgstr "الأدوية الموصوفة"
+
+msgid "Medication Name"
+msgstr "اسم الدواء"
+
+msgid "No medications prescribed in this consultation."
+msgstr "لا توجد أدوية موصوفة في هذه الاستشارة."
+
+msgid "Clinic Stamp"
+msgstr "ختم العيادة"
+
+msgid "Schedule updated."
+msgstr "تم تحديث الجدول الزمني."
+
+msgid "Appointment"
+msgstr "ميعاد"
+
+msgid "Payment"
+msgstr "قسط"
+
+msgid "Reminder"
+msgstr "تذكير"
+
+msgid "System"
+msgstr "نظام"
+
+msgid "Notifications | Clinic System"
+msgstr "الإخطارات | نظام العيادة"
+
+msgid "Your Alerts"
+msgstr "التنبيهات الخاصة بك"
+
+msgid "Mark all as read"
+msgstr "وضع علامة على الكل كمقروءة"
+
+msgid "No notifications found."
+msgstr "لم يتم العثور على أي إشعارات."
+
+msgid "Total amount must be greater than zero."
+msgstr "يجب أن يكون المبلغ الإجمالي أكبر من الصفر."
+
+msgid "Payment amount must be greater than zero."
+msgstr "يجب أن يكون مبلغ الدفع أكبر من الصفر."
+
+#, python-brace-format
+msgid ""
+""
+"Amount cannot exceed the remaining balance due of EGP "
+"{self.invoice.balance_due:.2f}."
+msgstr "لا يمكن أن يتجاوز المبلغ الرصيد المتبقي المستحق وهو{self.invoice.balance_due:.2f}جنيه مصري."
+
+msgid "Billing Dashboard | Reception"
+msgstr "لوحة تحكم الفواتير | استقبال"
+
+msgid "Total Invoiced"
+msgstr "إجمالي الفاتورة"
+
+msgid "Total Collected"
+msgstr "مجموع المجمعة"
+
+msgid "Outstanding Balance"
+msgstr "الرصيد المتميز"
+
+msgid "Search Patient / Invoice"
+msgstr "بحث المريض / الفاتورة"
+
+msgid "Name, ID, invoice #"
+msgstr "الاسم والهوية ورقم الفاتورة"
+
+msgid "All Statuses"
+msgstr "جميع الحالات"
+
+msgid "Start Date"
+msgstr "تاريخ البدء"
+
+msgid "End Date"
+msgstr "تاريخ الانتهاء"
+
+msgid "Invoice #"
+msgstr "فاتورة #"
+
+msgid "Date Issued"
+msgstr "تاريخ الإصدار"
+
+msgid "Total"
+msgstr "المجموع"
+
+msgid "Balance"
+msgstr "توازن"
+
+msgid "Pay / View"
+msgstr "الدفع / العرض"
+
+msgid "View"
+msgstr "منظر"
+
+msgid "No invoices matching the current criteria were found."
+msgstr "لم يتم العثور على فواتير مطابقة للمعايير الحالية."
+
+msgid "Payment Cancelled | Clinic System"
+msgstr "تم إلغاء الدفع | نظام العيادة"
+
+msgid "Payment Cancelled"
+msgstr "تم إلغاء الدفع"
+
+msgid "Try booking again"
+msgstr "حاول الحجز مرة أخرى"
+
+msgid "Back to dashboard"
+msgstr "العودة إلى لوحة القيادة"
+
+msgid "Payment History | Clinic System"
+msgstr "تاريخ الدفع | نظام العيادة"
+
+msgid "Billing Center"
+msgstr "مركز الفواتير"
+
+msgid "Consultation with Dr."
+msgstr "التشاور مع د."
+
+msgid "Appointment:"
+msgstr "ميعاد:"
+
+msgid "ID:"
+msgstr "بطاقة تعريف:"
+
+msgid "Paid on"
+msgstr "دفعت على"
+
+msgid "No payment records found."
+msgstr "لم يتم العثور على سجلات الدفع."
+
+msgid "Book your first visit"
+msgstr "احجز زيارتك الأولى"
+
+msgid "Create Invoice | Clinic System"
+msgstr "إنشاء فاتورة | نظام العيادة"
+
+msgid "Appointment Details"
+msgstr "تفاصيل الموعد"
+
+msgid "Reference ID: #"
+msgstr "معرف المرجع: #"
+
+msgid "Time Slot"
+msgstr "فتحة زمنية"
+
+msgid "Doctor's Consultation Fee"
+msgstr "رسوم استشارة الطبيب"
+
+msgid "Invoice Settings"
+msgstr "إعدادات الفاتورة"
+
+msgid "Total Amount (EGP)"
+msgstr "المبلغ الإجمالي (جنيه مصري)"
+
+msgid ""
+""
+"Pre-filled with the doctor's default consultation fee. You can modify this "
+"if additional services were provided."
+msgstr "مملوءة مسبقًا برسوم الاستشارة الافتراضية للطبيب. يمكنك تعديل هذا إذا تم توفير خدمات إضافية."
+
+msgid "Notes / Line Items"
+msgstr "ملاحظات / عناصر الخط"
+
+msgid ""
+""
+"Add any comments, descriptions of additional services, or special "
+"instructions."
+msgstr "أضف أي تعليقات أو أوصاف للخدمات الإضافية أو تعليمات خاصة."
+
+msgid "Generate Invoice"
+msgstr "إنشاء الفاتورة"
+
+msgid "Invoice"
+msgstr "فاتورة"
+
+msgid "| Clinic System"
+msgstr "| نظام العيادة"
+
+msgid "Invoice Details"
+msgstr "تفاصيل الفاتورة"
+
+msgid "Issued on"
+msgstr "صدر بتاريخ"
+
+msgid "Print Invoice"
+msgstr "طباعة الفاتورة"
+
+msgid "Back to Dashboard"
+msgstr "العودة إلى لوحة القيادة"
+
+msgid "Appointment Date"
+msgstr "تاريخ التعيين"
+
+msgid "Total Billed"
+msgstr "إجمالي الفواتير"
+
+msgid "Total Paid"
+msgstr "إجمالي المبلغ المدفوع"
+
+msgid "Balance Due"
+msgstr "الرصيد المستحق"
+
+msgid "Billing Notes"
+msgstr "ملاحظات الفواتير"
+
+msgid "Payment Transactions"
+msgstr "معاملات الدفع"
+
+msgid "Method"
+msgstr "طريقة"
+
+msgid "Received By"
+msgstr "تم الاستلام بواسطة"
+
+msgid "No payments recorded for this invoice yet."
+msgstr "لم يتم تسجيل أي دفعات لهذه الفاتورة حتى الآن."
+
+msgid "Record Payment"
+msgstr "سجل الدفع"
+
+msgid "Collect cash, card, or other payment."
+msgstr "جمع النقود أو البطاقة أو أي مدفوعات أخرى."
+
+msgid "Payment Amount (EGP)"
+msgstr "مبلغ الدفع (جنيه مصري)"
+
+msgid "Maximum allowed: EGP"
+msgstr "الحد الأقصى المسموح به: جنيه مصري"
+
+msgid "Payment Method"
+msgstr "طريقة الدفع"
+
+msgid "Transaction Notes"
+msgstr "ملاحظات الصفقة"
+
+msgid "Record Transaction"
+msgstr "سجل المعاملة"
+
+msgid "Fully Paid"
+msgstr "مدفوعة بالكامل"
+
+msgid "This invoice has been fully paid, and no balance remains outstanding."
+msgstr "لقد تم دفع هذه الفاتورة بالكامل، ولم يبق أي رصيد مستحق."
+
+msgid "Close Window"
+msgstr "إغلاق النافذة"
+
+msgid "CLINIC APPOINTMENT SYSTEM"
+msgstr "نظام مواعيد العيادات"
+
+msgid "123 Main Health Avenue, Cairo, Egypt"
+msgstr "123 شارع الصحة الرئيسي، القاهرة، مصر"
+
+msgid "Phone: +20 100 123 4567 | Email: billing@clinic.com"
+msgstr "الهاتف: +20 100 123 4567 | البريد الإلكتروني: billing@clinic.com"
+
+msgid "INVOICE"
+msgstr "فاتورة"
+
+msgid "Billed To (Patient)"
+msgstr "فاتورة إلى (المريض)"
+
+msgid "Name:"
+msgstr "اسم:"
+
+msgid "Email:"
+msgstr "بريد إلكتروني:"
+
+msgid "Phone:"
+msgstr "هاتف:"
+
+msgid "Invoice Metadata"
+msgstr "بيانات تعريف الفاتورة"
+
+msgid "Date Issued:"
+msgstr "تاريخ الإصدار:"
+
+msgid "Appointment Ref:"
+msgstr "مرجع الموعد:"
+
+msgid "Consultation Fee"
+msgstr "رسوم الاستشارة"
+
+msgid "Appointment with Dr."
+msgstr "موعد مع د."
+
+msgid "on"
+msgstr "على"
+
+msgid "Billing Notes:"
+msgstr "ملاحظات الفواتير:"
+
+msgid "Subtotal:"
+msgstr "المجموع الفرعي:"
+
+msgid "Total Paid:"
+msgstr "إجمالي المبلغ المدفوع:"
+
+msgid "Balance Due:"
+msgstr "الرصيد المستحق:"
+
+msgid ""
+""
+"Thank you for choosing Clinic Appointment System. Wishing you good health!"
+msgstr "شكرا لاختيارك نظام مواعيد العيادات. أتمنى لك صحة جيدة!"
+
+msgid "Printed on"
+msgstr "طبع على"
+
+msgid "Payment Successful | Clinic System"
+msgstr "تم الدفع بنجاح | نظام العيادة"
+
+msgid "Payment Successful"
+msgstr "تم الدفع بنجاح"
+
+msgid "View my appointments"
+msgstr "عرض مواعيدي"
+
+msgid "This doctor does not have a valid consultation fee."
+msgstr "هذا الطبيب ليس لديه رسوم استشارة صالحة."
+
+#, python-brace-format
+msgid ""
+""
+"An invoice already exists for this appointment: "
+"{appointment.invoice.invoice_number}"
+msgstr "توجد فاتورة بالفعل لهذا الموعد:{appointment.invoice.invoice_number}"
+
+#, python-brace-format
+msgid "Invoice {invoice.invoice_number} created successfully."
+msgstr "تم إنشاء الفاتورة{invoice.invoice_number}بنجاح."
+
+#, python-brace-format
+msgid "Payment of EGP {payment.amount} recorded successfully."
+msgstr "تم تسجيل دفع{payment.amount}جنيه مصري بنجاح."
+
+msgid "{field.capitalize()}: {error}"
+msgstr "{field.capitalize()}:{error}"
+
+msgid "A user with this email already exists."
+msgstr "يوجد مستخدم لديه هذا البريد الإلكتروني بالفعل."
+
+msgid "Add Patient | Reception"
+msgstr "إضافة مريض | استقبال"
+
+msgid "Back to Patients"
+msgstr "العودة إلى المرضى"
+
+msgid "First name"
+msgstr "الاسم الأول"
+
+msgid "Last name"
+msgstr "اسم العائلة"
+
+msgid "Phone number"
+msgstr "رقم التليفون"
+
+msgid "Date of birth"
+msgstr "تاريخ الميلاد"
+
+msgid "Blood type"
+msgstr "فصيلة الدم"
+
+msgid "Gender"
+msgstr "جنس"
+
+msgid "Emergency contact name"
+msgstr "اسم جهة الاتصال في حالات الطوارئ"
+
+msgid "Emergency contact phone"
+msgstr "هاتف الاتصال في حالات الطوارئ"
+
+msgid "Allergies"
+msgstr "الحساسية"
+
+msgid "Medical history"
+msgstr "التاريخ الطبي"
+
+msgid "Create Patient"
+msgstr "خلق المريض"
+
+msgid "Patient Record | Reception"
+msgstr "سجل المريض | استقبال"
+
+msgid "Edit Patient"
+msgstr "تحرير المريض"
+
+msgid "Patient ID #"
+msgstr "رقم هوية المريض"
+
+msgid "Phone"
+msgstr "هاتف"
+
+msgid "Emergency contact"
+msgstr "الاتصال في حالات الطوارئ"
+
+msgid "Recent Appointments"
+msgstr "المواعيد الأخيرة"
+
+msgid "Last 10 appointments for this patient."
+msgstr "آخر 10 مواعيد لهذا المريض."
+
+msgid "No appointments recorded."
+msgstr "لم يتم تسجيل أي مواعيد."
+
+msgid "Edit Patient | Reception"
+msgstr "تحرير المريض | استقبال"
+
+msgid "Back to Patient"
+msgstr "العودة إلى المريض"
+
+msgid "Patients | Reception"
+msgstr "المرضى | استقبال"
+
+msgid "Patient Records"
+msgstr "سجلات المرضى"
+
+msgid "Find patients by ID, name, username, email, or phone."
+msgstr "ابحث عن المرضى حسب الهوية أو الاسم أو اسم المستخدم أو البريد الإلكتروني أو الهاتف."
+
+msgid "Add Patient"
+msgstr "إضافة مريض"
+
+msgid "Name, ID, email, phone"
+msgstr "الاسم، الهوية، البريد الإلكتروني، الهاتف"
+
+msgid "All"
+msgstr "الجميع"
+
+msgid "Name"
+msgstr "اسم"
+
+msgid "No patients found."
+msgstr "لم يتم العثور على مرضى."
+
+msgid "Full name"
+msgstr "الاسم الكامل"
+
+msgid "Notes (optional)"
+msgstr "ملاحظات (اختياري)"
+
+msgid "Patient record created successfully."
+msgstr "تم إنشاء سجل المريض بنجاح."
+
+msgid ""
+""
+"Could not create the patient record. Please check the form and try again."
+msgstr "لا يمكن إنشاء سجل المريض. يرجى التحقق من النموذج والمحاولة مرة أخرى."
+
+msgid "Patient record updated successfully."
+msgstr "تم تحديث سجل المريض بنجاح."
+
+msgid ""
+""
+"Could not update the patient record. Please check the form and try again."
+msgstr "لا يمكن تحديث سجل المريض. يرجى التحقق من النموذج والمحاولة مرة أخرى."
+
+msgid "Only checked‑in appointments can be marked as completed."
+msgstr "يمكن وضع علامة على المواعيد المسجلة فقط كمكتملة."
+
+#, python-brace-format
+msgid "Status for {name} changed to {appointment.status}."
+msgstr "تم تغيير حالة{name}إلى{appointment.status}."
+
+#, python-brace-format
+msgid "Successfully registered {walk_in.name}!"
+msgstr "تم التسجيل بنجاح{walk_in.name}!"
+
+msgid "Could not register the walk-in. Please check the data and try again."
+msgstr "لا يمكن تسجيل الدخول. يرجى التحقق من البيانات والمحاولة مرة أخرى."
+
+msgid "Completed or cancelled appointments cannot be rescheduled."
+msgstr "لا يمكن إعادة جدولة المواعيد المكتملة أو الملغاة."
+
+msgid "Please choose a different slot to reschedule."
+msgstr "يرجى اختيار فترة زمنية مختلفة لإعادة الجدولة."
+
+msgid "The selected new slot is already booked."
+msgstr "تم حجز الفتحة الجديدة المحددة بالفعل."
+
+#, python-brace-format
+msgid "Successfully rescheduled appointment for {appointment.patient}."
+msgstr "تمت إعادة جدولة الموعد بنجاح لـ{appointment.patient}."
+
+msgid ""
+""
+"Could not reschedule due to a conflicting appointment. Please choose another "
+"slot."
+msgstr "لا يمكن إعادة الجدولة بسبب تعارض الموعد. الرجاء اختيار فتحة أخرى."
+
+msgid "Failed to reschedule. Please check the form data."
+msgstr "فشلت إعادة الجدولة. يرجى التحقق من بيانات النموذج."
+
+msgid "Dashboard"
+msgstr "لوحة القيادة"
+
+msgid "Home"
+msgstr "الصفحة الرئيسية"
+
+msgid "© Clinic System"
+msgstr "© نظام العيادة"
+
+msgid "Same dashboard rhythm, right from sign in."
+msgstr "نفس إيقاع لوحة التحكم، مباشرة من تسجيل الدخول."
+
+msgid ""
+""
+"Move from authentication to queue management with one visual language for "
+"every role."
+msgstr "انتقل من المصادقة إلى إدارة قائمة الانتظار باستخدام لغة مرئية واحدة لكل دور."
+
+msgid "Doctor-ready queue"
+msgstr "طابور جاهز للطبيب"
+
+msgid "Clear schedule signal and patient flow."
+msgstr "إشارة واضحة للجدول الزمني وتدفق المرضى."
+
+msgid "Reception control"
+msgstr "التحكم في الاستقبال"
+
+msgid "Check-ins, walk-ins, and status at a glance."
+msgstr "تسجيلات الوصول، والدخول، والحالة في لمحة."
+
+msgid "Find a Doctor | Clinic System"
+msgstr "ابحث عن طبيب | نظام العيادة"
+
+msgid "Find a Doctor"
+msgstr "ابحث عن طبيب"
+
+msgid "Browse specialists and book appointments easily"
+msgstr "تصفح المتخصصين وحجز المواعيد بسهولة"
+
+msgid "Search by doctor name"
+msgstr "البحث حسب اسم الطبيب"
+
+msgid "4.8"
+msgstr "4.8"
+
+msgid "8+ years experience"
+msgstr "أكثر من 8 سنوات من الخبرة"
+
+msgid "Consultation Fee:"
+msgstr "رسوم الاستشارة:"
+
+msgid "Available Today"
+msgstr "متوفر اليوم"
+
+msgid "No doctors found"
+msgstr "لم يتم العثور على الأطباء"
+
+msgid "Try adjusting your filters or search term to see more results."
+msgstr "حاول تعديل عوامل التصفية أو مصطلح البحث لرؤية المزيد من النتائج."
+
+msgid "Clinic System | Smart Appointment Care"
+msgstr "نظام العيادة | رعاية المواعيد الذكية"
+
+msgid "Clinic operations, beautifully organized"
+msgstr "عمليات العيادة منظمة بشكل جميل"
+
+msgid "Manage appointments, queues, and patient care from one clean system."
+msgstr "إدارة المواعيد وقوائم الانتظار ورعاية المرضى من خلال نظام واحد نظيف."
+
+msgid "Today's clinic"
+msgstr "عيادة اليوم"
+
+msgid "Live Overview"
+msgstr "نظرة عامة مباشرة"
+
+msgid "ON TRACK"
+msgstr "على المسار الصحيح"
+
+msgid "42"
+msgstr "42"
+
+msgid "16"
+msgstr "16"
+
+msgid "Cardiology consultation"
+msgstr "استشارة أمراض القلب"
+
+msgid "Dr. Sarah Ahmed - 10:30 AM"
+msgstr "د. سارة أحمد - 10:30 صباحًا"
+
+msgid "Follow-up visit"
+msgstr "زيارة المتابعة"
+
+msgid "Dr. Omar Hassan - 01:00 PM"
+msgstr "د. عمر حسن - 01:00 ظهراً"
+
+msgid "Built for every clinic workflow"
+msgstr "مصممة لكل سير عمل في العيادة"
+
+msgid ""
+""
+"Clear interfaces for booking, consultations, check-in, and daily traffic."
+msgstr "واجهات واضحة للحجز والاستشارات وتسجيل الوصول وحركة المرور اليومية."
+
+msgid "Easy Booking"
+msgstr "الحجز سهل"
+
+msgid ""
+""
+"Patients can follow upcoming appointments and book new visits without "
+"clutter."
+msgstr "يمكن للمرضى متابعة المواعيد القادمة وحجز زيارات جديدة دون فوضى."
+
+msgid "Doctor Queue"
+msgstr "قائمة انتظار الطبيب"
+
+msgid ""
+""
+"Doctors get a focused view of today's queue, schedules, and consultation "
+"status."
+msgstr "يحصل الأطباء على رؤية مركزة لقائمة الانتظار والجداول الزمنية وحالة الاستشارة اليوم."
+
+msgid "Reception Flow"
+msgstr "تدفق الاستقبال"
+
+msgid ""
+""
+"Reception teams can manage check-ins, walk-ins, and clinic traffic in real "
+"time."
+msgstr "يمكن لفرق الاستقبال إدارة عمليات تسجيل الوصول والدخول وحركة المرور في العيادة في الوقت الفعلي."
+
+msgid "Complete your profile | Clinic System"
+msgstr "أكمل ملفك الشخصي | نظام العيادة"
+
+msgid "Step 1/1"
+msgstr "الخطوة 1/1"
+
+msgid "Doctor profile"
+msgstr "الملف الشخصي للطبيب"
+
+msgid "Complete your profile"
+msgstr "أكمل ملفك الشخصي"
+
+msgid ""
+""
+"Add your specialty and a short bio so patients can find the right care "
+"faster."
+msgstr "أضف تخصصك وسيرة ذاتية قصيرة حتى يتمكن المرضى من العثور على الرعاية المناسبة بشكل أسرع."
+
+msgid "Continue"
+msgstr "يكمل"
+
+msgid "Patient profile"
+msgstr "الملف الشخصي للمريض"
+
+msgid "We use this to personalize your care and keep your records accurate."
+msgstr "نحن نستخدم هذا لتخصيص رعايتك والحفاظ على دقة سجلاتك."
+
+msgid "Doctor Profile | Clinic System"
+msgstr "الملف الشخصي للدكتور | نظام العيادة"
+
+msgid "Back to booking"
+msgstr "العودة إلى الحجز"
+
+msgid "Professional Details"
+msgstr "التفاصيل المهنية"
+
+msgid ""
+""
+"All information on this page is loaded from doctor and appointment records."
+msgstr "يتم تحميل جميع المعلومات الموجودة في هذه الصفحة من سجلات الأطباء والمواعيد."
+
+msgid "Upcoming Available Slots"
+msgstr "الفتحات المتاحة القادمة"
+
+msgid "These are the next unbooked appointment slots for this doctor."
+msgstr "هذه هي خانات المواعيد التالية غير المحجوزة لهذا الطبيب."
+
+msgid "Slot"
+msgstr "فتحة"
+
+msgid "No upcoming free slots are available right now."
+msgstr "لا تتوفر فتحات مجانية قادمة في الوقت الحالي."
+
+msgid "Edit profile"
+msgstr "تحرير الملف الشخصي"
+
+msgid "Profile updated successfully."
+msgstr "تم تحديث الملف الشخصي بنجاح."
+
+msgid "Save profile"
+msgstr "حفظ الملف الشخصي"
+
+msgid "Security"
+msgstr "حماية"
+
+msgid "Change Password"
+msgstr "تغيير كلمة المرور"
+
+msgid "Change password"
+msgstr "تغيير كلمة المرور"
+
+msgid "Password updated successfully."
+msgstr "تم تحديث كلمة المرور بنجاح."
+
+msgid "Old password"
+msgstr "كلمة المرور القديمة"
+
+msgid "New password"
+msgstr "كلمة المرور الجديدة"
+
+msgid "Confirm new password"
+msgstr "تأكيد كلمة المرور الجديدة"
+
+msgid "Professional Information"
+msgstr "المعلومات المهنية"
+
+msgid ""
+""
+"Professional profile details are not available yet. Please contact an "
+"administrator."
+msgstr "تفاصيل الملف الشخصي المهنية ليست متاحة بعد. الرجاء الاتصال بالمسؤول."
+
+msgid "Professional information updated successfully."
+msgstr "تم تحديث المعلومات المهنية بنجاح."
+
+msgid "Consultation fee"
+msgstr "رسوم الاستشارة"
+
+msgid "Save professional info"
+msgstr "حفظ المعلومات المهنية"
+
+msgid "Medical Information"
+msgstr "المعلومات الطبية"
+
+msgid ""
+""
+"Medical profile details are not available yet. Please contact an "
+"administrator."
+msgstr "تفاصيل الملف الطبي غير متوفرة بعد. الرجاء الاتصال بالمسؤول."
+
+msgid "Medical information updated successfully."
+msgstr "تم تحديث المعلومات الطبية بنجاح."
+
+msgid "Save medical info"
+msgstr "حفظ المعلومات الطبية"
+
+msgid "Profile | Clinic System"
+msgstr "الملف الشخصي | نظام العيادة"
+
+msgid "Our Services | Clinic System"
+msgstr "خدماتنا | نظام العيادة"
+
+msgid "Our Medical Services"
+msgstr "خدماتنا الطبية"
+
+msgid "Comprehensive, state-of-the-art care provided by clinical experts"
+msgstr "رعاية شاملة ومتطورة يقدمها خبراء طبيون"
+
+msgid "Providing Doctors:"
+msgstr "توفير الأطباء:"
+
+msgid "All Clinic Doctors"
+msgstr "جميع أطباء العيادة"
+
+msgid "Register to Book"
+msgstr "سجل للحجز"
+
+msgid "No services offered yet"
+msgstr "لم يتم تقديم الخدمات بعد"
+
+msgid "Please check back later or contact support."
+msgstr "يرجى التحقق مرة أخرى لاحقًا أو الاتصال بالدعم."
+

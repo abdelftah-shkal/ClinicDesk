@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "Medical History -" %} {{ patient.get_full_name|default:patient.username }} {% trans "| Doctor Portal" %}{% endblock %}
+
+{% block extra_css %}
+    {% include "dashboard/partials/_dashboard_styles.html" %}
+    <style>
+    .patient-header-card {
+        border: 1px solid var(--dash-border); border-radius: var(--dash-radius);
+        background: rgba(255, 255, 255, 0.94); box-shadow: var(--dash-shadow-soft); margin-bottom: 24px; padding: 24px;
+    }
+    .allergy-alert {
+        padding: 16px 20px; border-radius: 12px; border: 1px solid #fca5a5; background: #fee2e2; color: #991b1b;
+        margin-bottom: 20px; display: flex; align-items: center; gap: 12px; font-weight: 700;
+    }
+    .allergy-none {
+        padding: 16px 20px; border-radius: 12px; border: 1px solid #a7f3d0; background: #ecfdf5; color: #065f46;
+        margin-bottom: 20px; display: flex; align-items: center; gap: 12px; font-weight: 700;
+    }
+    .history-timeline {
+        position: relative; padding-left: 32px; margin-top: 24px;
+    }
+    .history-timeline::before {
+        content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 2px; background: var(--dash-border);
+    }
+    .timeline-item {
+        position: relative; margin-bottom: 32px;
+    }
+    .timeline-marker {
+        position: absolute; left: -25px; top: 4px; width: 16px; height: 16px; border-radius: 50%;
+        background: var(--role-primary); border: 4px solid #fff; box-shadow: 0 0 0 2px var(--role-primary);
+    }
+    .visit-card {
+        border: 1px solid var(--dash-border); border-radius: var(--dash-radius);
+        background: rgba(255, 255, 255, 0.94); box-shadow: var(--dash-shadow-soft); overflow: hidden;
+    }
+    .visit-header {
+        padding: 18px 24px; border-bottom: 1px solid var(--dash-border); background: #f8fafc;
+        display: flex; justify-content: space-between; align-items: center;
+    }
+    .visit-body { padding: 24px; }
+    .visit-section { margin-bottom: 20px; }
+    .visit-section:last-child { margin-bottom: 0; }
+    .visit-section h4 { margin: 0 0 8px; font-size: 0.95rem; font-weight: 800; color: var(--dash-text); text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 18px;
+        border-radius: 12px; border: none; font-weight: 900; text-decoration: none; cursor: pointer;
+        transition: all 180ms ease; font-size: 0.9rem;
+    }
+    .btn-secondary { background: #f1f5f9; color: #334155; border: 1px solid var(--dash-border); }
+    .btn-secondary:hover { background: #e2e8f0; }
+    .report-badge {
+        display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 8px;
+        background: #f1f5f9; border: 1px solid var(--dash-border); font-size: 0.85rem; font-weight: 700;
+        text-decoration: none; color: #475569; transition: all 150ms ease;
+    }
+    .report-badge:hover { background: var(--role-primary); color: #fff; border-color: var(--role-primary); }
+    .patient-info-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+    }
+    .consultation-details-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+    @media (max-width: 767.98px) {
+        .patient-info-grid,
+        .consultation-details-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+    }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-shell role-doctor">
+    {% include "dashboard/partials/_sidebar.html" %}
+    <main class="dashboard-main">
+        <div class="dashboard-content">
+            <div style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h1 style="font-size: 2rem; font-weight: 950; margin: 0 0 8px; color: var(--dash-text);">{% trans "Patient Medical History" %}</h1>
+                    <p style="margin: 0; color: var(--dash-muted); font-size: 0.95rem;">{% trans "Full clinical history and past records" %}</p>
+                </div>
+                <a href="{% url 'emr:daily-queue' %}" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> {% trans "Back to Queue" %}
+                </a>
+            </div>
+
+            <!-- Patient Info Card -->
+            <div class="patient-header-card">
+                <div class="patient-info-grid" style="margin-bottom: 20px;">
+                    <div>
+                        <span style="font-size: 0.85rem; color: var(--dash-muted); display: block; font-weight: 700; margin-bottom: 4px;">{% trans "PATIENT NAME" %}</span>
+                        <strong style="font-size: 1.1rem; color: var(--dash-text);">{{ patient.get_full_name|default:patient.username }}</strong>
+                    </div>
+                    <div>
+                        <span style="font-size: 0.85rem; color: var(--dash-muted); display: block; font-weight: 700; margin-bottom: 4px;">{% trans "DATE OF BIRTH" %}</span>
+                        <strong style="font-size: 1.1rem; color: var(--dash-text);">{{ patient_profile.date_of_birth|date:"M j, Y"|default:"N/A" }}</strong>
+                    </div>
+                    <div>
+                        <span style="font-size: 0.85rem; color: var(--dash-muted); display: block; font-weight: 700; margin-bottom: 4px;">{% trans "BLOOD TYPE" %}</span>
+                        <strong style="font-size: 1.1rem; color: var(--dash-text);">{{ patient_profile.blood_type|default:"N/A" }}</strong>
+                    </div>
+                </div>
+                <div class="patient-info-grid">
+                    <div>
+                        <span style="font-size: 0.85rem; color: var(--dash-muted); display: block; font-weight: 700; margin-bottom: 4px;">{% trans "GENDER" %}</span>
+                        <strong style="font-size: 1.1rem; color: var(--dash-text);">{{ patient_profile.get_gender_display|default:"N/A" }}</strong>
+                    </div>
+                    <div>
+                        <span style="font-size: 0.85rem; color: var(--dash-muted); display: block; font-weight: 700; margin-bottom: 4px;">{% trans "PHONE NUMBER" %}</span>
+                        <strong style="font-size: 1.1rem; color: var(--dash-text);">{{ patient.phone_number|default:"N/A" }}</strong>
+                    </div>
+                    <div>
+                        <span style="font-size: 0.85rem; color: var(--dash-muted); display: block; font-weight: 700; margin-bottom: 4px;">{% trans "EMERGENCY CONTACT" %}</span>
+                        <strong style="font-size: 1.1rem; color: var(--dash-text);">
+                            {% if patient_profile.emergency_contact_name %}
+                                {{ patient_profile.emergency_contact_name }} ({{ patient_profile.emergency_contact_phone }})
+                            {% else %}
+                                {% trans "N/A" %}
+                            {% endif %}
+                        </strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Allergies Alert Section -->
+            {% if patient_profile.allergies %}
+                <div class="allergy-alert">
+                    <i class="bi bi-exclamation-triangle-fill" style="font-size: 1.4rem;"></i>
+                    <div>
+                        <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 800; opacity: 0.9;">{% trans "Allergies Warning" %}</div>
+                        <div style="font-size: 1.05rem;">{{ patient_profile.allergies }}</div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="allergy-none">
+                    <i class="bi bi-shield-check" style="font-size: 1.4rem;"></i>
+                    <div>{% trans "No Known Drug or Food Allergies reported." %}</div>
+                </div>
+            {% endif %}
+
+            <!-- Timeline of Consultations -->
+            <h2 style="font-size: 1.4rem; font-weight: 900; margin: 32px 0 16px; color: var(--dash-text);">{% trans "Consultation Timeline" %}</h2>
+            
+            {% if consultations %}
+                <div class="history-timeline">
+                    {% for consultation in consultations %}
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            
+                            <div class="visit-card">
+                                <div class="visit-header">
+                                    <div>
+                                        <span style="font-size: 1.1rem; font-weight: 900; color: var(--dash-text);">
+                                            {{ consultation.appointment.slot.date|date:"F j, Y" }}
+                                        </span>
+                                        <span style="color: var(--dash-muted); margin: 0 8px;">•</span>
+                                        <span style="font-size: 0.95rem; font-weight: 700; color: var(--role-primary);">
+                                            {% trans "Dr." %} {{ consultation.doctor.get_full_name|default:consultation.doctor.username }}
+                                        </span>
+                                    </div>
+                                    <span style="font-size: 0.85rem; font-weight: 700; padding: 4px 10px; border-radius: 6px; background: rgba(5, 150, 105, 0.1); color: var(--role-primary);">
+                                        {{ consultation.appointment.slot.start_time|time:"H:i" }}
+                                    </span>
+                                </div>
+                                <div class="visit-body">
+                                    <!-- Diagnosis and Notes -->
+                                    <div class="consultation-details-grid" style="margin-bottom: 20px;">
+                                        <div class="visit-section">
+                                            <h4>{% trans "Symptoms / Chief Complaint" %}</h4>
+                                            <p style="margin: 0; color: #475569; font-size: 0.95rem; white-space: pre-line;">{{ consultation.symptoms_notes }}</p>
+                                        </div>
+                                        <div class="visit-section">
+                                            <h4>{% trans "Diagnosis" %}</h4>
+                                            <p style="margin: 0; color: #475569; font-size: 0.95rem; white-space: pre-line;">{{ consultation.diagnosis }}</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Lab and Test Results -->
+                                    {% if consultation.lab_results or consultation.test_results %}
+                                    <div class="consultation-details-grid" style="margin-bottom: 20px; border-top: 1px solid var(--dash-border); padding-top: 16px;">
+                                        {% if consultation.lab_results %}
+                                        <div class="visit-section">
+                                            <h4>{% trans "Lab Results" %}</h4>
+                                            <p style="margin: 0; color: #475569; font-size: 0.95rem; white-space: pre-line;">{{ consultation.lab_results }}</p>
+                                        </div>
+                                        {% endif %}
+                                        {% if consultation.test_results %}
+                                        <div class="visit-section">
+                                            <h4>{% trans "Test Results" %}</h4>
+                                            <p style="margin: 0; color: #475569; font-size: 0.95rem; white-space: pre-line;">{{ consultation.test_results }}</p>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    {% endif %}
+
+                                    <!-- Prescriptions -->
+                                    {% if consultation.prescriptions.exists %}
+                                    <div class="visit-section" style="border-top: 1px solid var(--dash-border); padding-top: 16px;">
+                                        <h4>{% trans "Prescriptions" %}</h4>
+                                        <div class="table-responsive">
+                                            <table style="width: 100%; border-collapse: collapse; margin-top: 8px;">
+                                                <thead>
+                                                    <tr style="background: #f8fafc; border-bottom: 1px solid var(--dash-border);">
+                                                        <th style="padding: 10px 14px; text-align: left; font-size: 0.85rem; font-weight: 800; color: #475569;">{% trans "Medication" %}</th>
+                                                        <th style="padding: 10px 14px; text-align: left; font-size: 0.85rem; font-weight: 800; color: #475569;">{% trans "Dosage" %}</th>
+                                                        <th style="padding: 10px 14px; text-align: left; font-size: 0.85rem; font-weight: 800; color: #475569;">{% trans "Duration" %}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for rx in consultation.prescriptions.all %}
+                                                    <tr style="border-bottom: 1px solid var(--dash-border);">
+                                                        <td style="padding: 10px 14px; font-weight: 700; color: var(--dash-text); font-size: 0.9rem;">{{ rx.medication_name }}</td>
+                                                        <td style="padding: 10px 14px; color: #475569; font-size: 0.9rem;">{{ rx.dosage }}</td>
+                                                        <td style="padding: 10px 14px; color: #475569; font-size: 0.9rem;">{{ rx.duration }}</td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
+                                    <!-- Medical Report Attachments -->
+                                    {% if consultation.reports.exists %}
+                                    <div class="visit-section" style="border-top: 1px solid var(--dash-border); padding-top: 16px;">
+                                        <h4>{% trans "Report Attachments" %}</h4>
+                                        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px;">
+                                            {% for report in consultation.reports.all %}
+                                                <a href="{{ report.file.url }}" target="_blank" class="report-badge" title="{% trans 'Uploaded: {{ report.uploaded_at }}' %}">
+                                                    <i class="bi bi-file-earmark-medical"></i> 
+                                                    <span>{{ report.title }}</span>
+                                                    <span style="font-size: 0.75rem; font-weight: normal; color: #64748b;">({{ report.get_report_type_display }})</span>
+                                                </a>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div style="text-align: center; padding: 48px; border: 2px dashed var(--dash-border); border-radius: var(--dash-radius); background: rgba(241, 245, 249, 0.5);">
+                    <h3 style="margin: 0 0 8px; color: var(--dash-text);">{% trans "No Medical History Found" %}</h3>
+                    <p style="margin: 0; color: var(--dash-muted); font-size: 0.9rem;">{% trans "This patient does not have any recorded consultations yet." %}</p>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+</div>
+{% endblock %}

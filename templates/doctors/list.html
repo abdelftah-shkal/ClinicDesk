@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "Find a Doctor | Clinic System" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --doctor-bg: #f1f5f9;
+        --doctor-surface: #ffffff;
+        --doctor-text: #0f172a;
+        --doctor-muted: #64748b;
+        --doctor-border: rgba(148, 163, 184, 0.26);
+        --doctor-shadow: 0 18px 48px rgba(15, 23, 42, 0.12);
+        --doctor-shadow-soft: 0 12px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    body {
+        background: var(--doctor-bg);
+    }
+
+    .doctor-header h1 {
+        font-family: "Outfit", "Segoe UI", sans-serif;
+        font-weight: 800;
+        letter-spacing: 0.01em;
+    }
+
+    .doctor-subtitle {
+        color: var(--doctor-muted);
+    }
+
+    .filter-card {
+        background: var(--doctor-surface);
+        border: 1px solid var(--doctor-border);
+        border-radius: 18px;
+        box-shadow: var(--doctor-shadow-soft);
+        padding: 1.4rem 1.5rem;
+    }
+
+    .filter-label {
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #1d4ed8;
+    }
+
+    .form-control,
+    .form-select {
+        border-radius: 14px;
+        border-color: var(--doctor-border);
+        padding: 0.75rem 0.95rem;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #60a5fa;
+        box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.15);
+    }
+
+    .doctor-card {
+        border-radius: 18px;
+        border: 1px solid var(--doctor-border);
+        background: var(--doctor-surface);
+        box-shadow: var(--doctor-shadow-soft);
+        padding: 1.6rem;
+        transition: transform 180ms ease, box-shadow 180ms ease;
+        height: 100%;
+    }
+
+    .doctor-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--doctor-shadow);
+    }
+
+    .doctor-avatar {
+        width: 54px;
+        height: 54px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #2563eb, #06b6d4);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-weight: 800;
+        font-size: 1.1rem;
+        box-shadow: 0 8px 18px rgba(37, 99, 235, 0.25);
+    }
+
+    .doctor-meta {
+        color: var(--doctor-muted);
+        font-size: 0.95rem;
+    }
+
+    .rating {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.2rem;
+        font-weight: 700;
+        color: #0f172a;
+    }
+
+    .rating i {
+        color: #f59e0b;
+    }
+
+    .fee {
+        font-weight: 800;
+        color: #1d4ed8;
+    }
+
+    .availability {
+        font-weight: 700;
+        font-size: 0.85rem;
+        padding: 0.35rem 0.75rem;
+        border-radius: 999px;
+    }
+
+    .availability.available {
+        background: rgba(16, 185, 129, 0.16);
+        color: #047857;
+    }
+
+    .availability.busy {
+        background: rgba(239, 68, 68, 0.14);
+        color: #b91c1c;
+    }
+
+    .btn-cta {
+        border-radius: 999px;
+        font-weight: 800;
+        padding: 0.65rem 1.1rem;
+    }
+
+    .empty-state {
+        border-radius: 18px;
+        border: 1px dashed rgba(148, 163, 184, 0.6);
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.9);
+        color: var(--doctor-muted);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="py-5 py-lg-6">
+    <div class="container">
+        <div class="doctor-header mb-4">
+            <h1 class="display-5 mb-2">{% trans "Find a Doctor" %}</h1>
+            <p class="doctor-subtitle mb-0">{% trans "Browse specialists and book appointments easily" %}</p>
+        </div>
+
+        <form method="get" class="filter-card mb-4">
+            <div class="d-flex flex-column flex-lg-row gap-3 align-items-lg-end">
+                <div class="flex-fill">
+                    <div class="filter-label mb-2">{% trans "Search" %}</div>
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
+                        <input type="text" name="q" class="form-control border-start-0" placeholder="{% trans 'Search by doctor name' %}" value="{{ q|default:'' }}">
+                    </div>
+                </div>
+                <div class="flex-fill">
+                    <div class="filter-label mb-2">{% trans "Specialty" %}</div>
+                    <select name="specialty" class="form-select" onchange="this.form.submit()">
+                        <option value="">{% trans "All specialties" %}</option>
+                        {% for specialty in specialties %}
+                            <option value="{{ specialty }}" {% if selected_specialty == specialty %}selected{% endif %}>{{ specialty }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary btn-cta w-100">
+                        <i class="bi bi-filter me-2"></i>{% trans "Filter" %}
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <div class="row g-4">
+            {% for doctor in doctors %}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="doctor-card">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="doctor-avatar">
+                                {% if doctor.user.first_name or doctor.user.last_name %}
+                                    {{ doctor.user.first_name|slice:":1"|upper }}{{ doctor.user.last_name|slice:":1"|upper }}
+                                {% else %}
+                                    {{ doctor.user.username|slice:":2"|upper }}
+                                {% endif %}
+                            </div>
+                            <div>
+                                <h5 class="mb-0 fw-bold">{% trans "Dr." %} {{ doctor.user.get_full_name|default:doctor.user.username }}</h5>
+                                <div class="doctor-meta">{{ doctor.specialty }}</div>
+                            </div>
+                        </div>
+                        <p class="doctor-meta mb-3">{{ doctor.bio|default:"" }}</p>
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div class="rating"><i class="bi bi-star-fill"></i> {% trans "4.8" %}</div>
+                            <div class="doctor-meta">{% trans "8+ years experience" %}</div>
+                        </div>
+                        <div class="fee mb-3">{% trans "Consultation Fee:" %} {% trans "EGP" %} {{ doctor.consultation_fee }}</div>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <span class="availability available">{% trans "Available Today" %}</span>
+                            <a href="{% url 'patient-booking' %}?doctor={{ doctor.user.id }}" class="btn btn-primary btn-cta">
+                                <i class="bi bi-calendar-plus me-2"></i>{% trans "Book Appointment" %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12">
+                    <div class="empty-state text-center mt-4">
+                        <i class="bi bi-search fs-1 mb-3"></i>
+                        <h5 class="fw-bold">{% trans "No doctors found" %}</h5>
+                        <p class="mb-0">{% trans "Try adjusting your filters or search term to see more results." %}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

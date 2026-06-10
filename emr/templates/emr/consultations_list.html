@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "Consultations | Doctor Portal" %}{% endblock %}
+
+{% block extra_css %}
+    {% include "dashboard/partials/_dashboard_styles.html" %}
+    <style>
+    .consultation-card {
+        border: 1px solid var(--dash-border); border-radius: var(--dash-radius);
+        background: rgba(255, 255, 255, 0.94); box-shadow: var(--dash-shadow-soft);
+        padding: 24px; margin-bottom: 18px; transition: all 180ms ease;
+    }
+    .consultation-card:hover { border-color: var(--role-primary); box-shadow: 0 16px 40px rgba(5, 150, 105, 0.15); }
+    .consultation-header {
+        display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;
+    }
+    .consultation-patient { font-size: 1.1rem; font-weight: 900; color: var(--dash-text); }
+    .consultation-date { font-size: 0.85rem; color: var(--dash-muted); }
+    .consultation-body { margin: 16px 0; }
+    .consultation-notes { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .note-section h4 { margin: 0 0 10px; font-size: 0.9rem; font-weight: 900; color: #334155; }
+    .note-section p { margin: 0; color: var(--dash-muted); font-size: 0.9rem; line-height: 1.6; }
+    .prescription-list { margin-top: 16px; }
+    .prescription-item {
+        display: grid; grid-template-columns: 1fr 0.7fr 0.7fr; gap: 16px;
+        padding: 10px 0; border-bottom: 1px solid var(--dash-border);
+    }
+    .prescription-item:last-child { border-bottom: none; }
+    .prescription-label { font-size: 0.75rem; font-weight: 700; color: var(--dash-muted); text-transform: uppercase; }
+    .prescription-value { font-weight: 600; color: var(--dash-text); }
+    .panel-empty {
+        text-align: center; padding: 64px 32px; border: 2px dashed var(--dash-border);
+        border-radius: var(--dash-radius); background: rgba(241, 245, 249, 0.5);
+    }
+    .panel-empty h3 { margin: 0 0 8px; color: var(--dash-text); }
+    .panel-empty p { margin: 0; color: var(--dash-muted); font-size: 0.9rem; }
+    .pagination { margin-top: 32px; text-align: center; }
+    .pagination a, .pagination span { 
+        display: inline-block; padding: 8px 12px; margin: 0 4px; 
+        border-radius: 8px; background: #fff; color: var(--role-primary); 
+        text-decoration: none; border: 1px solid var(--dash-border); 
+    }
+    .pagination .page-current { background: var(--role-primary); color: #fff; border-color: var(--role-primary); }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-shell role-doctor">
+    {% include "dashboard/partials/_sidebar.html" %}
+    <main class="dashboard-main">
+        <div class="dashboard-content">
+            <div style="margin-bottom: 34px;">
+                <h1 style="font-size: 2rem; font-weight: 950; margin: 0 0 8px; color: var(--dash-text);">{% trans "Consultations" %}</h1>
+                <p style="margin: 0; color: var(--dash-muted); font-size: 0.95rem;">{% trans "All your consultation notes and patient records" %}</p>
+            </div>
+
+            {% if consultations %}
+                {% for consultation in consultations %}
+                <div class="consultation-card">
+                    <div class="consultation-header">
+                        <div>
+                            <div class="consultation-patient">
+                                {{ consultation.patient.get_full_name|default:consultation.patient.username }}
+                            </div>
+                            <div class="consultation-date">
+                                {{ consultation.appointment.slot.date|date:"M j, Y" }} {% trans "at" %} 
+                                {{ consultation.appointment.slot.start_time|time:"H:i" }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="consultation-body">
+                        <div class="consultation-notes">
+                            <div class="note-section">
+                                <h4>{% trans "Symptoms & Notes" %}</h4>
+                                <p>{{ consultation.symptoms_notes|linebreaks }}</p>
+                            </div>
+                            <div class="note-section">
+                                <h4>{% trans "Diagnosis" %}</h4>
+                                <p>{{ consultation.diagnosis|linebreaks }}</p>
+                            </div>
+                        </div>
+
+                        {% if consultation.prescriptions.all %}
+                        <div class="prescription-list">
+                            <h4 style="margin: 16px 0 10px; font-size: 0.9rem; font-weight: 900; color: #334155;">{% trans "Prescriptions" %}</h4>
+                            {% for prescription in consultation.prescriptions.all %}
+                            <div class="prescription-item">
+                                <div>
+                                    <div class="prescription-label">{% trans "Medication" %}</div>
+                                    <div class="prescription-value">{{ prescription.medication_name }}</div>
+                                </div>
+                                <div>
+                                    <div class="prescription-label">{% trans "Dosage" %}</div>
+                                    <div class="prescription-value">{{ prescription.dosage }}</div>
+                                </div>
+                                <div>
+                                    <div class="prescription-label">{% trans "Duration" %}</div>
+                                    <div class="prescription-value">{{ prescription.duration }}</div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+
+                {% if is_paginated %}
+                <div class="pagination">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">{% trans "« First" %}</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">{% trans "Previous" %}</a>
+                    {% endif %}
+
+                    <span class="page-current">{% trans "Page" %} {{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }}</span>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">{% trans "Next" %}</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">{% trans "Last »" %}</a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            {% else %}
+            <div class="panel-empty">
+                <h3>{% trans "No consultations yet" %}</h3>
+                <p>{% trans "Start by checking in patients and completing consultations from the Daily Queue." %}</p>
+            </div>
+            {% endif %}
+        </div>
+    </main>
+</div>
+{% endblock %}

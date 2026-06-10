@@ -1,0 +1,47 @@
+{% load i18n %}
+<div class="dashboard-topbar p-3 p-md-4 mb-4">
+    <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
+        <div>
+            <div class="dashboard-eyebrow">{{ dashboard_eyebrow|default:"Dashboard" }}</div>
+            <h1 class="h4 fw-bold mb-1">
+                {% if dashboard_title %}
+                    {{ dashboard_title }}
+                {% elif request.user.role == 'PATIENT' %}
+                    {% trans "Your care overview" %}
+                {% elif request.user.role == 'DOCTOR' %}
+                    {% trans "Today's clinical flow" %}
+                {% elif request.user.role == 'RECEPTIONIST' %}
+                    {% trans "Front desk traffic board" %}
+                {% else %}
+                    {% trans "Clinic workspace" %}
+                {% endif %}
+            </h1>
+            <p class="text-secondary mb-0">
+                {% if dashboard_subtitle %}
+                    {{ dashboard_subtitle }}
+                {% else %}
+                    {% trans "Welcome back," %} {{ request.user.get_full_name|default:request.user.username }}.
+                {% endif %}
+            </p>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+            <form action="{% url 'set_language' %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <select name="language" onchange="this.form.submit()" class="form-select form-select-sm language-select" style="border-radius: 20px; font-weight: 800; padding: 0.25rem 2.25rem 0.25rem 0.75rem; font-size: 0.85rem; border-color: var(--dash-border); min-width: 90px; cursor: pointer; background: var(--dash-surface);">
+                    {% get_current_language as CURRENT_LANGUAGE %}
+                    {% get_available_languages as languages %}
+                    {% for lang_code, lang_name in languages %}
+                        <option value="{{ lang_code }}" {% if lang_code == CURRENT_LANGUAGE %}selected{% endif %}>
+                            {% if lang_code == 'ar' %}عربي{% else %}{% trans "EN" %}{% endif %}
+                        </option>
+                    {% endfor %}
+                </select>
+            </form>
+            <a class="btn btn-light border" href="#" aria-label="Notifications">
+                <i class="bi bi-bell"></i>
+            </a>
+            <span class="badge rounded-pill text-bg-success px-3 py-2">{{ request.user.role|title }}</span>
+        </div>
+    </div>
+</div>

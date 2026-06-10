@@ -1,0 +1,258 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "My Prescriptions | Clinic System" %}{% endblock %}
+
+{% block extra_css %}
+{% include "dashboard/partials/_dashboard_styles.html" %}
+<style>
+    .prescriptions-shell {
+        display: grid;
+        gap: 1.5rem;
+        padding-bottom: 2rem;
+    }
+
+    .prescriptions-hero {
+        padding: 1.6rem;
+        border-radius: 26px;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        color: #fff;
+        background:
+            radial-gradient(circle at top right, rgba(255, 255, 255, 0.16), transparent 16rem),
+            linear-gradient(135deg, #2563eb, #06b6d4 54%, #1d4ed8);
+        box-shadow: 0 20px 46px rgba(15, 23, 42, 0.08);
+    }
+
+    .prescriptions-hero h1 {
+        margin: 0.9rem 0 0.6rem;
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 900;
+    }
+
+    .prescriptions-hero p {
+        color: rgba(255, 255, 255, 0.84);
+        margin-bottom: 0;
+    }
+
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        min-height: 2rem;
+        padding: 0 0.85rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.14);
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+
+    .prescriptions-grid {
+        display: grid;
+        gap: 1.5rem;
+    }
+
+    .visit-card {
+        padding: 1.6rem;
+        border-radius: 26px;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 20px 46px rgba(15, 23, 42, 0.08);
+        transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .visit-card:hover {
+        border-color: rgba(37, 99, 235, 0.28);
+        box-shadow: 0 28px 60px rgba(15, 23, 42, 0.12);
+        transform: translateY(-3px);
+    }
+
+    .visit-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+        padding-bottom: 1rem;
+        margin-bottom: 1.2rem;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .visit-title {
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: var(--clinic-text);
+        margin: 0;
+    }
+
+    .visit-meta {
+        font-size: 0.85rem;
+        color: var(--clinic-muted);
+    }
+
+    .medications-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .medication-item {
+        padding: 1rem;
+        border-radius: 20px;
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        background: linear-gradient(180deg, rgba(248, 250, 252, 0.85), #fff);
+    }
+
+    .medication-item strong {
+        display: block;
+        margin-bottom: 0.45rem;
+        color: var(--clinic-text);
+        font-size: 1rem;
+    }
+
+    .medication-meta {
+        display: grid;
+        gap: 0.35rem;
+        color: var(--clinic-muted);
+        font-size: 0.88rem;
+    }
+
+    .view-summary-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 800;
+        color: var(--role-primary);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 180ms ease;
+    }
+
+    .view-summary-btn:hover {
+        color: var(--role-secondary);
+    }
+
+    .panel-empty {
+        text-align: center;
+        padding: 64px 32px;
+        border: 2px dashed rgba(148, 163, 184, 0.3);
+        border-radius: 22px;
+        background: rgba(241, 245, 249, 0.5);
+    }
+
+    .panel-empty h3 {
+        margin: 0 0 8px;
+        color: var(--clinic-text);
+        font-weight: 800;
+    }
+
+    .panel-empty p {
+        margin: 0;
+        color: var(--clinic-muted);
+        font-size: 0.95rem;
+    }
+
+    .pagination {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .pagination a, .pagination span {
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 12px;
+        background: #fff;
+        color: var(--role-primary);
+        text-decoration: none;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        font-weight: 700;
+        font-size: 0.9rem;
+    }
+
+    .pagination .page-current {
+        background: var(--role-primary);
+        color: #fff;
+        border-color: var(--role-primary);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-shell">
+    {% include "dashboard/partials/_sidebar.html" %}
+    <div class="dashboard-main">
+        {% include "dashboard/partials/_topbar.html" %}
+
+        <section class="prescriptions-shell">
+            <section class="prescriptions-hero">
+                <span class="hero-badge"><i class="bi bi-journal-medical"></i> {% trans "Prescriptions History" %}</span>
+                <h1>{% trans "Your Prescribed Medications" %}</h1>
+                <p>{% trans "View all prescriptions issued to you by the doctors during your clinic visits." %}</p>
+            </section>
+
+            <div class="prescriptions-grid">
+                {% if prescriptions %}
+                    {% regroup prescriptions by consultation as visit_list %}
+                    {% for visit in visit_list %}
+                        {% with consultation=visit.grouper %}
+                            <div class="visit-card">
+                                <div class="visit-header">
+                                    <div>
+                                        <h2 class="visit-title"><i class="bi bi-person-badge me-2"></i>{% trans "Dr." %} {{ consultation.doctor.get_full_name|default:consultation.doctor.username }}</h2>
+                                        <div class="visit-meta mt-1">
+                                            <i class="bi bi-calendar3 me-1"></i>{{ consultation.appointment.slot.date|date:"M j, Y" }}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <a href="{% url 'emr:patient-consultation-summary' consultation.appointment.id %}" class="view-summary-btn">
+                                            <i class="bi bi-file-earmark-medical"></i> {% trans "View Visit Summary" %}
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="medications-grid">
+                                    {% for item in visit.list %}
+                                        <div class="medication-item">
+                                            <strong>{{ item.medication_name }}</strong>
+                                            <div class="medication-meta">
+                                                <span><i class="bi bi-capsule me-2"></i>{% trans "Dosage:" %} {{ item.dosage }}</span>
+                                                <span><i class="bi bi-hourglass-split me-2"></i>{% trans "Duration:" %} {{ item.duration }}</span>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endwith %}
+                    {% endfor %}
+
+                    {% if is_paginated %}
+                        <div class="pagination">
+                            {% if page_obj.has_previous %}
+                                <a href="?page=1">{% trans "« First" %}</a>
+                                <a href="?page={{ page_obj.previous_page_number }}">{% trans "Previous" %}</a>
+                            {% endif %}
+
+                            <span class="page-current">{% trans "Page" %} {{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }}</span>
+
+                            {% if page_obj.has_next %}
+                                <a href="?page={{ page_obj.next_page_number }}">{% trans "Next" %}</a>
+                                <a href="?page={{ page_obj.paginator.num_pages }}">{% trans "Last »" %}</a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% else %}
+                    <div class="panel-empty">
+                        <i class="bi bi-journal-medical" style="font-size: 3rem; color: var(--clinic-muted); display: block; margin-bottom: 1rem;"></i>
+                        <h3>{% trans "No prescriptions found" %}</h3>
+                        <p>{% trans "You have not been issued any prescriptions yet." %}</p>
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

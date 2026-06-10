@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "Patients | Reception" %}{% endblock %}
+
+{% block extra_css %}
+{% include "dashboard/partials/_dashboard_styles.html" %}
+<style>
+    .patient-toolbar,
+    .patient-table-wrap {
+        border: 1px solid var(--dash-border);
+        border-radius: 12px;
+        background: #fff;
+        padding: 18px;
+    }
+
+    .patient-toolbar {
+        display: grid;
+        gap: 12px;
+    }
+
+    .patient-filter-grid {
+        display: grid;
+        grid-template-columns: minmax(220px, 1fr) minmax(150px, 180px) minmax(150px, 180px) auto;
+        gap: 12px;
+        align-items: end;
+    }
+
+    .walkin-input {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid var(--dash-border);
+    }
+
+    .table-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    @media (max-width: 767.98px) {
+        .patient-filter-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-shell role-reception">
+    {% include "dashboard/partials/_sidebar.html" %}
+    <main class="dashboard-main">
+        {% include "dashboard/partials/_topbar.html" with dashboard_eyebrow="Reception" dashboard_title="Patients" dashboard_subtitle="Search and manage patient records." %}
+
+        <div class="dashboard-content">
+            <div class="dashboard-stack">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+                    <div>
+                        <h1 class="panel-title fs-2 mb-1">{% trans "Patient Records" %}</h1>
+                        <p class="panel-subtitle mb-0">{% trans "Find patients by ID, name, username, email, or phone." %}</p>
+                    </div>
+                    <a class="btn btn-primary" href="{% url 'reception:patient-create' %}">
+                        <i class="bi bi-person-plus me-1"></i> {% trans "Add Patient" %}
+                    </a>
+                </div>
+
+                <form method="get" class="patient-toolbar">
+                    <div class="patient-filter-grid">
+                        <div>
+                            <label class="form-label fw-bold" for="patient-search">{% trans "Search" %}</label>
+                            <input id="patient-search" class="walkin-input" type="search" name="q" value="{{ search_query }}" placeholder="{% trans 'Name, ID, email, phone' %}">
+                        </div>
+                        <div>
+                            <label class="form-label fw-bold" for="blood-type-filter">{% trans "Blood type" %}</label>
+                            <select id="blood-type-filter" class="walkin-input" name="blood_type">
+                                <option value="">{% trans "All" %}</option>
+                                {% for value, label in blood_type_choices %}
+                                    <option value="{{ value }}" {% if selected_blood_type == value %}selected{% endif %}>{{ label }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label fw-bold" for="gender-filter">{% trans "Gender" %}</label>
+                            <select id="gender-filter" class="walkin-input" name="gender">
+                                <option value="">{% trans "All" %}</option>
+                                {% for value, label in gender_choices %}
+                                    <option value="{{ value }}" {% if selected_gender == value %}selected{% endif %}>{{ label }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-primary" type="submit">{% trans "Filter" %}</button>
+                            <a class="btn btn-secondary" href="{% url 'reception:patient-list' %}">{% trans "Reset" %}</a>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="patient-table-wrap">
+                    <div class="table-responsive">
+                        <table class="table align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th>{% trans "ID" %}</th>
+                                    <th>{% trans "Name" %}</th>
+                                    <th>{% trans "Email" %}</th>
+                                    <th>{% trans "Phone" %}</th>
+                                    <th>{% trans "Blood Type" %}</th>
+                                    <th>{% trans "Actions" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for patient in patients %}
+                                    <tr>
+                                        <td>#{{ patient.id }}</td>
+                                        <td>{{ patient.get_full_name|default:patient.username }}</td>
+                                        <td>{{ patient.email|default:"Not set" }}</td>
+                                        <td>{{ patient.phone_number|default:"Not set" }}</td>
+                                        <td>{{ patient.patient_profile.blood_type|default:"Not set" }}</td>
+                                        <td>
+                                            <div class="table-actions">
+                                                <a class="btn btn-sm btn-outline-primary" href="{% url 'reception:patient-detail' patient.pk %}">{% trans "View" %}</a>
+                                                <a class="btn btn-sm btn-outline-secondary" href="{% url 'reception:patient-edit' patient.pk %}">{% trans "Edit" %}</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="6" class="text-center text-muted py-4">{% trans "No patients found." %}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {% if page_obj.has_other_pages %}
+                        <nav class="mt-4" aria-label="Patient pagination">
+                            <ul class="pagination mb-0">
+                                {% if page_obj.has_previous %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}&q={{ search_query }}&blood_type={{ selected_blood_type }}&gender={{ selected_gender }}">{% trans "Previous" %}</a></li>
+                                {% endif %}
+                                <li class="page-item active"><span class="page-link">{{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }}</span></li>
+                                {% if page_obj.has_next %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}&q={{ search_query }}&blood_type={{ selected_blood_type }}&gender={{ selected_gender }}">{% trans "Next" %}</a></li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

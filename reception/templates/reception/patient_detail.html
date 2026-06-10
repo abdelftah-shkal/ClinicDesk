@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "Patient Record | Reception" %}{% endblock %}
+
+{% block extra_css %}
+{% include "dashboard/partials/_dashboard_styles.html" %}
+<style>
+    .record-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+        gap: 18px;
+    }
+
+    .record-card {
+        border: 1px solid var(--dash-border);
+        border-radius: 12px;
+        background: #fff;
+        padding: 18px;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .info-label {
+        color: var(--dash-muted);
+        font-size: 0.72rem;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .info-value {
+        color: var(--dash-text);
+        font-weight: 700;
+        margin-top: 3px;
+    }
+
+    .medical-alert {
+        border-left: 4px solid #dc2626;
+        background: #fff7f7;
+    }
+
+    .medical-history {
+        border-left: 4px solid var(--role-primary);
+        background: #f8fbff;
+    }
+
+    @media (max-width: 991.98px) {
+        .record-grid,
+        .info-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-shell role-reception">
+    {% include "dashboard/partials/_sidebar.html" %}
+    <main class="dashboard-main">
+        {% include "dashboard/partials/_topbar.html" with dashboard_eyebrow="Reception" dashboard_title="Patient record" dashboard_subtitle="Review patient details, medical notes, and recent visits." %}
+
+        <div class="dashboard-content">
+            <div class="dashboard-stack">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+                    <a href="{% url 'reception:patient-list' %}" class="d-inline-flex align-items-center gap-2" style="color: var(--dash-muted); font-weight: 700; text-decoration: none;">
+                        <i class="bi bi-arrow-left"></i> {% trans "Back to Patients" %}
+                    </a>
+                    <a class="btn btn-primary" href="{% url 'reception:patient-edit' patient.pk %}">
+                        <i class="bi bi-pencil-square me-1"></i> {% trans "Edit Patient" %}
+                    </a>
+                </div>
+
+                <div class="record-grid">
+                    <section class="record-card">
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <span class="sidebar-avatar"><i class="bi bi-person"></i></span>
+                            <div>
+                                <h1 class="panel-title fs-3 mb-1">{{ patient.get_full_name|default:patient.username }}</h1>
+                                <p class="panel-subtitle mb-0">{% trans "Patient ID #" %}{{ patient.id }}</p>
+                            </div>
+                        </div>
+
+                        <div class="info-grid">
+                            <div>
+                                <div class="info-label">{% trans "Email" %}</div>
+                                <div class="info-value">{{ patient.email|default:"Not set" }}</div>
+                            </div>
+                            <div>
+                                <div class="info-label">{% trans "Phone" %}</div>
+                                <div class="info-value">{{ patient.phone_number|default:"Not set" }}</div>
+                            </div>
+                            <div>
+                                <div class="info-label">{% trans "Date of birth" %}</div>
+                                <div class="info-value">{{ profile.date_of_birth|date:"M d, Y"|default:"Not set" }}</div>
+                            </div>
+                            <div>
+                                <div class="info-label">{% trans "Blood type" %}</div>
+                                <div class="info-value">{{ profile.blood_type|default:"Not set" }}</div>
+                            </div>
+                            <div>
+                                <div class="info-label">{% trans "Gender" %}</div>
+                                <div class="info-value">{{ profile.get_gender_display|default:"Not set" }}</div>
+                            </div>
+                            <div>
+                                <div class="info-label">{% trans "Emergency contact" %}</div>
+                                <div class="info-value">
+                                    {{ profile.emergency_contact_name|default:"Not set" }}
+                                    {% if profile.emergency_contact_phone %}
+                                        <br><span class="text-muted">{{ profile.emergency_contact_phone }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div style="grid-column: 1 / -1;">
+                                <div class="info-label">{% trans "Address" %}</div>
+                                <div class="info-value">{{ profile.address|linebreaksbr|default:"Not set" }}</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <aside class="dashboard-stack">
+                        <section class="record-card medical-alert">
+                            <div class="info-label mb-2">{% trans "Allergies" %}</div>
+                            <div class="info-value">{{ profile.allergies|linebreaksbr|default:"No allergies recorded." }}</div>
+                        </section>
+                        <section class="record-card medical-history">
+                            <div class="info-label mb-2">{% trans "Medical history" %}</div>
+                            <div class="info-value">{{ profile.medical_history|linebreaksbr|default:"No medical history recorded." }}</div>
+                        </section>
+                    </aside>
+                </div>
+
+                <section class="record-card">
+                    <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
+                        <div>
+                            <h2 class="panel-title fs-4 mb-1">{% trans "Recent Appointments" %}</h2>
+                            <p class="panel-subtitle mb-0">{% trans "Last 10 appointments for this patient." %}</p>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th>{% trans "Date" %}</th>
+                                    <th>{% trans "Time" %}</th>
+                                    <th>{% trans "Doctor" %}</th>
+                                    <th>{% trans "Status" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for appointment in appointments %}
+                                    <tr>
+                                        <td>{{ appointment.slot.date|date:"M d, Y" }}</td>
+                                        <td>{{ appointment.slot.start_time|time:"H:i" }}</td>
+                                        <td>{{ appointment.doctor.get_full_name|default:appointment.doctor.username }}</td>
+                                        <td><span class="badge text-bg-light">{{ appointment.get_status_display }}</span></td>
+                                    </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="4" class="text-center text-muted py-4">{% trans "No appointments recorded." %}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

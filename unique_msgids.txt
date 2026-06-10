@@ -1,0 +1,806 @@
+(EGP
+. Check your schedule.
+1
+100%% refund
+123 Main Health Avenue, Cairo, Egypt
+16
+2
+3
+4.8
+42
+8+ years experience
+A
+A clean archive for follow-up, review, and future rebooking decisions.
+A compact view of the items most likely to affect your next visit.
+A user with this email already exists.
+APPOINTMENTS
+AVERAGE REVENUE PER APPOINTMENT
+Access
+Access management
+Account Activated | Clinic System
+Account created successfully. Please check your email to activate your account.
+Account is Active
+Account recovery
+Account snapshot
+Actions
+Activate
+Activate Account
+Activate Your Account
+Activation Failed | Clinic System
+Activation link is invalid
+Active
+Active (visible to patients and staff)
+Add Medication
+Add Patient
+Add Patient | Reception
+Add Service
+Add Walk-in
+Add any comments, descriptions of additional services, or special instructions.
+Add at least one prescription.
+Add your specialty and a short bio so patients can find the right care faster.
+Address
+Adjust schedule
+Admin
+Admin Workspace
+Admin command
+Age:
+All
+All Clinic Doctors
+All Doctors
+All Roles
+All Status
+All Statuses
+All appointments for
+All clinic bookings
+All information on this page is loaded from doctor and appointment records.
+All specialties
+All your consultation notes and patient records
+Allergies
+Allergies Warning
+Already have an account?
+Amount
+Amount cannot exceed the remaining balance due of EGP {self.invoice.balance_due:.2f}.
+An invoice already exists for this appointment: {appointment.invoice.invoice_number}
+Analyze patient registration growth, visit frequency, and retention in the clinic.
+Appointment
+Appointment Booking
+Appointment Cancelled
+Appointment Center
+Appointment Date
+Appointment Details
+Appointment ID
+Appointment Ref:
+Appointment Reminder
+Appointment Report
+Appointment Report | Admin Dashboard
+Appointment Status
+Appointment with Dr.
+Appointment:
+Appointments
+Appointments that still need your attention
+Appointments this week
+Appt #
+Arabic
+Are you sure you want to cancel the appointment for
+Are you sure?
+Assign Doctors
+Available Time Slots
+Available Today
+Available doctors
+Awaiting payment means the booking exists but still needs payment follow-up.
+BLOOD TYPE
+Back
+Back to Consultation
+Back to Dashboard
+Back to Login
+Back to Patient
+Back to Patients
+Back to Queue
+Back to Services
+Back to Users
+Back to booking
+Back to dashboard
+Back to login
+Balance
+Balance Due
+Balance Due:
+Billed To (Patient)
+Billing & Financial Report
+Billing & Financial Report | Admin Dashboard
+Billing Center
+Billing Dashboard | Reception
+Billing Notes
+Billing Notes:
+Bills and receipts
+Bio
+Blood Type
+Blood Type:
+Blood type
+Blood type:
+Book Appointment
+Book Appointment | Clinic System
+Book Visit
+Book a visit to see your next scheduled consultation here.
+Book appointment
+Book new appointment
+Book visit
+Book your first visit
+Booking Summary
+Branding & Contact Info
+Browse specialists and book appointments easily
+Built for every clinic workflow
+Button not working? Paste this link into your browser:
+CANCEL
+CHECK IN
+CLINIC APPOINTMENT SYSTEM
+COMPLETE
+CONFIRMED RATE
+Cancel
+Cancel Appointment
+Cancellation reason
+Cancelled
+Cardiology consultation
+Care snapshot
+Care summary
+CareFlow Clinic
+Change Password
+Change password
+Check exam room availability
+Check-ins, walk-ins, and status at a glance.
+Checked In
+Checked in
+Checked-in patients
+Choose a doctor card and date to load current free times.
+Choose a new password
+Choose a slot
+Choose a username
+Clear
+Clear filters
+Clear interfaces for booking, consultations, check-in, and daily traffic.
+Clear schedule signal and patient flow.
+Clinic Analytics
+Clinic Logo
+Clinic Name
+Clinic Service
+Clinic Services
+Clinic Services | Admin Dashboard
+Clinic Settings
+Clinic Settings | Admin Dashboard
+Clinic Stamp
+Clinic System
+Clinic System | Smart Appointment Care
+Clinic Workspace
+Clinic operations, beautifully organized
+Clinic readiness
+Clinic sessions
+Clinic workspace
+Clinical Notes
+Clinical flow
+Close Window
+Closed consultations
+Closing Time
+Collect cash, card, or other payment.
+Complete your profile
+Complete your profile | Clinic System
+Completed
+Completed Visits (Period)
+Completed consultations
+Completed or cancelled appointments cannot be rescheduled.
+Completed today
+Completed visits
+Comprehensive insights and performance metrics
+Comprehensive, state-of-the-art care provided by clinical experts
+Configure clinic services details and assign doctors.
+Confirm & Refund
+Confirm Cancellation
+Confirm Password
+Confirm Reschedule
+Confirm appointment
+Confirm new password
+Confirm your new password
+Confirm your password
+Confirmed
+Confirmed and pending visits ordered for quick review.
+Confirmed and waiting arrival
+Confirmed appointments are usually ready for visit-day check-in.
+Consultation
+Consultation Fee
+Consultation Fee (EGP)
+Consultation Fee:
+Consultation Summary
+Consultation Summary | Clinic System
+Consultation Timeline
+Consultation fee
+Consultation notes
+Consultation session
+Consultation with Dr.
+Consultation | Doctor Portal
+Consultations
+Consultations | Doctor Portal
+Continue
+Coordinate arrivals, appointment creation, patient approvals, and live queue handoffs from one structured desk view.
+Could not create the patient record. Please check the form and try again.
+Could not register the walk-in. Please check the data and try again.
+Could not reschedule due to a conflicting appointment. Please choose another slot.
+Could not update the patient record. Please check the form and try again.
+Create Invoice | Clinic System
+Create New User
+Create Patient
+Create User
+Create User | Admin Dashboard
+Create a fresh password to regain access.
+Create a new password
+Create a password
+Create account
+Created
+Created At
+Currency
+Current Schedule
+Currently checking in
+DATE OF BIRTH
+Daily Queue | Doctor Portal
+Dashboard
+Dashboard unavailable
+Dashboard | Clinic System
+Date
+Date Issued
+Date Issued:
+Date of Birth
+Date of birth
+Date:
+Day Name
+Day of Week
+Deactivate
+Default Slot Duration (minutes)
+Delete
+Description
+Desk
+Desk command
+Desk traffic by doctor, date range, and patient search.
+Diagnosis
+Diagnosis / Disease
+Diagnosis:
+Disease & Diagnosis Statistics
+Disease & Diagnosis Statistics | Admin Dashboard
+Display Order
+Doctor
+Doctor Dashboard | Clinic System
+Doctor Overview
+Doctor Performance
+Doctor Profile Details
+Doctor Profile | Clinic System
+Doctor Queue
+Doctor assessment
+Doctor cards, specialties, prices, descriptions, and available slots are loaded from the database.
+Doctor name or specialty
+Doctor profile
+Doctor's Consultation Fee
+Doctor, patient, reception
+Doctor-ready queue
+Doctor:
+Doctors Assigned
+Doctors get a focused view of today's queue, schedules, and consultation status.
+Done
+Dosage
+Dosage:
+Dr.
+Dr. Omar Hassan - 01:00 PM
+Dr. Sarah Ahmed - 10:30 AM
+Duration
+Duration:
+EGP
+EMERGENCY CONTACT
+EN
+Easy Booking
+Edit
+Edit Patient
+Edit Patient | Reception
+Edit User
+Edit User | Admin Dashboard
+Edit profile
+Email
+Email Address
+Email verification succeeded. Your account has been activated successfully.
+Email:
+Emergency contact
+Emergency contact name
+Emergency contact phone
+End Date
+End Time
+English
+Enter the email tied to your clinic account.
+Enter your password
+Export CSV
+Failed to reschedule. Please check the form data.
+Fast onboarding
+Fill in the details below to create a new user account.
+Filter
+Filter by doctor name or specialty.
+Filtered results
+Find a Doctor
+Find a Doctor | Clinic System
+Find a doctor
+Find availability
+Find patients by ID, name, username, email, or phone.
+Find the right doctor, review the profile, and confirm an available visit.
+Finish setting up your clinic workspace.
+Finished today
+First Name
+First name
+Flow
+Focus
+Follow up no-shows and late arrivals
+Follow-up complete
+Follow-up visit
+Forgot Password | Clinic System
+Forgot password?
+From Date
+Front desk traffic board
+Full clinical history and past records
+Full name
+Fully Paid
+GENDER
+Gender
+Gender:
+Generate Invoice
+Go Back
+Go to Login
+Go to login
+Good
+Guide your weekly schedule and today's clinical flow from one focused surface.
+Health
+Hello,
+Helpful reminders
+Hi
+History
+Hold down Ctrl (or Cmd on Mac) to select multiple doctors. Only users with the Doctor role are shown.
+Home
+ID
+ID:
+INVOICE
+Icon
+Icon Class (Bootstrap Icon)
+If you did not create an account, you can safely ignore this email.
+If you did not request a password reset, you can ignore this email.
+If you need to reschedule or cancel your appointment, please log in to your dashboard at least 24 hours prior to the slot.
+Inactive
+Inactive users cannot log into the system.
+Info
+Invalid or expired reset link.
+Invoice
+Invoice #
+Invoice Details
+Invoice Metadata
+Invoice Settings
+Invoice {invoice.invoice_number} created successfully.
+Issued on
+Join the clinic appointment workspace.
+Joined
+Joined Date
+Jump into the clinical tasks that usually need the fastest response.
+Keep an eye on scheduled times, assigned doctors, and payment-related statuses.
+Keep room handoff smooth after check-in
+Keep the front desk queue moving and patient records clean.
+Lab Results
+Last 10 appointments for this patient.
+Last Name
+Last activity:
+Last name
+Last »
+Live
+Live Overview
+Login
+Login | Clinic System
+Logo
+Logout
+Manage Schedule
+Manage Schedule | Doctor Portal
+Manage Users
+Manage Your Schedule
+Manage appointments, queues, and patient care from one clean system.
+Manage clinic branding, contact info, working hours, and billing defaults.
+Manage medical services, packages, prices, and doctor assignments
+Manage system access, roles, and user accounts
+Manage your clinic visits with clarity and confidence.
+Mark all as read
+Maximum allowed: EGP
+Medical History -
+Medical Information
+Medical history
+Medical information updated successfully.
+Medical profile details are not available yet. Please contact an administrator.
+Medication
+Medication Name
+Medication name
+Medications
+Method
+Modern care, organized clearly.
+Monitor the queue, prioritize consultations, and keep completed visits moving cleanly into follow-up.
+Monthly Appointments & New Users
+Move directly into the patient tasks used most often.
+Move from authentication to queue management with one visual language for every role.
+My Appointments | Clinic System
+My Prescriptions | Clinic System
+N/A
+Name
+Name, ID, email, phone
+Name, ID, invoice #
+Name, email, or username...
+Name:
+Need a new appointment?
+Need an account?
+Need to sign in instead?
+Needs attention
+New Date
+New Password
+New Start Time
+New password
+Next
+Next confirmed visit
+No Known Drug or Food Allergies reported.
+No Medical History Found
+No account found with that email.
+No appointment activity yet
+No appointment history is available yet.
+No appointments found for the selected filters.
+No appointments found for the selected period.
+No appointments recorded.
+No appointments scheduled for
+No appointments scheduled for this week.
+No appointments this week
+No consultations yet
+No disease breakdown statistics available for this period.
+No doctor assigned
+No doctor data available for this period.
+No doctors found
+No doctors matched the current search.
+No financial transactions found for the selected period.
+No invoices matching the current criteria were found.
+No medications prescribed in this consultation.
+No notifications found.
+No patient activity recorded for the selected period.
+No patients found.
+No payment records found.
+No payments recorded for this invoice yet.
+No prescriptions found
+No prescriptions were recorded for this consultation.
+No schedule entries yet. Add your availability below.
+No services configured yet. Click \\
+No services offered yet
+No upcoming appointments
+No upcoming appointments yet. Once you book a visit, it will appear here.
+No upcoming free slots are available right now.
+No users found matching your criteria.
+None
+Not added yet
+Not completed or cancelled
+Not selected
+Notes (optional)
+Notes / Line Items
+Notes and history
+Notifications | Clinic System
+OK
+ON TRACK
+Old password
+Only checked‑in appointments can be marked as completed.
+Open
+Open the doctor profile or select the card directly.
+Opening Time
+Operational notes that help keep the care session moving.
+Operations & Scheduling
+Our Medical Services
+Our Services | Clinic System
+Outstanding Balance
+Overview
+Overview & Analytics
+PATIENT NAME
+PHONE NUMBER
+Page
+Paid
+Paid on
+Password
+Password reset link sent. Please check your email.
+Password reset successful. You can now log in with your new password.
+Password updated successfully.
+Past appointments
+Patient
+Patient Activity & Retention
+Patient Activity & Retention Report | Admin Dashboard
+Patient Dashboard | Clinic System
+Patient ID #
+Patient Medical History
+Patient Name
+Patient Name:
+Patient Overview
+Patient Profile Details
+Patient Record | Reception
+Patient Records
+Patient profile
+Patient record created successfully.
+Patient record updated successfully.
+Patients can follow upcoming appointments and book new visits without clutter.
+Patients can review this summary but cannot edit the consultation record.
+Patients today
+Patients | Reception
+Pay / View
+Pay Now
+Payment
+Payment Amount (EGP)
+Payment Cancelled
+Payment Cancelled | Clinic System
+Payment History | Clinic System
+Payment Method
+Payment Successful
+Payment Successful | Clinic System
+Payment Transactions
+Payment amount must be greater than zero.
+Payment of EGP {payment.amount} recorded successfully.
+Payments
+Pending
+Pending approvals
+Pending approvals or payments:
+Pending confirmations
+Pending consultations
+Pending patients
+Phone
+Phone Number
+Phone number
+Phone:
+Phone: +20 100 123 4567 | Email: billing@clinic.com
+Pick a date, load free times, and confirm the visit.
+Please check back later or contact support.
+Please choose a different slot to reschedule.
+Please provide a cancellation reason.
+Pre-filled with the doctor's default consultation fee. You can modify this if additional services were provided.
+Prescribed Medications
+Prescription
+Prescription Print -
+Prescriptions
+Prescriptions History
+Previous
+Price Range
+Print Invoice
+Print Prescription
+Printed on
+Professional Details
+Professional Information
+Professional information updated successfully.
+Professional profile details are not available yet. Please contact an administrator.
+Profile
+Profile updated successfully.
+Profile | Clinic System
+Providing Doctors:
+Quick actions
+Quick highlights
+Quick patient intake
+REFUNDS ISSUED
+RESCHEDULE
+Rate
+Read-only record
+Ready
+Ready for doctor queue
+Reason for Rescheduling
+Reason for rescheduling
+Received By
+Recent Appointments
+Reception Dashboard | Clinic System
+Reception Flow
+Reception Overview
+Reception appointments
+Reception control
+Reception teams can manage check-ins, walk-ins, and clinic traffic in real time.
+Reception work that keeps appointments, rooms, and approvals in sync.
+Receptionist
+Reconcile pending invoices before close
+Record Payment
+Record Transaction
+Reference ID: #
+Refunded
+Register
+Register Again
+Register to Book
+Register | Clinic System
+Remembered your password?
+Reminder
+Report Attachments
+Reschedule Appointment
+Rescheduling for
+Reset
+Reset Password
+Reset Password | Clinic System
+Reset Your Password
+Reset your password
+Revenue Generated
+Revenue Growth
+Review consultations
+Review patient medication history
+Review payments
+Review profile
+Review your appointment history before scheduling a follow-up consultation.
+Review your visit summary.
+Role
+Rx
+Same dashboard rhythm, right from sign in.
+Save Changes
+Save Consultation
+Save Schedule
+Save Service
+Save Settings
+Save medical info
+Save professional info
+Save profile
+Saved availability shown with weekday names.
+Schedule
+Schedule updated.
+Scheduled
+Scheduled Time
+Scheduled patients
+Scheduled visits
+Search
+Search Doctors
+Search Patient / Invoice
+Search Users
+Search by doctor name
+Search by name or specialty
+Search doctors
+Search patient name
+Search results are loaded from real doctor and doctor profile records.
+Secure access to your clinic workspace.
+Security
+Select a date first
+Select a doctor card and date to load appointment times.
+Select role
+Select the working days of the clinic.
+Send reset link
+Service '{service.name}' deleted successfully.
+Service Name
+Set new access
+Set your clinic availability and session times
+Shift priorities
+Sign in to continue to your clinic workspace.
+Signed in as
+Slot
+Slot Duration (min)
+Specialty
+Specialty:
+Start Consultation
+Start Date
+Start Time
+Start by checking in patients and completing consultations from the Daily Queue.
+Status
+Status for {name} changed to {appointment.status}.
+Status:
+Step 1/1
+Stripe ID
+Subtotal:
+Successfully registered {walk_in.name}!
+Successfully rescheduled appointment for {appointment.patient}.
+Symptoms
+Symptoms & Chief Complaint
+Symptoms & Notes
+Symptoms / Chief Complaint
+System
+TOTAL REVENUE
+TOTAL USERS
+Test Results
+Thank you for choosing Clinic Appointment System. Wishing you good health!
+Thanks for signing up! Confirm your email to unlock scheduling, dashboards, and patient workflows.
+The link may be expired or already used. Register again to receive a new activation email.
+The selected new slot is already booked.
+The session is already booked by another user.
+The summary updates from the doctor card and the selected appointment slot.
+These are the next unbooked appointment slots for this doctor.
+This Week
+This doctor does not have a valid consultation fee.
+This invoice has been fully paid, and no balance remains outstanding.
+This is a friendly reminder that you have an upcoming appointment scheduled at our clinic. Details can be found below:
+This page is read-only. It shows the diagnosis and prescriptions recorded during your consultation.
+This patient does not have any recorded consultations yet.
+This time slot has already passed.
+This time slot is already booked for this doctor.
+Time
+Time Slot
+Time:
+To Date
+Today
+Today's clinic
+Today's clinical flow
+Today's patients
+Total
+Total Amount (EGP)
+Total Appointments
+Total Appts
+Total Appts (Period)
+Total Billed
+Total Cases
+Total Collected
+Total Invoiced
+Total Paid
+Total Paid:
+Total amount must be greater than zero.
+Total appointments
+Total patients today
+Track upcoming appointments, follow care milestones, and keep medical activity organized from one calm workspace.
+Track upcoming visits and look back at previous appointments.
+Transaction ID
+Transaction Notes
+Try adjusting your filters or search term to see more results.
+Try booking again
+Upcoming
+Upcoming Available Slots
+Upcoming Visits
+Upcoming appointments
+Upcoming visits
+Update
+Update account details and role for
+Update password
+Uploaded: {{ report.uploaded_at }}
+Use the booking page to check fresh slot availability and confirm the next visit.
+User
+User Management
+User Management | Admin Dashboard
+User Roles
+User {user.username} {status_text}.
+Username
+Users & Roles
+Verification complete
+Verification issue
+Verification successful. Please enter your new password.
+View
+View Appointment
+View Consultations
+View Daily Queue
+View Records
+View Summary
+View Visit Summary
+View all prescriptions issued to you by the doctors during your clinic visits.
+View and export all financial transactions and payment statuses during the selected period.
+View and export details of all clinic appointments during the selected period.
+View and export statistical breakdowns of patient diagnoses recorded in consultations.
+View my appointments
+Visit Price
+Visit profile
+Waiting patients
+Walk-in Registration
+We could not activate your account with this link.
+We received a request to reset your password. Use the button below to choose a new one.
+We use this to personalize your care and keep your records accurate.
+Weekly Queue
+Weekly Schedule
+Welcome back
+Welcome back,
+Why are you cancelling?
+Working Days
+Workspace
+Yes, Cancel
+You already have an active appointment with this doctor on this day.
+You already have another active appointment that overlaps with this time.
+You can now sign in and access your clinic workspace.
+You cannot deactivate your own account.
+You have not been issued any prescriptions yet.
+Your Alerts
+Your Prescribed Medications
+Your account is active
+Your account role does not have a dashboard assigned yet.
+Your appointment has been cancelled.
+Your care overview
+at
+completed notes ready
+doctor
+e.g.
+e.g. O+, A-
+found
+name@example.com
+of
+of the consultation fee will be automatically processed for the patient.
+on
+or
+with Dr.
+years
+{field.capitalize()}: {error}
+| Admin Dashboard
+| Clinic System
+| Doctor Portal
+© Clinic System
+© Clinic System. All rights reserved.
+« First

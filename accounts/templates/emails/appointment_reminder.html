@@ -1,0 +1,144 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Appointment Reminder" %}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: #f1f5f9;
+            color: #0f172a;
+            margin: 0;
+            padding: 0;
+            -webkit-text-size-adjust: none;
+            -ms-text-size-adjust: none;
+        }
+        .wrapper {
+            width: 100%;
+            background-color: #f1f5f9;
+            padding: 20px 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+        .header {
+            background: linear-gradient(135deg, #2563eb, #06b6d4);
+            padding: 30px;
+            text-align: center;
+            color: #ffffff;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .content {
+            padding: 30px;
+        }
+        .greeting {
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .details-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .detail-row {
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+        .detail-row:last-child {
+            margin-bottom: 0;
+        }
+        .label {
+            font-weight: 600;
+            color: #64748b;
+            display: inline-block;
+            width: 120px;
+        }
+        .value {
+            color: #0f172a;
+        }
+        .cta-container {
+            text-align: center;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #2563eb;
+            color: #ffffff !important;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 999px;
+            font-size: 16px;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+        }
+        .footer {
+            background-color: #f8fafc;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #64748b;
+            border-top: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="header">
+                <h1>{% trans "Appointment Reminder" %}</h1>
+            </div>
+            <div class="content">
+                <p class="greeting">{% trans "Hello," %} {{ patient_name }}</p>
+                <p>{% trans "This is a friendly reminder that you have an upcoming appointment scheduled at our clinic. Details can be found below:" %}</p>
+                
+                <div class="details-box">
+                    <div class="detail-row">
+                        <span class="label">{% trans "Doctor:" %}</span>
+                        <span class="value">{% trans "Dr." %} {{ doctor_name }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">{% trans "Specialty:" %}</span>
+                        <span class="value">{{ specialty }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">{% trans "Date:" %}</span>
+                        <span class="value">{{ date }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">{% trans "Time:" %}</span>
+                        <span class="value">{{ time }}</span>
+                    </div>
+                </div>
+
+                <div class="cta-container">
+                    <a href="{{ appointment_url }}" class="cta-button">{% trans "View Appointment" %}</a>
+                </div>
+                
+                <p style="font-size: 14px; color: #64748b; line-height: 1.5; margin-top: 20px;">{% trans "If you need to reschedule or cancel your appointment, please log in to your dashboard at least 24 hours prior to the slot." %}</p>
+            </div>
+            <div class="footer">
+                <p>{% trans "© Clinic System. All rights reserved." %}</p>
+                <p>{% trans "Modern care, organized clearly." %}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

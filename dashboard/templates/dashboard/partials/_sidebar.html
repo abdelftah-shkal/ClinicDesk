@@ -1,0 +1,148 @@
+{% load i18n %}
+<!-- Mobile Top Bar -->
+<div class="mobile-top-bar d-lg-none">
+    <div class="d-flex align-items-center gap-3">
+        <button type="button" class="btn btn-light border p-2" id="sidebarToggle" aria-label="{% trans 'Toggle Sidebar' %}">
+            <i class="bi bi-list fs-4" style="line-height: 1; display: block;"></i>
+        </button>
+        <div class="d-flex align-items-center gap-2">
+            <span class="brand-mark-sm"><i class="bi bi-hospital"></i></span>
+            <span class="fw-bold">{% trans "CareFlow Clinic" %}</span>
+        </div>
+    </div>
+</div>
+
+<!-- Backdrop Overlay -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<aside class="dashboard-sidebar" id="dashboardSidebar" aria-label="Dashboard navigation">
+    <div class="sidebar-brand d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center gap-2">
+            <span class="sidebar-logo"><i class="bi bi-hospital"></i></span>
+            <div>
+                <div class="sidebar-kicker">{% trans "Clinic Workspace" %}</div>
+                <div class="sidebar-title">{% trans "CareFlow Clinic" %}</div>
+            </div>
+        </div>
+        <button type="button" class="btn-close d-lg-none" id="sidebarClose" aria-label="{% trans 'Close Sidebar' %}"></button>
+    </div>
+
+    <div class="sidebar-user">
+        <span class="sidebar-avatar"><i class="bi bi-person-badge"></i></span>
+        <div>
+            <div class="sidebar-name">{{ request.user.get_full_name|default:request.user.username }}</div>
+            <div class="sidebar-meta">
+                <span class="sidebar-role-pill">{{ request.user.role|title }}</span>
+                {% if request.user.email %}
+                    <span class="sidebar-email">{{ request.user.email }}</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar-section-title">{% trans "Workspace" %}</div>
+    <nav class="sidebar-nav">
+        {% if request.user.role == 'PATIENT' %}
+            <a class="sidebar-link {% if current_section == 'overview' %}active{% endif %}" href="{% url 'dashboard' %}">
+                <i class="bi bi-grid-1x2"></i>
+                <span><strong>{% trans "Overview" %}</strong><span>{% trans "Care summary" %}</span></span>
+            </a>
+            <a class="sidebar-link {% if current_section == 'appointments' %}active{% endif %}" href="{% url 'my-appointments' %}">
+                <i class="bi bi-calendar2-check"></i>
+                <span><strong>{% trans "Appointments" %}</strong><span>{% trans "Upcoming visits" %}</span></span>
+            </a>
+            <a class="sidebar-link {% if current_section == 'book' %}active{% endif %}" href="{% url 'patient-booking' %}">
+                <i class="bi bi-calendar-plus"></i>
+                <span><strong>{% trans "Book Visit" %}</strong><span>{% trans "Find availability" %}</span></span>
+            </a>
+            <a class="sidebar-link {% if current_section == 'payments' %}active{% endif %}" href="{% url 'patient-payments' %}">
+                <i class="bi bi-credit-card"></i>
+                <span><strong>{% trans "Payments" %}</strong><span>{% trans "Bills and receipts" %}</span></span>
+            </a>
+        {% elif request.user.role == 'DOCTOR' %}
+            <a class="sidebar-link {% if current_section == 'overview' %}active{% endif %}" href="{% url 'dashboard' %}">
+                <i class="bi bi-grid-1x2"></i>
+                <span><strong>{% trans "Overview" %}</strong><span>{% trans "Clinical flow" %}</span></span>
+            </a>
+            <a class="sidebar-link {% if current_section == 'queue' %}active{% endif %}" href="{% url 'emr:daily-queue' %}">
+                <i class="bi bi-people"></i>
+                <span><strong>{% trans "Weekly Queue" %}</strong><span>{% trans "Appointments this week" %}</span></span>
+            </a>
+            <a class="sidebar-link {% if current_section == 'consultations' %}active{% endif %}" href="{% url 'emr:consultations-list' %}">
+                <i class="bi bi-journal-medical"></i>
+                <span><strong>{% trans "Consultations" %}</strong><span>{% trans "Notes and history" %}</span></span>
+            </a>
+            <a class="sidebar-link {% if current_section == 'schedule' %}active{% endif %}" href="{% url 'emr:manage-schedule' %}">
+                <i class="bi bi-calendar-week"></i>
+                <span><strong>{% trans "Schedule" %}</strong><span>{% trans "Clinic sessions" %}</span></span>
+            </a>
+        {% elif request.user.role == 'RECEPTIONIST' %}
+            <a class="sidebar-link {% if current_section == 'overview' %}active{% endif %}" href="{% url 'dashboard' %}">
+                <i class="bi bi-grid-1x2"></i>
+                <span><strong>{% trans "Overview" %}</strong><span>{% trans "Desk command" %}</span></span>
+            </a>
+            <a class="sidebar-link {% if current_section == 'walkin' %}active{% endif %}" href="{% url 'reception:walk_in' %}">
+                <i class="bi bi-person-plus"></i>
+                <span><strong>{% trans "Walk-in Registration" %}</strong><span>{% trans "Quick patient intake" %}</span></span>
+            </a>
+        {% elif request.user.role == 'ADMIN' %}
+            <a class="sidebar-link {% if current_section == 'overview' %}active{% endif %}" href="{% url 'dashboard' %}">
+                <i class="bi bi-grid-1x2"></i>
+                <span><strong>{% trans "Overview & Analytics" %}</strong><span>{% trans "Admin command" %}</span></span>
+            </a>
+            <a class="sidebar-link {% if current_section == 'admin-users' %}active{% endif %}" href="{% url 'admin-users' %}">
+                <i class="bi bi-people-fill"></i>
+                <span><strong>{% trans "Users & Roles" %}</strong><span>{% trans "Access management" %}</span></span>
+            </a>
+        {% endif %}
+    </nav>
+
+    <div class="sidebar-bottom">
+        <a class="sidebar-link {% if current_section == 'profile' %}active{% endif %}" href="{% url 'profile' %}">
+            <i class="bi bi-person"></i>
+            <strong>{% trans "Profile" %}</strong>
+        </a>
+        <a class="sidebar-link logout" href="{% url 'logout' %}">
+            <i class="bi bi-box-arrow-right"></i>
+            <strong>{% trans "Logout" %}</strong>
+        </a>
+    </div>
+</aside>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleBtn = document.getElementById('sidebarToggle');
+        const closeBtn = document.getElementById('sidebarClose');
+        const sidebar = document.getElementById('dashboardSidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+
+        if (toggleBtn && sidebar && overlay) {
+            function openSidebar() {
+                sidebar.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeSidebar() {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            toggleBtn.addEventListener('click', openSidebar);
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeSidebar);
+            }
+            overlay.addEventListener('click', closeSidebar);
+
+            const sidebarLinks = sidebar.querySelectorAll('.sidebar-link');
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth < 992) {
+                        closeSidebar();
+                    }
+                });
+            });
+        }
+    });
+</script>

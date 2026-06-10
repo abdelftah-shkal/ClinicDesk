@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "Our Services | Clinic System" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --service-bg: #f1f5f9;
+        --service-surface: #ffffff;
+        --service-text: #0f172a;
+        --service-muted: #64748b;
+        --service-border: rgba(148, 163, 184, 0.26);
+        --service-shadow: 0 18px 48px rgba(15, 23, 42, 0.12);
+        --service-shadow-soft: 0 12px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    body {
+        background: var(--service-bg);
+    }
+
+    .services-header h1 {
+        font-family: "Outfit", "Segoe UI", sans-serif;
+        font-weight: 800;
+        letter-spacing: 0.01em;
+    }
+
+    .services-subtitle {
+        color: var(--service-muted);
+    }
+
+    .service-card {
+        border-radius: 18px;
+        border: 1px solid var(--service-border);
+        background: var(--service-surface);
+        box-shadow: var(--service-shadow-soft);
+        padding: 2rem;
+        transition: transform 200ms ease, box-shadow 200ms ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .service-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--service-shadow);
+    }
+
+    .service-icon-box {
+        width: 60px;
+        height: 60px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, var(--clinic-primary, #2563eb), var(--clinic-secondary, #06b6d4));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+    }
+
+    .service-price {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: var(--clinic-primary, #2563eb);
+    }
+
+    .doctor-tag {
+        background: color-mix(in srgb, var(--clinic-accent, #dbeafe) 30%, white);
+        color: var(--clinic-primary, #2563eb);
+        font-size: 0.8rem;
+        font-weight: 700;
+        padding: 0.35rem 0.75rem;
+        border-radius: 999px;
+        border: 1px solid rgba(37, 99, 235, 0.15);
+    }
+
+    .empty-state {
+        border-radius: 18px;
+        border: 1px dashed rgba(148, 163, 184, 0.6);
+        padding: 4rem 2rem;
+        background: rgba(255, 255, 255, 0.9);
+        color: var(--service-muted);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="py-5 py-lg-6">
+    <div class="container">
+        <div class="services-header mb-5 text-center">
+            <h1 class="display-5 mb-2">{% trans "Our Medical Services" %}</h1>
+            <p class="services-subtitle mb-0 lead">{% trans "Comprehensive, state-of-the-art care provided by clinical experts" %}</p>
+        </div>
+
+        <div class="row g-4">
+            {% for service in services %}
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="service-card">
+                    <div class="service-icon-box">
+                        <i class="bi {{ service.icon|default:'bi-heart-pulse' }}"></i>
+                    </div>
+                    
+                    <h3 class="h4 fw-bold mb-3" style="color: var(--service-text);">{{ service.name }}</h3>
+                    
+                    <p class="text-secondary mb-4 flex-grow-1" style="min-height: 72px;">
+                        {{ service.description|default:"Providing complete diagnostic evaluation and targeted care to maintain your ongoing health." }}
+                    </p>
+                    
+                    <div class="d-flex align-items-center justify-content-between mb-4 pt-3 border-top">
+                        <span class="text-muted small fw-bold">{% trans "Price Range" %}</span>
+                        <span class="service-price">{{ service.price_range }}</span>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="small fw-bold text-muted mb-2">{% trans "Providing Doctors:" %}</div>
+                        <div class="d-flex flex-wrap gap-2">
+                            {% for doctor in service.doctors.all %}
+                                <span class="doctor-tag">
+                                    {% trans "Dr." %} {{ doctor.get_full_name|default:doctor.username }}
+                                </span>
+                            {% empty %}
+                                <span class="text-muted small">{% trans "All Clinic Doctors" %}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="d-grid mt-auto">
+                        {% if request.user.is_authenticated %}
+                            <a class="btn btn-primary px-4 py-2" href="{% url 'patient-booking' %}">
+                                <i class="bi bi-calendar-plus me-2"></i>{% trans "Book Appointment" %}
+                            </a>
+                        {% else %}
+                            <a class="btn btn-primary px-4 py-2" href="{% url 'register' %}">
+                                <i class="bi bi-person-plus me-2"></i>{% trans "Register to Book" %}
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <div class="empty-state">
+                    <i class="bi bi-heart-pulse fs-1 mb-3 text-secondary"></i>
+                    <h5 class="fw-bold">{% trans "No services offered yet" %}</h5>
+                    <p class="mb-0">{% trans "Please check back later or contact support." %}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

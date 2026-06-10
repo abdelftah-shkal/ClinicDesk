@@ -1,0 +1,240 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "Billing Dashboard | Reception" %}{% endblock %}
+
+{% block extra_css %}
+{% include "dashboard/partials/_dashboard_styles.html" %}
+<style>
+    .billing-toolbar,
+    .billing-table-wrap {
+        border: 1px solid var(--dash-border);
+        border-radius: 12px;
+        background: #ffffff;
+        padding: 18px;
+    }
+    .billing-toolbar {
+        display: grid;
+        gap: 12px;
+    }
+    .billing-filter-grid {
+        display: grid;
+        grid-template-columns: minmax(180px, 1fr) minmax(120px, 160px) minmax(120px, 160px) minmax(120px, 160px) auto;
+        gap: 12px;
+        align-items: end;
+    }
+    .walkin-input {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid var(--dash-border);
+    }
+    .table-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    @media (max-width: 991.98px) {
+        .billing-filter-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+    @media (max-width: 575.98px) {
+        .billing-filter-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    .billing-filter-grid .btn-primary {
+        background: linear-gradient(135deg, var(--role-primary), var(--role-secondary));
+        border: none;
+        color: #ffffff;
+        transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+    .billing-filter-grid .btn-primary:hover,
+    .billing-filter-grid .btn-primary:focus {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 20px color-mix(in srgb, var(--role-primary) 30%, transparent);
+        background: linear-gradient(135deg, var(--role-primary), var(--role-secondary));
+    }
+    .billing-filter-grid .btn-secondary {
+        background: #ffffff;
+        border: 1px solid var(--dash-border);
+        color: var(--dash-muted);
+        transition: transform 180ms ease, background 180ms ease, color 180ms ease;
+    }
+    .billing-filter-grid .btn-secondary:hover,
+    .billing-filter-grid .btn-secondary:focus {
+        background: var(--dash-soft);
+        color: var(--dash-text);
+        border-color: var(--dash-border);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-shell role-reception">
+    {% include "dashboard/partials/_sidebar.html" %}
+    <main class="dashboard-main">
+        {% include "dashboard/partials/_topbar.html" with dashboard_eyebrow="Reception" dashboard_title="Billing & Invoices" dashboard_subtitle="Monitor invoices, track collected amounts, and record patient payments." %}
+
+        <div class="dashboard-content">
+            <div class="dashboard-stack">
+                <!-- Summary Metrics Row -->
+                <div class="row g-4 mb-2">
+                    <div class="col-md-4">
+                        <div class="metric-card">
+                            <div class="metric-icon" style="color: #2563eb; background: rgba(37, 99, 235, 0.1);">
+                                <i class="bi bi-file-earmark-medical"></i>
+                            </div>
+                            <div>
+                                <span class="metric-label">{% trans "Total Invoiced" %}</span>
+                                <div class="metric-value">{% trans "EGP" %} {{ total_invoiced }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="metric-card">
+                            <div class="metric-icon" style="color: #16a34a; background: rgba(22, 163, 74, 0.1);">
+                                <i class="bi bi-cash-stack"></i>
+                            </div>
+                            <div>
+                                <span class="metric-label">{% trans "Total Collected" %}</span>
+                                <div class="metric-value" style="color: #16a34a;">{% trans "EGP" %} {{ total_collected }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="metric-card">
+                            <div class="metric-icon" style="color: #dc2626; background: rgba(220, 38, 38, 0.1);">
+                                <i class="bi bi-exclamation-circle"></i>
+                            </div>
+                            <div>
+                                <span class="metric-label">{% trans "Outstanding Balance" %}</span>
+                                <div class="metric-value" style="color: #dc2626;">{% trans "EGP" %} {{ outstanding_balance }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Messages -->
+                {% if messages %}
+                    <div class="messages-container">
+                        {% for message in messages %}
+                            <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} dashboard-alert" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <!-- Filters Toolbar -->
+                <form method="get" class="billing-toolbar">
+                    <div class="billing-filter-grid">
+                        <div>
+                            <label class="form-label fw-bold" for="patient-search">{% trans "Search Patient / Invoice" %}</label>
+                            <input id="patient-search" class="walkin-input" type="search" name="q" value="{{ search_query }}" placeholder="{% trans 'Name, ID, invoice #' %}">
+                        </div>
+                        <div>
+                            <label class="form-label fw-bold" for="status-filter">{% trans "Status" %}</label>
+                            <select id="status-filter" class="walkin-input" name="status">
+                                <option value="">{% trans "All Statuses" %}</option>
+                                {% for value, label in status_choices %}
+                                    <option value="{{ value }}" {% if selected_status == value %}selected{% endif %}>{{ label }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label fw-bold" for="start-date-filter">{% trans "Start Date" %}</label>
+                            <input id="start-date-filter" class="walkin-input" type="date" name="start_date" value="{{ start_date }}">
+                        </div>
+                        <div>
+                            <label class="form-label fw-bold" for="end-date-filter">{% trans "End Date" %}</label>
+                            <input id="end-date-filter" class="walkin-input" type="date" name="end_date" value="{{ end_date }}">
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-primary px-3" type="submit" style="border-radius: 10px; font-weight: 800; min-height: 44px;">{% trans "Filter" %}</button>
+                            <a class="btn btn-secondary px-3" href="{% url 'billing-dashboard' %}" style="border-radius: 10px; font-weight: 800; min-height: 44px; display: inline-flex; align-items: center;">{% trans "Reset" %}</a>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Invoices Table -->
+                <div class="billing-table-wrap">
+                    <div class="table-responsive">
+                        <table class="table align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th>{% trans "Invoice #" %}</th>
+                                    <th>{% trans "Patient" %}</th>
+                                    <th>{% trans "Doctor" %}</th>
+                                    <th>{% trans "Date Issued" %}</th>
+                                    <th>{% trans "Total" %}</th>
+                                    <th>{% trans "Paid" %}</th>
+                                    <th>{% trans "Balance" %}</th>
+                                    <th>{% trans "Status" %}</th>
+                                    <th>{% trans "Actions" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for invoice in invoices %}
+                                    <tr>
+                                        <td>
+                                            <span class="badge bg-light text-dark fw-bold" style="font-size: 0.8rem; border: 1px solid var(--dash-border);">
+                                                {{ invoice.invoice_number }}
+                                            </span>
+                                        </td>
+                                        <td class="fw-bold">{{ invoice.patient.get_full_name|default:invoice.patient.username }}</td>
+                                        <td>{% trans "Dr." %} {{ invoice.appointment.doctor.get_full_name|default:invoice.appointment.doctor.username }}</td>
+                                        <td>{{ invoice.created_at|date:"M j, Y" }}</td>
+                                        <td class="fw-bold">{% trans "EGP" %} {{ invoice.total_amount }}</td>
+                                        <td class="text-success fw-bold">{% trans "EGP" %} {{ invoice.paid_amount }}</td>
+                                        <td class="{% if invoice.balance_due > 0 %}text-danger{% else %}text-muted{% endif %} fw-bold">{% trans "EGP" %} {{ invoice.balance_due }}</td>
+                                        <td>
+                                            <span class="status-badge status-{{ invoice.status|lower }}">{{ invoice.get_status_display }}</span>
+                                        </td>
+                                        <td>
+                                            <div class="table-actions">
+                                                <a class="btn btn-sm btn-outline-primary" href="{% url 'invoice-detail' invoice.pk %}" style="font-weight: 800; border-radius: 8px;">
+                                                    {% if invoice.balance_due > 0 %}{% trans "Pay / View" %}{% else %}{% trans "View" %}{% endif %}
+                                                </a>
+                                                <a class="btn btn-sm btn-outline-secondary" href="{% url 'invoice-print' invoice.pk %}" target="_blank" style="font-weight: 800; border-radius: 8px;">
+                                                    <i class="bi bi-printer"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="9" class="text-center text-muted py-5">{% trans "No invoices matching the current criteria were found." %}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    {% if page_obj.has_other_pages %}
+                        <nav class="mt-4" aria-label="Billing pagination">
+                            <ul class="pagination mb-0">
+                                {% if page_obj.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}&q={{ search_query }}&status={{ selected_status }}&start_date={{ start_date }}&end_date={{ end_date }}">{% trans "Previous" %}</a>
+                                    </li>
+                                {% endif %}
+                                <li class="page-item active">
+                                    <span class="page-link">{{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }}</span>
+                                </li>
+                                {% if page_obj.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.next_page_number }}&q={{ search_query }}&status={{ selected_status }}&start_date={{ start_date }}&end_date={{ end_date }}">{% trans "Next" %}</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

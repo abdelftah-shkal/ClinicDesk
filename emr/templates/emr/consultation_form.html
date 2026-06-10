@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "Consultation | Doctor Portal" %}{% endblock %}
+
+{% block extra_css %}
+    {% include "dashboard/partials/_dashboard_styles.html" %}
+    <style>
+    .form-card {
+        border: 1px solid var(--dash-border); border-radius: var(--dash-radius);
+        background: rgba(255, 255, 255, 0.94); box-shadow: var(--dash-shadow-soft); margin-bottom: 22px; overflow: hidden;
+    }
+    .form-card-header { padding: 18px 24px; border-bottom: 1px solid var(--dash-border); background: #f8fafc; }
+    .form-card-header h3 { margin: 0; font-size: 1rem; font-weight: 900; color: var(--dash-text); }
+    .form-card-body { padding: 24px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group:last-child { margin-bottom: 0; }
+    .form-group label {
+        display: block; margin-bottom: 8px; font-weight: 700; color: var(--dash-text); font-size: 0.9rem;
+    }
+    .form-group textarea, .form-group input {
+        width: 100%; padding: 12px 14px; border: 1px solid var(--dash-border); border-radius: 12px;
+        background: #fff; color: var(--dash-text); font-family: inherit; font-size: 0.95rem;
+    }
+    .form-group textarea:focus, .form-group input:focus {
+        outline: none; border-color: var(--role-primary); box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+    }
+    .form-error {
+        margin-top: 6px;
+        color: #dc2626;
+        font-size: 0.82rem;
+        font-weight: 700;
+    }
+    .formset-errors {
+        margin-bottom: 14px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        color: #991b1b;
+        background: #fee2e2;
+        font-weight: 700;
+    }
+    .formset-row {
+        display: grid; grid-template-columns: 1fr 0.8fr 0.8fr auto; gap: 12px; padding: 12px; margin-bottom: 12px;
+        border: 1px solid var(--dash-border); border-radius: 12px; background: #f8fafc; align-items: center;
+    }
+    .btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 18px;
+        border-radius: 12px; border: none; font-weight: 900; text-decoration: none; cursor: pointer;
+        transition: all 180ms ease; font-size: 0.9rem;
+    }
+    .btn-primary { background: var(--role-primary); color: #fff; box-shadow: 0 8px 20px rgba(5, 150, 105, 0.3); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(5, 150, 105, 0.4); }
+    .btn-secondary { background: #e2e8f0; color: var(--dash-text); }
+    .btn-secondary:hover { background: #cbd5e1; }
+    .btn-sm { padding: 6px 12px; font-size: 0.8rem; }
+    .btn-add { background: #10b981; color: #fff; }
+    .btn-add:hover { background: #059669; }
+    .btn-danger { background: #ef4444; color: #fff; }
+    .form-actions { display: flex; gap: 12px; margin-top: 32px; }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-shell role-doctor">
+    {% include "dashboard/partials/_sidebar.html" %}
+    <main class="dashboard-main">
+        <div class="dashboard-content">
+            <div style="margin-bottom: 34px;">
+                <h1 style="font-size: 2rem; font-weight: 950; margin: 0 0 8px; color: var(--dash-text);">{% trans "Consultation" %}</h1>
+                <p style="margin: 0; color: var(--dash-muted); font-size: 0.95rem;">
+                    {{ appointment.patient.get_full_name|default:appointment.patient.username }} — {{ appointment.slot.date|date:"M j, Y" }} {% trans "at" %} {{ appointment.slot.start_time|time:"H:i" }}
+                </p>
+            </div>
+
+            <form method="post" novalidate>
+                {% csrf_token %}
+
+                <div class="form-card">
+                    <div class="form-card-header">
+                        <h3>{% trans "Clinical Notes" %}</h3>
+                    </div>
+                    <div class="form-card-body">
+                        <div class="form-group">
+                            <label for="{{ form.symptoms_notes.id_for_label }}">{% trans "Symptoms & Chief Complaint" %}</label>
+                            {{ form.symptoms_notes }}
+                            {% for error in form.symptoms_notes.errors %}
+                                <div class="form-error">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.diagnosis.id_for_label }}">{% trans "Diagnosis" %}</label>
+                            {{ form.diagnosis }}
+                            {% for error in form.diagnosis.errors %}
+                                <div class="form-error">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <div class="form-card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3 style="margin: 0;">{% trans "Prescriptions" %}</h3>
+                        <button type="button" id="add-prescription" class="btn btn-add btn-sm" style="margin: 0;">
+                            <i class="bi bi-plus"></i> {% trans "Add Medication" %}
+                        </button>
+                    </div>
+                    <div class="form-card-body">
+                        {{ formset.management_form }}
+                        {% if formset.non_form_errors %}
+                            <div class="formset-errors">{{ formset.non_form_errors }}</div>
+                        {% endif %}
+                        <div id="prescriptions">
+                            {% for form in formset %}
+                            <div class="formset-row" style="display: grid; grid-template-columns: 1fr 0.8fr 0.8fr auto; gap: 12px;">
+                                {% for hidden in form.hidden_fields %}{{ hidden }}{% endfor %}
+                                <div>
+                                    <input type="text" name="{{ form.medication_name.html_name }}" id="{{ form.medication_name.id_for_label }}" placeholder="{% trans 'Medication name' %}" value="{{ form.medication_name.value|default:'' }}" style="padding: 10px 12px; border: 1px solid var(--dash-border); border-radius: 10px;">
+                                    {% for error in form.medication_name.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+                                </div>
+                                <div>
+                                    <input type="text" name="{{ form.dosage.html_name }}" id="{{ form.dosage.id_for_label }}" placeholder="{% trans 'Dosage' %}" value="{{ form.dosage.value|default:'' }}" style="padding: 10px 12px; border: 1px solid var(--dash-border); border-radius: 10px;">
+                                    {% for error in form.dosage.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+                                </div>
+                                <div>
+                                    <input type="text" name="{{ form.duration.html_name }}" id="{{ form.duration.id_for_label }}" placeholder="{% trans 'Duration' %}" value="{{ form.duration.value|default:'' }}" style="padding: 10px 12px; border: 1px solid var(--dash-border); border-radius: 10px;">
+                                    {% for error in form.duration.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+                                </div>
+                                <label style="margin: 0;">
+                                    {{ form.DELETE }}
+                                    <span style="margin-left: 6px; font-size: 0.75rem; color: var(--dash-muted);">{% trans "Delete" %}</span>
+                                </label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle"></i> {% trans "Save Consultation" %}</button>
+                    <a href="{% url 'emr:daily-queue' %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
+                </div>
+            </form>
+        </div>
+    </main>
+</div>
+
+<script>
+document.getElementById("add-prescription").addEventListener("click", function(e) {
+    e.preventDefault();
+    let count = parseInt(document.getElementById("id_prescriptions-TOTAL_FORMS").value);
+    let template = document.querySelector(".formset-row").cloneNode(true);
+    
+    template.querySelectorAll("input").forEach(input => {
+        input.value = "";
+        let name = input.getAttribute("name");
+        if (name) {
+            name = name.replace(/prescriptions-\d+/, `prescriptions-${count}`);
+            input.setAttribute("name", name);
+        }
+        let id = input.getAttribute("id");
+        if (id) {
+            id = id.replace(/prescriptions-\d+/, `prescriptions-${count}`);
+            input.setAttribute("id", id);
+        }
+    });
+    
+    template.querySelector("input[type='checkbox']").checked = false;
+    document.getElementById("prescriptions").appendChild(template);
+    document.getElementById("id_prescriptions-TOTAL_FORMS").value = count + 1;
+});
+</script>
+{% endblock %}

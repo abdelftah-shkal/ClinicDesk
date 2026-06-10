@@ -1,0 +1,180 @@
+{% load i18n %}
+<div class="role-dashboard">
+    <section class="dashboard-hero">
+        <div class="hero-content">
+            <div class="hero-kicker"><i class="bi bi-heart-pulse"></i> {% trans "Patient Overview" %}</div>
+            <h1>{% trans "Manage your clinic visits with clarity and confidence." %}</h1>
+            <p>{% trans "Track upcoming appointments, follow care milestones, and keep medical activity organized from one calm workspace." %}</p>
+        </div>
+        <div class="hero-actions">
+            <a href="{% url 'patient-booking' %}" class="dash-btn primary"><i class="bi bi-calendar-plus"></i>{% trans "Book Appointment" %}</a>
+            <a href="{% url 'my-appointments' %}" class="dash-btn secondary"><i class="bi bi-file-medical"></i>{% trans "View Records" %}</a>
+        </div>
+    </section>
+
+    <section class="dashboard-metrics" aria-label="Patient metrics">
+        <article class="metric-card">
+            <span class="metric-icon"><i class="bi bi-calendar2-check"></i></span>
+            <div>
+                <div class="metric-label">{% trans "Total Appointments" %}</div>
+                <div class="metric-value">{{ total_appointments|default:"0" }}</div>
+                <div class="metric-note">{% trans "All clinic bookings" %}</div>
+            </div>
+        </article>
+        <article class="metric-card">
+            <span class="metric-icon"><i class="bi bi-clock-history"></i></span>
+            <div>
+                <div class="metric-label">{% trans "Upcoming" %}</div>
+                <div class="metric-value">{{ upcoming_appointments|default:"0" }}</div>
+                <div class="metric-note">{% trans "Scheduled visits" %}</div>
+            </div>
+        </article>
+        <article class="metric-card">
+            <span class="metric-icon"><i class="bi bi-check2-circle"></i></span>
+            <div>
+                <div class="metric-label">{% trans "Completed" %}</div>
+                <div class="metric-value">{{ completed_visits|default:"0" }}</div>
+                <div class="metric-note">{% trans "Closed consultations" %}</div>
+            </div>
+        </article>
+        <article class="metric-card">
+            <span class="metric-icon"><i class="bi bi-activity"></i></span>
+            <div>
+                <div class="metric-label">{% trans "Active" %}</div>
+                <div class="metric-value">{{ active_appointments|default:"0" }}</div>
+                <div class="metric-note">{% trans "Needs attention" %}</div>
+            </div>
+        </article>
+    </section>
+
+    <section class="dashboard-grid">
+        <div class="dashboard-stack">
+            <article class="panel-card">
+                <div class="panel-heading">
+                    <div>
+                        <h2 class="panel-title">{% trans "Upcoming appointments" %}</h2>
+                        <p class="panel-subtitle">{% trans "Confirmed and pending visits ordered for quick review." %}</p>
+                    </div>
+                    <span class="section-kicker">{% trans "Focus" %}</span>
+                </div>
+
+                <div class="appointment-list">
+                    {% for appointment in recent_upcoming_appointments %}
+                        <div class="appointment-item">
+                            <div class="appointment-time">
+                                {% if appointment.slot.date == today %}
+                                    {{ appointment.slot.start_time|time:"H:i" }}
+                                {% else %}
+                                    {{ appointment.slot.date|date:"M j" }}
+                                {% endif %}
+                            </div>
+                            <span class="appointment-icon"><i class="bi bi-heart-pulse"></i></span>
+                            <div>
+                                <div class="appointment-title">
+                                    {% trans "Dr." %} {{ appointment.doctor.get_full_name|default:appointment.doctor.username }}
+                                </div>
+                                <div class="appointment-meta">
+                                    {% if appointment.doctor.doctor_profile %}
+                                        {{ appointment.doctor.doctor_profile.specialty }} -
+                                    {% endif %}
+                                    {{ appointment.slot.date|date:"l, M j" }} {% trans "at" %} {{ appointment.slot.start_time|time:"H:i" }}
+                                </div>
+                            </div>
+                            <span class="status-badge {% if appointment.status == 'CONFIRMED' or appointment.status == 'COMPLETED' %}status-confirmed{% elif appointment.status == 'REQUESTED' or appointment.status == 'AWAITING_PAYMENT' %}status-pending{% else %}status-live{% endif %}">
+                                {{ appointment.get_status_display }}
+                            </span>
+                        </div>
+                    {% empty %}
+                        <div class="appointment-item">
+                            <div>
+                                <div class="appointment-title">{% trans "No upcoming appointments" %}</div>
+                                <div class="appointment-meta">{% trans "Book a visit to see your next scheduled consultation here." %}</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </article>
+
+            <article class="panel-card">
+                <div class="panel-heading">
+                    <div>
+                        <h2 class="panel-title">{% trans "Care snapshot" %}</h2>
+                        <p class="panel-subtitle">{% trans "A compact view of the items most likely to affect your next visit." %}</p>
+                    </div>
+                    <span class="section-kicker">{% trans "Health" %}</span>
+                </div>
+                <div class="mini-grid">
+                    <div class="mini-tile">
+                        <i class="bi bi-person-vcard me-2"></i>
+                        {% trans "Blood type:" %}
+                        {% if patient_profile and patient_profile.blood_type %}
+                            {{ patient_profile.blood_type }}
+                        {% else %}
+                            {% trans "Not added yet" %}
+                        {% endif %}
+                    </div>
+                    <div class="mini-tile">
+                        <i class="bi bi-credit-card me-2"></i>
+                        {% trans "Pending approvals or payments:" %} {{ pending_approvals }}
+                    </div>
+                    <div class="mini-tile">
+                        <i class="bi bi-calendar-week me-2"></i>
+                        {% if last_appointment %}
+                            {% trans "Last activity:" %} {{ last_appointment.slot.date|date:"M j, Y" }}
+                        {% else %}
+                            {% trans "No appointment activity yet" %}
+                        {% endif %}
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <aside class="dashboard-stack">
+            <article class="side-card">
+                <div class="side-heading">
+                    <h2 class="side-title">{% trans "Quick highlights" %}</h2>
+                    <span class="section-kicker">{% trans "Live" %}</span>
+                </div>
+                <div class="highlight-list">
+                    <div class="highlight-item">
+                        <div>
+                            <div class="highlight-label">{% trans "Next confirmed visit" %}</div>
+                            <div class="highlight-value">
+                                {% if next_confirmed_visit %}
+                                    {{ next_confirmed_visit.slot.start_time|time:"H:i" }}
+                                {% else %}
+                                    {% trans "None" %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <span class="status-badge status-confirmed">{% if next_confirmed_visit %}{% trans "Ready" %}{% else %}{% trans "Open" %}{% endif %}</span>
+                    </div>
+                    <div class="highlight-item">
+                        <div>
+                            <div class="highlight-label">{% trans "Pending approvals" %}</div>
+                            <div class="highlight-value">{{ pending_approvals }}</div>
+                        </div>
+                        <span class="status-badge status-pending">{% trans "Pending" %}</span>
+                    </div>
+                    <div class="highlight-item">
+                        <div>
+                            <div class="highlight-label">{% trans "Completed visits" %}</div>
+                            <div class="highlight-value">{{ completed_visits }}</div>
+                        </div>
+                        <span class="status-badge status-live">{% trans "Info" %}</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="side-card">
+                <h2 class="side-title">{% trans "Quick actions" %}</h2>
+                <p class="side-copy">{% trans "Move directly into the patient tasks used most often." %}</p>
+                <div class="action-list">
+                    <a href="{% url 'patient-booking' %}" class="action-link featured"><span><i class="bi bi-calendar-plus me-2"></i>{% trans "Book new appointment" %}</span><i class="bi bi-plus"></i></a>
+                    <a href="{% url 'my-appointments' %}" class="action-link"><span><i class="bi bi-search me-2"></i>{% trans "Find a doctor" %}</span><i class="bi bi-arrow-right"></i></a>
+                    <a href="{% url 'my-appointments' %}" class="action-link"><span><i class="bi bi-credit-card me-2"></i>{% trans "Review payments" %}</span><i class="bi bi-arrow-right"></i></a>
+                </div>
+            </article>
+        </aside>
+    </section>
+</div>

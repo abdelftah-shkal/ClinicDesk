@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "Billing & Financial Report | Admin Dashboard" %}{% endblock %}
+
+{% block extra_css %}
+    {% include "dashboard/partials/_dashboard_styles.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-shell role-admin">
+    {% include "dashboard/partials/_sidebar.html" %}
+
+    <main class="dashboard-main">
+        <div class="dashboard-content">
+            <div class="panel-heading mb-4 d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="panel-title fs-2">{% trans "Billing & Financial Report" %}</h1>
+                    <p class="panel-subtitle">{% trans "View and export all financial transactions and payment statuses during the selected period." %}</p>
+                </div>
+                <a href="?date_from={{ date_from }}&date_to={{ date_to }}&export=csv" class="btn btn-primary d-inline-flex align-items-center gap-2">
+                    <i class="bi bi-file-earmark-spreadsheet-fill"></i> {% trans "Export CSV" %}
+                </a>
+            </div>
+
+            <!-- Filter Bar -->
+            <div class="reception-filter-bar mb-4">
+                <form method="get" class="d-flex flex-wrap gap-3 w-100 align-items-end">
+                    <div class="reception-filter-field flex-grow-1">
+                        <label class="reception-filter-label">{% trans "From Date" %}</label>
+                        <input type="date" name="date_from" class="walkin-input" value="{{ date_from }}">
+                    </div>
+                    
+                    <div class="reception-filter-field flex-grow-1">
+                        <label class="reception-filter-label">{% trans "To Date" %}</label>
+                        <input type="date" name="date_to" class="walkin-input" value="{{ date_to }}">
+                    </div>
+
+                    <div class="reception-filter-actions">
+                        <button type="submit" class="btn reception-filter-button text-white">{% trans "Filter" %}</button>
+                        <a href="{% url 'admin-report-billing' %}" class="btn reception-filter-clear">{% trans "Reset" %}</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Billing Table -->
+            <div class="panel-card p-0 overflow-hidden">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0" style="border-collapse: collapse;">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="py-3 px-4 text-muted text-uppercase" style="font-size: 0.75rem; letter-spacing: 0.05em; font-weight: 800;">{% trans "Transaction ID" %}</th>
+                                <th class="py-3 px-4 text-muted text-uppercase" style="font-size: 0.75rem; letter-spacing: 0.05em; font-weight: 800;">{% trans "Appointment ID" %}</th>
+                                <th class="py-3 px-4 text-muted text-uppercase" style="font-size: 0.75rem; letter-spacing: 0.05em; font-weight: 800;">{% trans "Patient" %}</th>
+                                <th class="py-3 px-4 text-muted text-uppercase text-end" style="font-size: 0.75rem; letter-spacing: 0.05em; font-weight: 800;">{% trans "Amount" %}</th>
+                                <th class="py-3 px-4 text-muted text-uppercase text-center" style="font-size: 0.75rem; letter-spacing: 0.05em; font-weight: 800;">{% trans "Status" %}</th>
+                                <th class="py-3 px-4 text-muted text-uppercase text-center" style="font-size: 0.75rem; letter-spacing: 0.05em; font-weight: 800;">{% trans "Stripe ID" %}</th>
+                                <th class="py-3 px-4 text-muted text-uppercase text-end" style="font-size: 0.75rem; letter-spacing: 0.05em; font-weight: 800;">{% trans "Date" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for tx in transactions %}
+                            <tr>
+                                <td class="p-4 fw-bolder text-muted">#{{ tx.id }}</td>
+                                <td class="p-4 fw-bold">
+                                    {% if tx.appointment %}
+                                        <span class="status-badge" style="background: #f1f5f9; color: #475569;">{% trans "Appt #" %}{{ tx.appointment.id }}</span>
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </td>
+                                <td class="p-4 fw-bolder" style="color: var(--dash-text);">
+                                    {% if tx.appointment and tx.appointment.patient %}
+                                        {{ tx.appointment.patient.get_full_name|default:tx.appointment.patient.username }}
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </td>
+                                <td class="p-4 text-end fw-bolder" style="color: var(--dash-text);">{% trans "EGP" %} {{ tx.amount }}</td>
+                                <td class="p-4 text-center">
+                                    {% if tx.status == 'COMPLETED' or tx.status == 'PAID' %}
+                                        <span class="status-badge status-confirmed">{% trans "Paid" %}</span>
+                                    {% elif tx.status == 'REFUNDED' %}
+                                        <span class="status-badge status-failed">{% trans "Refunded" %}</span>
+                                    {% elif tx.status == 'PENDING' %}
+                                        <span class="status-badge status-pending">{% trans "Pending" %}</span>
+                                    {% else %}
+                                        <span class="status-badge" style="background: #e2e8f0; color: #64748b;">{{ tx.status }}</span>
+                                    {% endif %}
+                                </td>
+                                <td class="p-4 text-center">
+                                    <span class="status-badge status-live" style="background: color-mix(in srgb, var(--role-accent) 50%, transparent); color: var(--role-primary); max-width: 140px; overflow: hidden; text-overflow: ellipsis;">{{ tx.stripe_checkout_id }}</span>
+                                </td>
+                                <td class="p-4 text-end text-muted fw-bold" style="font-size: 0.85rem;">{{ tx.created_at|date:"Y-m-d H:i" }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="7" class="p-5 text-center text-muted fw-bold">{% trans "No financial transactions found for the selected period." %}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</div>
+{% endblock %}

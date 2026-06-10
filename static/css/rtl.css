@@ -1,0 +1,36 @@
+/* RTL Custom Overrides for Clinic Appointment System */
+
+[dir="rtl"] .dashboard-sidebar {
+    inset: 0 0 0 auto !important;
+    border-left: 1px solid rgba(203, 213, 225, 0.74) !important;
+    border-right: none !important;
+    box-shadow: -18px 0 44px rgba(15, 23, 42, 0.05) !important;
+}
+
+[dir="rtl"] .dashboard-main {
+    margin-left: 0 !important;
+    margin-right: 300px !important;
+}
+
+[dir="rtl"] .sidebar-link:hover,
+[dir="rtl"] .sidebar-link:focus,
+[dir="rtl"] .sidebar-link.active {
+    transform: translateX(-3px) !important;
+}
+
+@media (max-width: 991.98px) {
+    [dir="rtl"] .dashboard-sidebar {
+        margin: 0 !important;
+        inset: 0 0 0 auto !important;
+    }
+    [dir="rtl"] .dashboard-main {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+}
+
+[dir="rtl"] .auth-lang-switcher {
+    left: 1.5rem !important;
+    right: auto !important;
+}
+

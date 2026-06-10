@@ -1,0 +1,257 @@
+from django.utils.translation import gettext_lazy as _
+from django.contrib import messages
+from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ValidationError
+from django.db.models import Q
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render
+from django.utils.timezone import now
+
+from .forms import AppointmentCancellationForm
+from .models import Appointment, AppointmentSlot
+from .services import (
+    AppointmentCancellationNotAllowed,
+    cancel_patient_appointment,
+    create_pending_appointment,
+)
+from payments.models import PaymentTransaction
+
+from decimal import Decimal
+from payments.views import REFUND_PERCENTAGE
+
+@login_required
+def available_slots(request):
+    doctor_id = request.GET.get("doctor")
+    date = request.GET.get("date")
+    doctor = None
+
+    if doctor_id:
+        doctor = get_user_model().objects.select_related("doctor_profile").filter(
+            id=doctor_id,
+            role="DOCTOR",
+        ).first()
+
+    slots = AppointmentSlot.objects.filter(
+        doctor_id=doctor_id,
+        date=date,
+        is_booked=False,
+        active_appointments_guard__isnull=True,
+    ).order_by("start_time")
+
+    current = now()
+    if date == current.date().isoformat():
+        slots = slots.filter(start_time__gt=current.time())
+
+    data = []
+    for slot in slots:
+        data.append({
+            "id": slot.id,
+            "time": slot.start_time.strftime("%H:%M"),
+        })
+
+    consultation_fee = getattr(getattr(doctor, "doctor_profile", None), "consultation_fee", 0)
+
+    return JsonResponse({
+        "doctor_id": doctor_id,
+        "consultation_fee": str(consultation_fee),
+        "slots": data,
+    })
+
+
+@login_required
+def patient_booking(request):
+    User = get_user_model()
+    query = (request.GET.get("q") or "").strip()
+    specialty = (request.GET.get("specialty") or "").strip()
+    selected_doctor_id = (request.GET.get("doctor") or "").strip()
+
+    doctors = User.objects.filter(role="DOCTOR").select_related("doctor_profile")
+
+    if query:
+        doctors = doctors.filter(
+            Q(first_name__icontains=query)
+            | Q(last_name__icontains=query)
+            | Q(username__icontains=query)
+            | Q(doctor_profile__specialty__icontains=query)
+        )
+
+    if specialty:
+        doctors = doctors.filter(doctor_profile__specialty__iexact=specialty)
+
+    doctors = doctors.order_by("first_name", "last_name", "username")
+    specialties = (
+        User.objects.filter(role="DOCTOR", doctor_profile__specialty__isnull=False)
+        .exclude(doctor_profile__specialty__exact="")
+        .values_list("doctor_profile__specialty", flat=True)
+        .distinct()
+        .order_by("doctor_profile__specialty")
+    )
+
+    return render(request, "patients/booking_wizard.html", {
+        "doctors": doctors,
+        "specialties": specialties,
+        "search_query": query,
+        "selected_specialty": specialty,
+        "selected_doctor_id": selected_doctor_id,
+        "today": now().date().isoformat(),
+        "current_section": "book",
+        "dashboard_title": "Book a new appointment",
+        "dashboard_subtitle": "Choose a doctor, review availability, and confirm the next clinic visit.",
+    })
+
+
+@login_required
+def doctor_profile_detail(request, doctor_id):
+    doctor = get_object_or_404(
+        get_user_model().objects.select_related("doctor_profile"),
+        id=doctor_id,
+        role="DOCTOR",
+    )
+    upcoming_slots = AppointmentSlot.objects.filter(
+        doctor=doctor,
+        is_booked=False,
+        active_appointments_guard__isnull=True,
+        date__gte=now().date(),
+    ).order_by("date", "start_time")[:6]
+
+    return render(request, "profile/doctor_public_profile.html", {
+        "doctor": doctor,
+        "doctor_profile": getattr(doctor, "doctor_profile", None),
+        "upcoming_slots": upcoming_slots,
+        "current_section": "book",
+        "dashboard_title": "Doctor profile",
+        "dashboard_subtitle": "Review professional information and continue to booking.",
+    })
+
+
+@login_required
+def book_appointment(request, slot_id):
+    if request.method != "POST":
+        return HttpResponse("Method not allowed", status=405)
+
+    try:
+        appointment = create_pending_appointment(patient=request.user, slot_id=slot_id)
+    except AppointmentSlot.DoesNotExist:
+        return JsonResponse({"error": "The selected appointment slot was not found."}, status=404)
+    except ValidationError as exc:
+        return JsonResponse({"error": exc.messages[0]}, status=400)
+
+    consultation_fee = getattr(
+        getattr(appointment.doctor, "doctor_profile", None),
+        "consultation_fee",
+        0,
+    )
+
+    return JsonResponse({
+        "redirect": f"/payments/checkout/{appointment.id}/",
+        "consultation_fee": str(consultation_fee),
+    })
+
+
+@login_required
+def patient_history(request):
+    upcoming = Appointment.objects.filter(
+        patient=request.user,
+        slot__date__gte=now().date(),
+    ).select_related("doctor", "slot", "consultation").order_by("slot__date", "slot__start_time")
+
+    history = Appointment.objects.filter(
+        patient=request.user,
+        slot__date__lt=now().date(),
+    ).select_related("doctor", "slot", "consultation").order_by("-slot__date", "-slot__start_time")
+
+    return render(request, "patients/my_appointments.html", {
+        "upcoming": upcoming,
+        "history": history,
+        "cancellation_form": AppointmentCancellationForm(),
+        "current_section": "appointments",
+        "dashboard_title": "My appointments",
+        "dashboard_subtitle": "Review upcoming visits, booking history, and the current status of each appointment.",
+    })
+
+
+@login_required
+def cancel_appointment_preflight(request, appointment_id):
+
+
+
+    appointment = get_object_or_404(
+        Appointment,
+        pk=appointment_id,
+        patient=request.user,
+    )
+
+    if appointment.status not in {
+        Appointment.Status.REQUESTED,
+        Appointment.Status.CONFIRMED,
+    }:
+        return JsonResponse(
+            {"error": "You can cancel only requested or confirmed appointments."},
+            status=400,
+        )
+
+    # Look for a PAID transaction to calculate the refund
+    paid_txn = (
+        PaymentTransaction.objects
+        .filter(appointment=appointment, status=PaymentTransaction.Status.PAID)
+        .first()
+    )
+
+    if paid_txn:
+        refund_amount = (paid_txn.amount * REFUND_PERCENTAGE).quantize(Decimal("0.01"))
+        deducted_amount = paid_txn.amount - refund_amount
+    else:
+        refund_amount = Decimal("0.00")
+        deducted_amount = Decimal("0.00")
+
+    return JsonResponse({
+        "appointment_id": appointment.id,
+        "has_payment": paid_txn is not None,
+        "original_amount": str(paid_txn.amount) if paid_txn else "0.00",
+        "refund_amount": str(refund_amount),
+        "deducted_amount": str(deducted_amount),
+    })
+
+
+@login_required
+def cancel_appointment(request, appointment_id):
+    if request.method != "POST":
+        return HttpResponse("Method not allowed", status=405)
+
+    form = AppointmentCancellationForm(request.POST)
+    if not form.is_valid():
+        messages.error(request, _("Please provide a cancellation reason."))
+        return redirect("my-appointments")
+
+    try:
+        appointment, refund_info = cancel_patient_appointment(
+            appointment_id=appointment_id,
+            patient=request.user,
+            reason=form.cleaned_data["reason"],
+        )
+    except Appointment.DoesNotExist:
+        return HttpResponse("Not found", status=404)
+    except AppointmentCancellationNotAllowed as exc:
+        messages.error(request, exc.messages[0])
+        return redirect("my-appointments")
+
+    # Return JSON if the client asked for it (AJAX cancel from the modal)
+    if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+        if refund_info:
+            return JsonResponse({
+                "status": "cancelled",
+                "refunded_amount": str(refund_info["refunded_amount"]),
+                "deducted_amount": str(refund_info["deducted_amount"]),
+            })
+        return JsonResponse({"status": "cancelled", "refunded_amount": "0", "deducted_amount": "0"})
+
+    if refund_info:
+        messages.success(
+            request,
+            f"Your appointment has been cancelled and EGP {refund_info['refunded_amount']} "
+            f"has been sent back to your card.",
+        )
+    else:
+        messages.success(request, _("Your appointment has been cancelled."))
+    return redirect("my-appointments")

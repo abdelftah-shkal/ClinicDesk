@@ -1,0 +1,634 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "My Appointments | Clinic System" %}{% endblock %}
+
+{% block extra_css %}
+{% include "dashboard/partials/_dashboard_styles.html" %}
+<style>
+    .appointments-shell {
+        padding-bottom: 2rem;
+    }
+
+    .appointments-hero {
+        padding: clamp(2rem, 4vw, 3.2rem);
+        border-radius: 30px;
+        color: #fff;
+        background:
+            radial-gradient(circle at top right, rgba(255, 255, 255, 0.18), transparent 16rem),
+            linear-gradient(135deg, #1d4ed8, #0891b2 54%, #0f766e);
+        box-shadow: 0 28px 64px rgba(8, 145, 178, 0.24);
+    }
+
+    .hero-badge,
+    .stat-label,
+    .tab-kicker,
+    .status-pill {
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        min-height: 2rem;
+        padding: 0 0.85rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.14);
+        font-size: 0.74rem;
+        font-weight: 800;
+    }
+
+    .appointments-hero h1 {
+        margin: 1rem 0 0.75rem;
+        font-size: clamp(2rem, 4.5vw, 3.15rem);
+        font-weight: 800;
+        line-height: 1.06;
+    }
+
+    .appointments-hero p {
+        max-width: 42rem;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.82);
+        line-height: 1.7;
+    }
+
+    .stats-row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+        margin-top: 1.75rem;
+    }
+
+    .stat-card {
+        padding: 1rem 1.05rem;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.11);
+    }
+
+    .stat-label {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.72rem;
+        font-weight: 800;
+    }
+
+    .stat-value {
+        margin-top: 0.55rem;
+        font-size: 1.6rem;
+        font-weight: 800;
+        line-height: 1;
+    }
+
+    .appointments-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.55fr) minmax(18rem, 0.95fr);
+        gap: 1.5rem;
+        margin-top: 1.75rem;
+        align-items: start;
+    }
+
+    .appointments-stack {
+        display: grid;
+        gap: 1.5rem;
+    }
+
+    .panel-card {
+        padding: 1.6rem;
+        border: 1px solid rgba(148, 163, 184, 0.22);
+        border-radius: 26px;
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: 0 20px 46px rgba(15, 23, 42, 0.08);
+    }
+
+    .panel-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .tab-kicker {
+        display: inline-flex;
+        align-items: center;
+        min-height: 2rem;
+        padding: 0 0.85rem;
+        border-radius: 999px;
+        background: #dbeafe;
+        color: var(--clinic-primary-strong);
+        font-size: 0.72rem;
+        font-weight: 800;
+    }
+
+    .panel-head h2,
+    .side-panel h2 {
+        margin: 0.8rem 0 0;
+        font-size: 1.2rem;
+        font-weight: 800;
+    }
+
+    .panel-head p,
+    .side-panel p {
+        margin: 0.45rem 0 0;
+        color: var(--clinic-muted);
+        line-height: 1.65;
+    }
+
+    .appointment-list {
+        display: grid;
+        gap: 1rem;
+    }
+
+    .appointment-card {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        gap: 1rem;
+        align-items: center;
+        padding: 1rem;
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 22px;
+        background: linear-gradient(180deg, rgba(248, 250, 252, 0.88), #fff);
+    }
+
+    .appointment-date {
+        min-width: 5rem;
+        padding: 0.95rem 0.7rem;
+        border-radius: 18px;
+        color: var(--clinic-primary-strong);
+        background: #eff6ff;
+        text-align: center;
+        font-weight: 800;
+        line-height: 1.1;
+    }
+
+    .appointment-date span {
+        display: block;
+        margin-top: 0.2rem;
+        color: var(--clinic-muted);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+
+    .appointment-title {
+        font-size: 1.05rem;
+        font-weight: 800;
+    }
+
+    .appointment-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem 1rem;
+        margin-top: 0.45rem;
+        color: var(--clinic-muted);
+        font-size: 0.93rem;
+    }
+
+    .appointment-meta span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+    }
+
+    .status-pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 2rem;
+        padding: 0 0.85rem;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 800;
+        white-space: nowrap;
+    }
+
+    .status-REQUESTED,
+    .status-AWAITING_PAYMENT {
+        color: #9a6700;
+        background: #fef3c7;
+    }
+
+    .status-CONFIRMED,
+    .status-CHECKED_IN,
+    .status-COMPLETED {
+        color: #166534;
+        background: #dcfce7;
+    }
+
+    .status-CANCELLED {
+        color: #b91c1c;
+        background: #fee2e2;
+    }
+
+    .empty-card,
+    .tip-card,
+    .action-card {
+        padding: 1.15rem;
+        border: 1px dashed rgba(148, 163, 184, 0.42);
+        border-radius: 20px;
+        color: var(--clinic-muted);
+        background: #fff;
+    }
+
+    .side-panel {
+        display: grid;
+        gap: 1rem;
+    }
+
+    .tip-card,
+    .action-card {
+        border-style: solid;
+        box-shadow: 0 16px 34px rgba(15, 23, 42, 0.06);
+    }
+
+    .tip-list {
+        display: grid;
+        gap: 0.8rem;
+        margin: 0.95rem 0 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .tip-list li {
+        display: flex;
+        gap: 0.7rem;
+        line-height: 1.55;
+    }
+
+    .tip-list i {
+        color: #0891b2;
+    }
+
+    .pay-now-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 2rem;
+        padding: 0.35rem 1rem;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #1d4ed8, #0891b2);
+        color: #fff;
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-decoration: none;
+        letter-spacing: 0.04em;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 12px rgba(29, 78, 216, 0.25);
+    }
+
+    .summary-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 2rem;
+        padding: 0.35rem 1rem;
+        border-radius: 999px;
+        border: 1px solid rgba(8, 145, 178, 0.24);
+        background: #ecfeff;
+        color: #0f766e;
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-decoration: none;
+        letter-spacing: 0.04em;
+        transition: all 0.2s ease;
+    }
+
+    .summary-btn:hover {
+        color: #115e59;
+        border-color: rgba(15, 118, 110, 0.35);
+        background: #cffafe;
+        transform: translateY(-1px);
+    }
+
+    .cancel-form {
+        display: grid;
+        gap: 0.45rem;
+        width: min(18rem, 100%);
+    }
+
+    .cancel-reason {
+        width: 100%;
+        padding: 0.7rem 0.85rem;
+        border: 1px solid rgba(248, 113, 113, 0.24);
+        border-radius: 16px;
+        resize: vertical;
+        font-size: 0.85rem;
+        color: var(--clinic-text);
+        background: #fff;
+    }
+
+    .cancel-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 2rem;
+        padding: 0.35rem 1rem;
+        border: 0;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #b91c1c, #ef4444);
+        color: #fff;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        box-shadow: 0 4px 12px rgba(185, 28, 28, 0.2);
+    }
+
+    .cancel-btn:hover {
+        background: linear-gradient(135deg, #991b1b, #dc2626);
+    }
+
+    .pay-now-btn:hover {
+        background: linear-gradient(135deg, #1e40af, #0e7490);
+        color: #fff;
+        box-shadow: 0 6px 18px rgba(29, 78, 216, 0.35);
+        transform: translateY(-1px);
+    }
+
+    @media (max-width: 991.98px) {
+        .appointments-grid,
+        .stats-row {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 767.98px) {
+        .appointment-card {
+            grid-template-columns: 1fr;
+            justify-items: start;
+        }
+    }
+
+    .modal-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(15,23,42,.55);backdrop-filter:blur(6px);animation:modalFadeIn .25s ease}
+    @keyframes modalFadeIn{from{opacity:0}to{opacity:1}}
+    .modal-box{width:min(26rem,92vw);padding:2.2rem 2rem;border-radius:24px;background:#fff;box-shadow:0 32px 72px rgba(15,23,42,.18);text-align:center;animation:modalSlideUp .3s ease}
+    @keyframes modalSlideUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    .modal-icon{width:3.4rem;height:3.4rem;margin:0 auto 1rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem}
+    .modal-icon-warning{background:#fef3c7;color:#d97706}
+    .modal-icon-success{background:#dcfce7;color:#16a34a}
+    .modal-box h3{margin:0 0 .65rem;font-size:1.25rem;font-weight:800}
+    .modal-box p{margin:0 0 1.4rem;color:#475569;line-height:1.7;font-size:.95rem}
+    .modal-actions{display:flex;gap:.75rem;justify-content:center}
+    .modal-btn{padding:.55rem 1.4rem;border:0;border-radius:999px;font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s ease}
+    .modal-btn:disabled{opacity:.5;cursor:not-allowed}
+    .modal-btn-secondary{background:#f1f5f9;color:#334155}.modal-btn-secondary:hover{background:#e2e8f0}
+    .modal-btn-danger{background:linear-gradient(135deg,#b91c1c,#ef4444);color:#fff;box-shadow:0 4px 14px rgba(185,28,28,.22)}.modal-btn-danger:hover{background:linear-gradient(135deg,#991b1b,#dc2626)}
+    .modal-btn-primary{background:linear-gradient(135deg,#1d4ed8,#0891b2);color:#fff;box-shadow:0 4px 14px rgba(29,78,216,.22)}.modal-btn-primary:hover{background:linear-gradient(135deg,#1e40af,#0e7490)}
+</style>
+{% endblock %}
+
+{% block messages %}{% endblock %}
+
+{% block content %}
+<div class="dashboard-shell">
+    {% include "dashboard/partials/_sidebar.html" %}
+    <div class="dashboard-main">
+        {% include "dashboard/partials/_topbar.html" %}
+
+        {% if messages %}
+            <div class="dashboard-messages mt-4">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags|default:'info' }} dashboard-alert" role="alert">
+                        <i class="bi bi-info-circle-fill me-2"></i>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <section class="appointments-shell">
+            <section class="appointments-hero">
+                <span class="hero-badge"><i class="bi bi-journal-check"></i> {% trans "Appointment Center" %}</span>
+                <h1>{% trans "Track upcoming visits and look back at previous appointments." %}</h1>
+                <p>
+                    {% trans "This page is connected to the appointment history view and separates future visits from past ones
+                    so patients can quickly understand what still needs attention." %}
+                </p>
+
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <div class="stat-label">{% trans "Upcoming" %}</div>
+                        <div class="stat-value">{{ upcoming|length }}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">{% trans "History" %}</div>
+                        <div class="stat-value">{{ history|length }}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">{% trans "Patient" %}</div>
+                        <div class="stat-value">{{ request.user.username }}</div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="appointments-grid">
+                <div class="appointments-stack">
+                    <section class="panel-card">
+                        <div class="panel-head">
+                            <div>
+                                <span class="tab-kicker">{% trans "Upcoming Visits" %}</span>
+                                <h2>{% trans "Appointments that still need your attention" %}</h2>
+                                <p>{% trans "Keep an eye on scheduled times, assigned doctors, and payment-related statuses." %}</p>
+                            </div>
+                        </div>
+
+                        <div class="appointment-list">
+                            {% for appointment in upcoming %}
+                                <article class="appointment-card">
+                                    <div class="appointment-date">
+                                        {{ appointment.slot.date|date:"d" }}
+                                        <span>{{ appointment.slot.date|date:"M Y" }}</span>
+                                    </div>
+                                    <div>
+                                        <div class="appointment-title">
+                                            {% trans "Dr." %} {{ appointment.doctor.get_full_name|default:appointment.doctor.username }}
+                                        </div>
+                                        <div class="appointment-meta">
+                                            <span><i class="bi bi-clock"></i>{{ appointment.slot.start_time|time:"H:i" }} - {{ appointment.slot.end_time|time:"H:i" }}</span>
+                                            <span><i class="bi bi-calendar3"></i>{{ appointment.slot.date|date:"l" }}</span>
+                                            <span><i class="bi bi-receipt"></i>{% trans "Created" %} {{ appointment.created_at|date:"M d, Y" }}</span>
+                                        </div>
+                                    </div>
+                                    <div style="display:flex; flex-direction:column; align-items:flex-end; gap:0.5rem;">
+                                        <span class="status-pill status-{{ appointment.status }}">{{ appointment.get_status_display }}</span>
+                                        {% if appointment.status == "AWAITING_PAYMENT" %}
+                                            <a href="{% url 'stripe-checkout' appointment.id %}" class="pay-now-btn">
+                                                <i class="bi bi-credit-card me-1"></i>{% trans "Pay Now" %}
+                                            </a>
+                                        {% elif appointment.status == "REQUESTED" or appointment.status == "CONFIRMED" %}
+                                            <div class="cancel-form">
+                                                <textarea id="cancel-reason-{{ appointment.id }}" class="cancel-reason" rows="2" placeholder="{% trans 'Why are you cancelling?' %}"></textarea>
+                                                <button type="button" class="cancel-btn" onclick="openCancelModal({{ appointment.id }})">
+                                                    <i class="bi bi-x-circle me-1"></i>{% trans "Cancel Appointment" %}
+                                                </button>
+                                            </div>
+                                        {% elif appointment.consultation %}
+                                            <a href="{% url 'emr:patient-consultation-summary' appointment.id %}" class="summary-btn">
+                                                <i class="bi bi-file-earmark-medical me-1"></i>{% trans "View Summary" %}
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                </article>
+                            {% empty %}
+                                <div class="empty-card">
+                                    {% trans "No upcoming appointments yet. Once you book a visit, it will appear here." %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </section>
+
+                    <section class="panel-card">
+                        <div class="panel-head">
+                            <div>
+                                <span class="tab-kicker">{% trans "History" %}</span>
+                                <h2>{% trans "Past appointments" %}</h2>
+                                <p>{% trans "A clean archive for follow-up, review, and future rebooking decisions." %}</p>
+                            </div>
+                        </div>
+
+                        <div class="appointment-list">
+                            {% for appointment in history %}
+                                <article class="appointment-card">
+                                    <div class="appointment-date">
+                                        {{ appointment.slot.date|date:"d" }}
+                                        <span>{{ appointment.slot.date|date:"M Y" }}</span>
+                                    </div>
+                                    <div>
+                                        <div class="appointment-title">
+                                            {% trans "Dr." %} {{ appointment.doctor.get_full_name|default:appointment.doctor.username }}
+                                        </div>
+                                        <div class="appointment-meta">
+                                            <span><i class="bi bi-clock-history"></i>{{ appointment.slot.start_time|time:"H:i" }} - {{ appointment.slot.end_time|time:"H:i" }}</span>
+                                            <span><i class="bi bi-check2-square"></i>{{ appointment.get_status_display }}</span>
+                                        </div>
+                                    </div>
+                                    <div style="display:flex; flex-direction:column; align-items:flex-end; gap:0.5rem;">
+                                        <span class="status-pill status-{{ appointment.status }}">{{ appointment.get_status_display }}</span>
+                                        {% if appointment.consultation %}
+                                            <a href="{% url 'emr:patient-consultation-summary' appointment.id %}" class="summary-btn">
+                                                <i class="bi bi-file-earmark-medical me-1"></i>{% trans "View Summary" %}
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                </article>
+                            {% empty %}
+                                <div class="empty-card">
+                                    {% trans "No appointment history is available yet." %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </section>
+                </div>
+
+                <aside class="side-panel">
+                    <section class="panel-card">
+                        <h2>{% trans "Need a new appointment?" %}</h2>
+                        <p>{% trans "Use the booking page to check fresh slot availability and confirm the next visit." %}</p>
+                        <a class="btn btn-primary w-100 mt-3" href="{% url 'patient-booking' %}">
+                            <i class="bi bi-calendar-plus me-1"></i>{% trans "Book appointment" %}
+                        </a>
+                    </section>
+
+                    <section class="tip-card">
+                        <h2 class="h5 mb-0">{% trans "Helpful reminders" %}</h2>
+                        <ul class="tip-list">
+                            <li><i class="bi bi-check2-circle"></i><span>{% trans "Confirmed appointments are usually ready for visit-day check-in." %}</span></li>
+                            <li><i class="bi bi-check2-circle"></i><span>{% trans "Awaiting payment means the booking exists but still needs payment follow-up." %}</span></li>
+                            <li><i class="bi bi-check2-circle"></i><span>{% trans "Review your appointment history before scheduling a follow-up consultation." %}</span></li>
+                        </ul>
+                    </section>
+
+                    <section class="action-card">
+                        <h2 class="h5 mb-0">{% trans "Account snapshot" %}</h2>
+                        <p class="mt-2 mb-0">{% trans "Signed in as" %} <strong>{{ request.user.get_full_name|default:request.user.username }}</strong>.</p>
+                    </section>
+                </aside>
+            </div>
+        </section>
+    </div>
+</div>
+<!-- Cancel Warning Modal -->
+<div id="cancelWarningModal" class="modal-overlay" style="display:none;">
+    <div class="modal-box">
+        <div class="modal-icon modal-icon-warning"><i class="bi bi-exclamation-triangle-fill"></i></div>
+        <h3>{% trans "Are you sure?" %}</h3>
+        <p id="cancelWarningText"></p>
+        <div class="modal-actions">
+            <button class="modal-btn modal-btn-secondary" onclick="closeCancelModal()">{% trans "Go Back" %}</button>
+            <button class="modal-btn modal-btn-danger" id="confirmCancelBtn" onclick="confirmCancel()">{% trans "Yes, Cancel" %}</button>
+        </div>
+    </div>
+</div>
+
+<!-- Refund Success Modal -->
+<div id="refundSuccessModal" class="modal-overlay" style="display:none;">
+    <div class="modal-box">
+        <div class="modal-icon modal-icon-success"><i class="bi bi-check-circle-fill"></i></div>
+        <h3>{% trans "Appointment Cancelled" %}</h3>
+        <p id="refundSuccessText"></p>
+        <div class="modal-actions">
+            <button class="modal-btn modal-btn-primary" onclick="location.reload()">{% trans "OK" %}</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+let pendingAppointmentId = null;
+let pendingReason = '';
+
+function openCancelModal(appointmentId) {
+    const reasonEl = document.getElementById('cancel-reason-' + appointmentId);
+    const reason = (reasonEl ? reasonEl.value : '').trim();
+    if (!reason) { alert('Please provide a cancellation reason.'); return; }
+    pendingAppointmentId = appointmentId;
+    pendingReason = reason;
+    document.getElementById('confirmCancelBtn').disabled = true;
+    document.getElementById('cancelWarningText').textContent = 'Loading refund details\u2026';
+    document.getElementById('cancelWarningModal').style.display = 'flex';
+    fetch('/appointments/my/' + appointmentId + '/cancel/preflight/', { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+        .then(r => r.json())
+        .then(data => {
+            if (data.error) { alert(data.error); closeCancelModal(); return; }
+            if (data.has_payment) {
+                document.getElementById('cancelWarningText').innerHTML =
+                    '<strong>20% cancellation fee applies.</strong><br>' +
+                    'Original payment: <strong>EGP ' + data.original_amount + '</strong><br>' +
+                    'Deducted: <strong>EGP ' + data.deducted_amount + '</strong><br>' +
+                    'Refunded to your card: <strong>EGP ' + data.refund_amount + '</strong>';
+            } else {
+                document.getElementById('cancelWarningText').textContent = 'This appointment has no associated payment. It will simply be cancelled.';
+            }
+            document.getElementById('confirmCancelBtn').disabled = false;
+        })
+        .catch(() => { alert('Could not load refund details.'); closeCancelModal(); });
+}
+
+function closeCancelModal() { document.getElementById('cancelWarningModal').style.display = 'none'; pendingAppointmentId = null; }
+
+function confirmCancel() {
+    if (!pendingAppointmentId) return;
+    const btn = document.getElementById('confirmCancelBtn');
+    btn.disabled = true; btn.textContent = 'Cancelling\u2026';
+    const body = new URLSearchParams();
+    body.append('reason', pendingReason);
+    body.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+    fetch('/appointments/my/' + pendingAppointmentId + '/cancel/', { method: 'POST', headers: { 'X-Requested-With': 'XMLHttpRequest' }, body: body })
+        .then(r => r.json())
+        .then(data => {
+            closeCancelModal();
+            const amt = parseFloat(data.refunded_amount || 0);
+            if (amt > 0) {
+                document.getElementById('refundSuccessText').innerHTML =
+                    'Your appointment has been cancelled and <strong>EGP ' + data.refunded_amount + '</strong> has been sent back to your card.';
+            } else {
+                document.getElementById('refundSuccessText').textContent = 'Your appointment has been cancelled successfully.';
+            }
+            document.getElementById('refundSuccessModal').style.display = 'flex';
+        })
+        .catch(() => { closeCancelModal(); alert('An error occurred while cancelling.'); });
+}
+</script>
+{% endblock %}

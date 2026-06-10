@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% block title %}{% trans "Manage Schedule | Doctor Portal" %}{% endblock %}
+
+{% block extra_css %}
+    {% include "dashboard/partials/_dashboard_styles.html" %}
+    <style>
+    .schedule-table {
+        width: 100%; border-collapse: collapse; background: rgba(255, 255, 255, 0.94);
+        border: 1px solid var(--dash-border); border-radius: var(--dash-radius); overflow: hidden;
+        box-shadow: var(--dash-shadow-soft);
+    }
+    .schedule-table thead { background: #f8fafc; }
+    .schedule-table th { padding: 16px 22px; text-align: left; font-weight: 900; color: #334155; font-size: 0.9rem; }
+    .schedule-table td { padding: 16px 22px; border-top: 1px solid var(--dash-border); }
+    .schedule-table select, .schedule-table input {
+        padding: 8px 12px; border: 1px solid var(--dash-border); border-radius: 8px;
+        background: #fff; color: var(--dash-text); font-family: inherit; font-size: 0.9rem;
+    }
+    .schedule-table select:focus, .schedule-table input:focus {
+        outline: none; border-color: var(--role-primary); box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+    }
+    .btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 18px;
+        border-radius: 12px; border: none; font-weight: 900; text-decoration: none; cursor: pointer;
+        transition: all 180ms ease;
+    }
+    .btn-primary { background: var(--role-primary); color: #fff; box-shadow: 0 8px 20px rgba(5, 150, 105, 0.3); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(5, 150, 105, 0.4); }
+    .btn-secondary { background: #e2e8f0; color: var(--dash-text); }
+    .btn-secondary:hover { background: #cbd5e1; }
+    .form-actions { display: flex; gap: 12px; margin-top: 32px; }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-shell role-doctor">
+    {% include "dashboard/partials/_sidebar.html" %}
+    <main class="dashboard-main">
+        <div class="dashboard-content">
+            <div style="margin-bottom: 34px;">
+                <h1 style="font-size: 2rem; font-weight: 950; margin: 0 0 8px; color: var(--dash-text);">{% trans "Manage Your Schedule" %}</h1>
+                <p style="margin: 0; color: var(--dash-muted); font-size: 0.95rem;">{% trans "Set your clinic availability and session times" %}</p>
+            </div>
+
+            <div style="margin-bottom: 28px; padding: 22px; border: 1px solid var(--dash-border); border-radius: var(--dash-radius); background: rgba(255, 255, 255, 0.92); box-shadow: var(--dash-shadow-soft);">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px;">
+                    <div>
+                        <h2 style="font-size: 1.15rem; font-weight: 900; margin: 0 0 6px; color: var(--dash-text);">{% trans "Current Schedule" %}</h2>
+                        <p style="margin: 0; color: var(--dash-muted); font-size: 0.92rem;">{% trans "Saved availability shown with weekday names." %}</p>
+                    </div>
+                </div>
+
+                {% if schedules %}
+                <div style="overflow-x: auto;">
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>{% trans "Date" %}</th>
+                                <th>{% trans "Day Name" %}</th>
+                                <th>{% trans "Start Time" %}</th>
+                                <th>{% trans "End Time" %}</th>
+                                <th>{% trans "Slot Duration (min)" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for schedule in schedules %}
+                            <tr>
+                                <td>{% if schedule.schedule_date %}{{ schedule.schedule_date }}{% else %}-{% endif %}</td>
+                                <td><strong>{{ schedule.get_day_of_week_display }}</strong></td>
+                                <td>{{ schedule.start_time }}</td>
+                                <td>{{ schedule.end_time }}</td>
+                                <td>{{ schedule.slot_duration_minutes }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div style="padding: 18px 20px; border-radius: 16px; background: #f8fafc; color: var(--dash-muted); font-weight: 700;">
+                    {% trans "No schedule entries yet. Add your availability below." %}
+                </div>
+                {% endif %}
+            </div>
+
+            <form method="post" novalidate>
+                {% csrf_token %}
+                
+                <div style="border: 1px solid var(--dash-border); border-radius: var(--dash-radius); overflow: hidden; box-shadow: var(--dash-shadow-soft);">
+                    <div class="table-responsive">
+                        <table class="schedule-table">
+                            <thead>
+                                <tr>
+                                    <th>{% trans "Date" %}</th>
+                                    <th>{% trans "Day of Week" %}</th>
+                                    <th>{% trans "Start Time" %}</th>
+                                    <th>{% trans "End Time" %}</th>
+                                    <th>{% trans "Slot Duration (min)" %}</th>
+                                    <th style="text-align: center;">{% trans "Delete" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{ formset.management_form }}
+                                {% for form in formset %}
+                                <tr>
+                                    <td>{{ form.schedule_date }}</td>
+                                    <td>{% if form.instance.day_of_week is not None %}{{ form.instance.get_day_of_week_display }}{% else %}-{% endif %}</td>
+                                    <td>{{ form.start_time }}</td>
+                                    <td>{{ form.end_time }}</td>
+                                    <td>{{ form.slot_duration_minutes }}</td>
+                                    <td style="text-align: center;">{{ form.DELETE }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle"></i> {% trans "Save Schedule" %}</button>
+                    <a href="{% url 'dashboard' %}" class="btn btn-secondary">{% trans "Back" %}</a>
+                </div>
+            </form>
+        </div>
+    </main>
+</div>
+{% endblock %}

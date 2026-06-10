@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% block title %}{{ title }} {% trans "| Admin Dashboard" %}{% endblock %}
+
+{% block extra_css %}
+    {% include "dashboard/partials/_dashboard_styles.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-shell role-admin">
+    {% include "dashboard/partials/_sidebar.html" %}
+
+    <main class="dashboard-main">
+        <div class="dashboard-content" style="max-width: 800px;">
+            
+            <a href="{% url 'admin-services' %}" class="d-inline-flex align-items-center gap-2 mb-4" style="color: var(--dash-muted); font-weight: 700; text-decoration: none;">
+                <i class="bi bi-arrow-left"></i> {% trans "Back to Services" %}
+            </a>
+
+            <div class="panel-heading mb-4">
+                <h1 class="panel-title fs-2">{{ title }}</h1>
+                <p class="panel-subtitle">{% trans "Configure clinic services details and assign doctors." %}</p>
+            </div>
+
+            <div class="panel-card">
+                <form method="post" class="walkin-form">
+                    {% csrf_token %}
+                    
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger rounded-4">
+                            {% for error in form.non_field_errors %}
+                                <div class="fw-bold">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <div class="row g-4">
+                        <div class="col-md-8">
+                            <label class="form-label">{% trans "Service Name" %} <span class="text-danger">*</span></label>
+                            {{ form.name }}
+                            {% if form.name.errors %}<div class="text-danger mt-1 small fw-bold">{{ form.name.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">{% trans "Display Order" %}</label>
+                            {{ form.display_order }}
+                            {% if form.display_order.errors %}<div class="text-danger mt-1 small fw-bold">{{ form.display_order.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">{% trans "Icon Class (Bootstrap Icon)" %}</label>
+                            {{ form.icon }}
+                            <div class="form-text small">{% trans "e.g." %} <code>bi-heart-pulse</code>, <code>bi-eye</code>, <code>bi-activity</code></div>
+                            {% if form.icon.errors %}<div class="text-danger mt-1 small fw-bold">{{ form.icon.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">{% trans "Price Range" %} <span class="text-danger">*</span></label>
+                            {{ form.price_range }}
+                            <div class="form-text small">{% trans "e.g." %} <code>200 - 500 EGP</code> {% trans "or" %} <code>Fixed 300 EGP</code></div>
+                            {% if form.price_range.errors %}<div class="text-danger mt-1 small fw-bold">{{ form.price_range.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">{% trans "Description" %}</label>
+                            {{ form.description }}
+                            {% if form.description.errors %}<div class="text-danger mt-1 small fw-bold">{{ form.description.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">{% trans "Assign Doctors" %}</label>
+                            {{ form.doctors }}
+                            <div class="form-text small">{% trans "Hold down Ctrl (or Cmd on Mac) to select multiple doctors. Only users with the Doctor role are shown." %}</div>
+                            {% if form.doctors.errors %}<div class="text-danger mt-1 small fw-bold">{{ form.doctors.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-check form-switch mt-2">
+                                {{ form.is_active }}
+                                <label class="form-check-label ms-2" style="font-weight: 700; color: var(--dash-text);">
+                                    {% trans "Active (visible to patients and staff)" %}
+                                </label>
+                            </div>
+                            {% if form.is_active.errors %}<div class="text-danger mt-1 small fw-bold">{{ form.is_active.errors.0 }}</div>{% endif %}
+                        </div>
+
+                    </div>
+
+                    <div class="mt-5 d-flex gap-3 justify-content-end">
+                        <a href="{% url 'admin-services' %}" class="btn" style="background: #f1f5f9; color: #475569; font-weight: 800; border-radius: 12px; padding: 12px 24px;">{% trans "Cancel" %}</a>
+                        <button type="submit" class="btn" style="background: var(--role-primary); color: white; font-weight: 800; border-radius: 12px; padding: 12px 32px; box-shadow: 0 10px 24px color-mix(in srgb, var(--role-primary) 32%, transparent);">{% trans "Save Service" %}</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </main>
+</div>
+{% endblock %}

@@ -1,0 +1,172 @@
+from django.utils.translation import gettext_lazy as _
+from datetime import datetime, timedelta
+
+from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
+from django.db import IntegrityError, transaction
+from django.utils import timezone
+from payments.views import process_appointment_refund
+
+from .models import (
+    Appointment,
+    AppointmentSlot,
+    DoctorSchedule,
+)
+
+
+class AppointmentCancellationNotAllowed(ValidationError):
+    pass
+
+
+def generate_slots(schedule, date):
+    start = datetime.combine(date, schedule.start_time)
+    end = datetime.combine(date, schedule.end_time)
+
+    duration = timedelta(minutes=schedule.slot_duration_minutes)
+
+    buffer = timedelta(minutes=5)
+
+    current = start
+
+    while current + duration <= end:
+        slot_start = current.time()
+        slot_end = (current + duration).time()
+
+        exists = AppointmentSlot.objects.filter(
+            doctor=schedule.doctor,
+            date=date,
+            start_time=slot_start
+        ).exists()
+
+        if not exists:
+            AppointmentSlot.objects.create(
+                doctor=schedule.doctor,
+                date=date,
+                start_time=slot_start,
+                end_time=slot_end,
+            )
+
+        current += duration + buffer
+
+
+def rebuild_doctor_weekday_slots(doctor, weekday, days_ahead=30):
+    """
+    Regenerate future unbooked slots for one doctor's weekday.
+    Existing slots linked to appointments are preserved.
+    """
+    today = timezone.localdate()
+    end_date = today + timedelta(days=days_ahead)
+
+    AppointmentSlot.objects.filter(
+        doctor=doctor,
+        date__gte=today,
+        date__lte=end_date,
+        date__week_day=weekday + 2,
+        appointments__isnull=True,
+    ).delete()
+
+    schedules = DoctorSchedule.objects.filter(
+        doctor=doctor,
+        day_of_week=weekday,
+    )
+
+    current_date = today
+    while current_date <= end_date:
+        if current_date.weekday() == weekday:
+            for schedule in schedules:
+                generate_slots(schedule, current_date)
+        current_date += timedelta(days=1)
+
+
+def sync_schedule_slots(schedule, days_ahead=30):
+    rebuild_doctor_weekday_slots(
+        doctor=schedule.doctor,
+        weekday=schedule.day_of_week,
+        days_ahead=days_ahead,
+    )
+
+
+def create_pending_appointment(*, patient, slot_id):
+    """
+    Create one pending appointment while preventing:
+    - duplicate active bookings for the same slot
+    - overlapping active appointments for the same patient
+
+    The patient row and slot row are locked so concurrent booking attempts are
+    serialized at the database level.
+    """
+    User = get_user_model()
+
+    with transaction.atomic():
+        User.objects.select_for_update().get(pk=patient.pk)
+        slot = (
+            AppointmentSlot.objects.select_for_update()
+            .select_related("doctor")
+            .get(pk=slot_id)
+        )
+
+        slot_datetime = timezone.make_aware(
+            datetime.combine(slot.date, slot.start_time),
+            timezone.get_current_timezone(),
+        )
+        if slot_datetime <= timezone.now():
+            raise ValidationError(_("This time slot has already passed."))
+
+        if slot.is_booked:
+            raise ValidationError(_("The session is already booked by another user."))
+
+        appointment = Appointment(
+            patient=patient,
+            doctor=slot.doctor,
+            slot=slot,
+            status=Appointment.Status.AWAITING_PAYMENT,
+        )
+
+        try:
+            with transaction.atomic():
+                appointment.save()
+        except IntegrityError as exc:
+            if Appointment.objects.active().filter(slot_id=slot.id).exists():
+                raise ValidationError(_("This time slot is already booked for this doctor.")) from exc
+            if Appointment.objects.active().filter(
+                patient_id=patient.pk,
+                doctor_id=slot.doctor_id,
+                slot__date=slot.date,
+            ).exists():
+                raise ValidationError(_("You already have an active appointment with this doctor on this day.")) from exc
+            raise ValidationError(_("You already have another active appointment that overlaps with this time.")) from exc
+
+    return appointment
+
+
+def cancel_patient_appointment(*, appointment_id, patient, reason):
+
+    with transaction.atomic():
+        appointment = (
+            Appointment.objects.select_for_update()
+            .select_related("slot")
+            .get(pk=appointment_id, patient=patient)
+        )
+        slot = AppointmentSlot.objects.select_for_update().get(pk=appointment.slot_id)
+
+        if appointment.status not in {
+            Appointment.Status.REQUESTED,
+            Appointment.Status.CONFIRMED,
+        }:
+            raise AppointmentCancellationNotAllowed(
+                "You can cancel only requested or confirmed appointments."
+            )
+
+        appointment.status = Appointment.Status.CANCELLED
+        appointment.cancellation_reason = reason
+        appointment.cancelled_by = patient
+        appointment.cancelled_at = timezone.now()
+        appointment.save(update_fields=["status", "cancellation_reason", "cancelled_by", "cancelled_at"])
+
+        if not Appointment.objects.active().filter(slot_id=slot.id).exists():
+            slot.is_booked = False
+            slot.save(update_fields=["is_booked"])
+
+        refund_info = process_appointment_refund(appointment)
+
+    return appointment, refund_info
